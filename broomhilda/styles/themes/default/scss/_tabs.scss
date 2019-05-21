@@ -1,0 +1,43 @@
+.tabs {
+	width: 100%;
+
+	.header {
+		display: flex;
+		flex-direction: row;
+		padding-left: 1.0rem;
+
+		input[type="radio"] {
+			display: none;
+		}
+
+		label {
+			position: relative;
+			top: $formBorderWidth;
+			padding: 0.5rem + $formBorderWidth 1.0rem + $formBorderWidth 0.5rem + $formBorderWidth 1.0rem + $formBorderWidth;
+			margin:  0.0rem                    0.5rem                             $formBorderWidth 0.0rem;
+
+			&:not(.selected):hover {
+				color: $colorHoverForeground;
+				background-color: $colorHoverBackground;
+			}
+
+			&.selected {
+				padding: 0.5rem 1.0rem 0.5rem 1.0rem;
+				margin:  0.0rem 0.5rem 0.0rem 0.0rem;
+				border-width: $formBorderWidth;
+				border-style: solid;
+				border-color: $colorSelected $colorSelected $colorMainBackground $colorSelected;
+			}
+		}
+	}
+
+	.content {
+		border: $formBorderWidth solid $colorSelected;
+		background-color: $colorMainBackground;
+
+		& > * {
+			padding: 0.5rem;
+			background-color: $colorMainBackground;
+		}
+	}
+}

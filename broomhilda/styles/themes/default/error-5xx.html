@@ -1,0 +1,23 @@
+{% extends 'error-base.html' %}
+{% block body %}
+		<div class="block head">{{ status_code }}: {{ status_text }}</div>
+		<div class="block body">
+			<h1>Method</h1>
+			<p>{{ method }}</p>
+			<h1>Path</h1>
+			<p>{{ path }}</p>
+			<h1>Handler</h1>
+			<details open="open">
+				<summary>{{ handler_name }}</summary>
+				<pre>{{ handler_file }}</pre>
+				<ol start="{{ handler_line_offset }}">
+{% for line in handler_lines %}<li>{{ line }}</li>{% endfor %}
+				</ol>
+			</details>
+			<h1>Exception</h1>
+			<details open="open">
+				<summary>{{ exception_name }}</summary>
+				<pre>{{ exception_format }}</pre>
+			</details>
+		</div>
+{% endblock %}

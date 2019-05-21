@@ -1,0 +1,220 @@
+{# DATE #}
+
+{% if not item_select_date %}
+{% macro  item_select_date(obj, prefix) -%}
+<div class="field field-1x1y{% if obj.is_invalid('value') %} error{% endif %}">
+    <label for="{{ prefix }}{{ obj.name }}">{{ obj.verbose_name }}</label>
+    <input
+        type="date"
+        id="{{ prefix }}{{ obj.name }}"
+        name="{{ prefix }}{{ obj.name }}"
+        value="{{ obj.item_format('value', '%Y-%m-%d') }}"
+        disabled="disabled">
+    {% if obj.is_invalid('value') %}<output for="{{ prefix }}{{ obj.name }}">{% for error in obj.item_errors('value') %}{{ error }}{% endfor %}</output>{% endif %}
+</div>
+{%- endmacro %}
+{% endif %}
+
+{% if not item_update_date %}
+{% macro  item_update_date(obj, prefix) -%}
+<div
+    class="field field-1x1y{% if obj.is_invalid('value') %} error{% endif %}">
+    <label for="{{ prefix }}{{ obj.name }}">{{ obj.verbose_name }}</label>
+    <input
+        type="date"
+        id="{{ prefix }}{{ obj.name }}"
+        name="{{ prefix }}{{ obj.name }}"
+        value="{{ obj.item_format('value', '%Y-%m-%d') }}"
+        min="{{ obj.min_value.strftime('%Y-%m-%d') }}"
+        max="{{ obj.max_value.strftime('%Y-%m-%d') }}">
+    {% if obj.is_invalid('value') %}<output for="{{ prefix }}{{ obj.name }}">{% for error in obj.item_errors('value') %}{{ error }}{% endfor %}</output>{% endif %}
+</div>
+{%- endmacro %}
+{% endif %}
+
+{% if not list_filter_date %}
+{% macro  list_filter_date(obj, prefix) -%}
+<div
+    class="field field-1x2y-p{% if obj.is_invalid('lower') or obj.is_invalid('upper') %} error{% endif %}">
+    <label for="{{ prefix }}{{ obj.name }}">{{ obj.verbose_name }}</label>
+    <label for="{{ prefix }}{{ obj.name }}:lower">&ge;</label>
+    <input
+        type="date"
+        id="{{ prefix }}{{ obj.name }}:lower"
+        name="{{ prefix }}{{ obj.name }}:lower"
+        value="{{ obj.item_format('lower', '%Y-%m-%d') }}"
+        min="{{ obj.min_value.strftime('%Y-%m-%d') }}"
+        max="{{ obj.max_value.strftime('%Y-%m-%d') }}">
+    {% if obj.is_invalid('lower') %}<output for="{{ prefix }}{{ obj.name }}:lower">{% for error in obj.item_errors('lower') %}{{ error }}{% endfor %}</output>{% endif %}
+    <label for="{{ prefix }}{{ obj.name }}:upper">&le;</label>
+    <input
+        type="date"
+        id="{{ prefix }}{{ obj.name }}:upper"
+        name="{{ prefix }}{{ obj.name }}:upper"
+        value="{{ obj.item_format('upper', '%Y-%m-%d') }}"
+        min="{{ obj.min_value.strftime('%Y-%m-%d') }}"
+        max="{{ obj.max_value.strftime('%Y-%m-%d') }}">
+    {% if obj.is_invalid('upper') %}<output for="{{ prefix }}{{ obj.name }}:upper">{% for error in obj.item_errors('upper') %}{{ error }}{% endfor %}</output>{% endif %}
+</div>
+{%- endmacro %}
+{% endif %}
+
+{# DATETIME #}
+
+{% if not item_select_datetime %}
+{% macro  item_select_datetime(obj, prefix) -%}
+<div class="field field-2x1y{% if obj.is_invalid('value') %} error{% endif %}">
+    <label for="{{ prefix }}{{ obj.name }}">{{ obj.verbose_name }}</label>
+    <input
+        type="date"
+        id="{{ prefix }}{{ obj.name }}:date"
+        name="{{ prefix }}{{ obj.name }}:date"
+        value="{{ obj.item_format('value', '%Y-%m-%d') }}"
+        min="{{ obj.min_value.strftime('%Y-%m-%d') }}"
+        max="{{ obj.max_value.strftime('%Y-%m-%d') }}"
+        step="1"
+        disabled="disabled">
+    <input
+        type="time"
+        id="{{ prefix }}{{ obj.name }}:time"
+        name="{{ prefix }}{{ obj.name }}:time"
+        value="{{ obj.item_format('value', '%H:%M:%S') }}"
+        step="1"
+        disabled="disabled">
+    {% if obj.is_invalid('value') %}<output for="{{ prefix }}{{ obj.name }}">{% for error in obj.item_errors('value') %}{{ error }}{% endfor %}</output>{% endif %}
+</div>
+{%- endmacro %}
+{% endif %}
+
+{% if not item_update_datetime %}
+{% macro  item_update_datetime(obj, prefix) -%}
+<div
+    class="field field-2x1y{% if obj.is_invalid('value') %} error{% endif %}">
+    <label for="{{ prefix }}{{ obj.name }}">{{ obj.verbose_name }}</label>
+    <input
+        type="date"
+        id="{{ prefix }}{{ obj.name }}:date"
+        name="{{ prefix }}{{ obj.name }}:date"
+        value="{{ obj.item_format('value', '%Y-%m-%d') }}"
+        step="1"
+        min="{{ obj.min_value.strftime('%Y-%m-%d') }}"
+        max="{{ obj.max_value.strftime('%Y-%m-%d') }}">
+    <input
+        type="time"
+        id="{{ prefix }}{{ obj.name }}:time"
+        name="{{ prefix }}{{ obj.name }}:time"
+        value="{{ obj.item_format('value', '%H:%M:%S') }}"
+        step="1">
+    {% if obj.is_invalid('value') %}<output for="{{ prefix }}{{ obj.name }}">{% for error in obj.item_errors('value') %}{{ error }}{% endfor %}</output>{% endif %}
+</div>
+{%- endmacro %}
+{% endif %}
+
+{% if not list_filter_datetime %}
+{% macro  list_filter_datetime(obj, prefix) -%}
+<div
+    class="field field-2x2y-p{% if obj.is_invalid('lower') or obj.is_invalid('upper') %} error{% endif %}">
+    <label for="{{ prefix }}{{ obj.name }}">{{ obj.verbose_name }}</label>
+    <label for="{{ prefix }}{{ obj.name }}:lower">&ge;</label>
+    <input
+        type="date"
+        id="{{ prefix }}{{ obj.name }}:lower:date"
+        name="{{ prefix }}{{ obj.name }}:lower:date"
+        value="{{ obj.item_format('lower', '%Y-%m-%d') }}"
+        step="1"
+        min="{{ obj.min_value.strftime('%Y-%m-%d') }}"
+        max="{{ obj.max_value.strftime('%Y-%m-%d') }}">
+    <input
+        type="time"
+        id="{{ prefix }}{{ obj.name }}:lower:time"
+        name="{{ prefix }}{{ obj.name }}:lower:time"
+        value="{{ obj.item_format('lower', '%H:%M:%S') }}"
+        step="1">
+    {% if obj.is_invalid('lower') %}<output for="{{ prefix }}{{ obj.name }}:lower">{% for error in obj.item_errors('lower') %}{{ error }}{% endfor %}</output>{% endif %}
+    <label for="{{ prefix }}{{ obj.name }}:upper">&le;</label>
+    <input
+        type="date"
+        id="{{ prefix }}{{ obj.name }}:upper:date"
+        name="{{ prefix }}{{ obj.name }}:upper:date"
+        value="{{ obj.item_format('upper', '%Y-%m-%d') }}"
+        step="1"
+        min="{{ obj.min_value.strftime('%Y-%m-%d') }}"
+        max="{{ obj.max_value.strftime('%Y-%m-%d') }}">
+    <input
+        type="time"
+        id="{{ prefix }}{{ obj.name }}:upper:time"
+        name="{{ prefix }}{{ obj.name }}:upper:time"
+        value="{{ obj.item_format('upper', '%H:%M:%S') }}"
+        step="1">
+    {% if obj.is_invalid('upper') %}<output for="{{ prefix }}{{ obj.name }}:upper">{% for error in obj.item_errors('upper') %}{{ error }}{% endfor %}</output>{% endif %}
+</div>
+{%- endmacro %}
+{% endif %}
+
+{# TIME #}
+
+{% if not item_select_time %}
+{% macro  item_select_time(obj, prefix) -%}
+<div class="field field-1x1y{% if obj.is_invalid('value') %} error{% endif %}">
+    <label for="{{ prefix }}{{ obj.name }}">{{ obj.verbose_name }}</label>
+    <input
+        type="time"
+        id="{{ prefix }}{{ obj.name }}"
+        name="{{ prefix }}{{ obj.name }}"
+        value="{{ obj.item_format('value', '%H:%M:%S') }}"
+        step="1"
+        min="{{ obj.min_value.strftime('%H:%M:%S') }}"
+        max="{{ obj.max_value.strftime('%H:%M:%S') }}"
+        step="1"
+        disabled="disabled">
+    {% if obj.is_invalid('value') %}<output for="{{ prefix }}{{ obj.name }}">{% for error in obj.item_errors('value') %}{{ error }}{% endfor %}</output>{% endif %}
+</div>
+{%- endmacro %}
+{% endif %}
+
+{% if not item_update_time %}
+{% macro  item_update_time(obj, prefix) -%}
+<div
+    class="field field-1x1y{% if obj.is_invalid('value') %} error{% endif %}">
+    <label for="{{ prefix }}{{ obj.name }}">{{ obj.verbose_name }}</label>
+    <input
+        type="time"
+        id="{{ prefix }}{{ obj.name }}"
+        name="{{ prefix }}{{ obj.name }}"
+        value="{{ obj.item_format('value', '%H:%M:%S') }}"
+        step="1"
+        min="{{ obj.min_value.strftime('%H:%M:%S') }}"
+        max="{{ obj.max_value.strftime('%H:%M:%S') }}">
+    {% if obj.is_invalid('value') %}<output for="{{ prefix }}{{ obj.name }}">{% for error in obj.item_errors('value') %}{{ error }}{% endfor %}</output>{% endif %}
+</div>
+{%- endmacro %}
+{% endif %}
+
+{% if not list_filter_time %}
+{% macro  list_filter_time(obj, prefix) -%}
+<div
+    class="field field-1x2y-p{% if obj.is_invalid('lower') or obj.is_invalid('upper') %} error{% endif %}">
+    <label for="{{ prefix }}{{ obj.name }}">{{ obj.verbose_name }}</label>
+    <label for="{{ prefix }}{{ obj.name }}:lower">&ge;</label>
+    <input
+        type="time"
+        id="{{ prefix }}{{ obj.name }}:lower"
+        name="{{ prefix }}{{ obj.name }}:lower"
+        value="{{ obj.item_format('lower', '%H:%M:%S') }}"
+        step="1"
+        min="{{ obj.min_value.strftime('%H:%M:%S') }}"
+        max="{{ obj.max_value.strftime('%H:%M:%S') }}">
+    {% if obj.is_invalid('lower') %}<output for="{{ prefix }}{{ obj.name }}:lower">{% for error in obj.item_errors('lower') %}{{ error }}{% endfor %}</output>{% endif %}
+    <label for="{{ prefix }}{{ obj.name }}:upper">&le;</label>
+    <input
+        type="time"
+        id="{{ prefix }}{{ obj.name }}:upper"
+        name="{{ prefix }}{{ obj.name }}:upper"
+        value="{{ obj.item_format('upper', '%H:%M:%S') }}"
+        step="1"
+        min="{{ obj.min_value.strftime('%H:%M:%S') }}"
+        max="{{ obj.max_value.strftime('%H:%M:%S') }}">
+    {% if obj.is_invalid('upper') %}<output for="{{ prefix }}{{ obj.name }}:upper">{% for error in obj.item_errors('upper') %}{{ error }}{% endfor %}</output>{% endif %}
+</div>
+{%- endmacro %}
+{% endif %}

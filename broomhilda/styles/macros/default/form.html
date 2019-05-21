@@ -1,0 +1,25 @@
+{% import 'macros/default/inputs_bool.html'   as inputs_bool %}
+{% import 'macros/default/inputs_choice.html' as inputs_choice %}
+{% import 'macros/default/inputs_date.html'   as inputs_date %}
+{% import 'macros/default/inputs_file.html'   as inputs_file %}
+{% import 'macros/default/inputs_number.html' as inputs_number %}
+{% import 'macros/default/inputs_text.html'   as inputs_text %}
+
+{% macro item_select(obj) %}
+{% for input in obj._inputs %}{% if input.can_item_select %}{{ input|render_macro(input.jinja2_module_name, 'item_select_' + input.jinja2_macro_name, obj._prefix) }}{% endif %}{% endfor %}
+{%- endmacro %}
+
+{% macro item_update(obj) %}
+{% for input in obj._inputs %}{% if input.can_item_update %}{{ input|render_macro(input.jinja2_module_name, 'item_update_' + input.jinja2_macro_name, obj._prefix) }}{% endif %}{% endfor %}
+{%- endmacro %}
+
+{% macro list_select(obj) %}
+{%- endmacro %}
+
+{% macro list_update(obj) %}
+{%- endmacro %}
+
+{% macro list_filter(obj) %}
+{% for input in obj._inputs %}{% if input.can_list_filter %}{{ input|render_macro(input.jinja2_module_name, 'list_filter_' + input.jinja2_macro_name, obj._prefix) }}{% endif %}{% endfor %}
+{%- endmacro %}
+

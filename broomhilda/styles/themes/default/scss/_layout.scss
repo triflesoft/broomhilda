@@ -1,0 +1,148 @@
+body {
+	padding: 0;
+	margin: 0;
+	display: grid;
+	grid-template-columns: [c0] auto [c1] 24rem [c2];
+	grid-template-rows:    [r0] 3em [r1] auto [r2] 3em [r3];
+	grid-template-areas:
+		"nav    nav"
+		"main   aside"
+		"footer footer";
+	min-height: 100vh;
+}
+
+header {
+	grid-area: header;
+	padding: 0.5rem;
+	color: $colorHeaderForeground;
+	background-color: $colorHeaderBackground;
+}
+
+nav {
+	grid-area: nav;
+	padding: 0.5rem;
+	color: $colorNavForeground;
+	background-color: $colorNavBackground;
+}
+
+main {
+	grid-area: main;
+	padding: 0.5rem;
+	color: $colorMainForeground;
+	background-color: $colorMainBackground;
+}
+
+aside {
+	grid-area: aside;
+	padding: 0.5rem;
+	color: $colorAsideForeground;
+	background-color: $colorAsideBackground;
+}
+
+footer {
+	grid-area: footer;
+	padding: 0.5rem;
+	color: $colorFooterForeground;
+	background-color: $colorFooterBackground;
+}
+
+section {
+	display: flex;
+}
+
+section.container {
+	flex-direction: column;
+}
+
+section.row {
+	flex-direction: row;
+	margin-top: 0;
+}
+
+section.row + section.row {
+	margin-top: 0.5rem;
+}
+
+section.column {
+	flex-direction: column;
+	margin-left: 0;
+}
+
+section.column + section.column {
+	margin-left: 0.5rem;
+}
+
+section.one    { flex:  1; }
+section.two    { flex:  2; }
+section.three  { flex:  3; }
+section.four   { flex:  4; }
+section.five   { flex:  5; }
+section.six    { flex:  6; }
+section.seven  { flex:  7; }
+section.eight  { flex:  8; }
+section.nine   { flex:  9; }
+section.ten    { flex: 10; }
+section.eleven { flex: 11; }
+section.twelve { flex: 12; }
+
+a {
+	color: $colorBelizeHole;
+
+	&:hover {
+		color: $colorDodgerBlue;
+	}
+
+	&:visited {
+		color: $colorWisteria;
+	}
+
+	&:visited:hover {
+		color: $colorLightWisteria;
+	}
+}
+
+p {
+	padding: 0.25rem 0.75rem;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+thead {
+	& > tr {
+		border-bottom: 0.08rem solid $colorNeutral;
+	}
+}
+
+tbody {
+	& > tr {
+		border-bottom: 0.08rem solid $colorMainBackground;
+
+		&:nth-child(even) {
+			background-color: $colorClouds;
+		}
+
+		&:hover {
+			color: $colorHoverForeground;
+			background-color: $colorHoverBackground;
+		}
+	}
+}
+
+tfoot {
+	& > tr {
+		border-bottom: 0.08rem solid $colorNeutral;
+	}
+}
+
+td {
+	padding: 0.25rem 0.75rem;
+}
+
+th {
+	padding: 0.25rem 0.75rem;
+	white-space: nowrap;
+	text-align: left;
+}

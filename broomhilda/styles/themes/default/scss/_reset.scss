@@ -1,0 +1,13 @@
+* {
+	box-sizing: border-box;
+}
+
+html {
+	padding: 0;
+	margin: 0;
+	font-family: 'DejaVu Sans';
+	font-size: 14px;
+	font-weight: normal;
+	color: $colorMainForeground;
+	background-color: $colorMainBackground;
+}

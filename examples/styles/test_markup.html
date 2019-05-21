@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>TEST</title>
+		<link href="/static/theme/css/broomhilda.css" type="text/css" rel="stylesheet" />
+		<script src="/static/theme/js/broomhilda-combobox.js"></script>
+		<script src="/static/theme/js/broomhilda-file.js"></script>
+		<script src="/static/theme/js/broomhilda-tabs.js"></script>
+		<style>
+
+form:hover .field { outline: 1px solid #FFCFCF; background-color: #FFEFEF; }
+form:hover label  { outline: 1px solid #CFCFFF; background-color: #EFEFFF; }
+
+		</style>
+	</head>
+	<body>
+		<nav>
+			<div class="dropdown-menu">
+				<ul>
+					<li>
+						<a href="javascript:void(0)">Authentication</a>
+						<ul>
+							<li><a href="?page=users">Users</a></li>
+							<li><a href="?page=groups">Groups</a></li>
+							<li><a href="?page=roles">Roles</a></li>
+							<li><a href="?page=permissions">Permissions</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="javascript:void(0)">Planets</a>
+						<ul>
+							<li><a href="?page=mercury">Mercury</a></li>
+							<li><a href="?page=venus">Venus</a></li>
+							<li>
+								<a href="javascript:void(0)">Earth</a>
+								<ul>
+									<li><a href="?page=moon">Moon</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="javascript:void(0)">Mars</a>
+								<ul>
+									<li><a href="?page=phobos">Phobos</a></li>
+									<li><a href="?page=deimos">Deimos</a></li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</nav>
+
+		<main>
+			<section class="container">
+				<section class="row">
+					<section class="column one">
+						<div class="tabs">
+							<div class="header">
+								<input type="radio" name="tabs" id="tab-hform" value="tab-hform" />
+								<label for="tab-hform" role="tab" aria-selected="true" aria-controls="panel-hform">Horizontal Form</label>
+
+								<input type="radio" name="tabs" id="tab-vform" value="tab-vform" />
+								<label for="tab-vform" role="tab" aria-selected="true" aria-controls="panel-vform">Vertical Form</label>
+
+								<input type="radio" name="tabs" id="tab-hpform" value="tab-hpform" />
+								<label for="tab-hpform" role="tab" aria-selected="true" aria-controls="panel-hform">Horizontal Form with Prefixes</label>
+
+								<input type="radio" name="tabs" id="tab-vpform" value="tab-vpform" checked />
+								<label for="tab-vpform" role="tab" aria-selected="true" aria-controls="panel-vform">Vertical Form with Prefixes</label>
+
+								<input type="radio" name="tabs" id="tab-text" value="tab-text" />
+								<label for="tab-text" role="tab" aria-selected="true" aria-controls="panel-text">Text</label>
+
+								<input type="radio" name="tabs" id="tab-pickers" value="tab-pickers" />
+								<label for="tab-pickers" role="tab" aria-selected="true" aria-controls="panel-pickers">Pickers</label>
+
+								<input type="radio" name="tabs" id="tab-select" value="tab-select" />
+								<label for="tab-select" role="tab" aria-selected="true" aria-controls="panel-select">Select</label>
+
+								<input type="radio" name="tabs" id="tab-tables" value="tab-tables" />
+								<label for="tab-tables" role="tab" aria-selected="true" aria-controls="panel-tables">Tables</label>
+							</div>
+							<div class="content">
+								<div class="tab-content" data-id="tab-hform" role="tabpanel">
+									<form class="horizontal" method="GET" enctype="multipart/form-data">
+										<section class="row">
+											<section class="column one">
+												<fieldset>
+													<legend>Fieldset</legend>
+
+													<div class="field field-1x1y">
+														<label>field-1x1y</label>
+														<input type="text" name="h-text" id="h-text">
+														<output for="h-text">Error message</output>
+													</div>
+												</fieldset>
+
+												<div class="field field-1x1y">
+													<label>field-1x1y</label>
+													<input type="text" name="h-text" id="h-text">
+													<output for="h-text">Error message</output>
+												</div>
+
+												<fieldset>
+													<legend>Fieldset</legend>
+
+													<div class="field field-1x1y">
+														<label>field-1x1y</label>
+														<input type="text" name="h-text" id="h-text">
+														<output for="h-text">Error message</output>
+													</div>
+												</fieldset>
+
+												<div class="field field-1x2y">
+													<label>field-1x2y</label>
+													<input type="date" name="h-date1" id="h-date1">
+													<output for="h-date1">Error message</output>
+													<input type="date" name="h-date2" id="h-date2">
+													<output for="h-date1">Error message</output>
+												</div>
+
+												<div class="field field-2x1y">
+													<label>field-2x1y</label>
+													<input type="date" name="h-date3" id="h-date3">
+													<output for="h-date3">Error message</output>
+													<input type="time" name="h-time4" id="h-time4">
+													<output for="h-time4">Error message</output>
+												</div>
+
+												<div class="field field-2x2y">
+													<label>field-2x2y</label>
+													<input type="date" name="h-date5" id="h-date5">
+													<output for="h-date5">Error message</output>
+													<input type="time" name="h-time6" id="h-time6">
+													<output for="h-time6">Error message</output>
+													<input type="date" name="h-date7" id="h-date7">
+													<output for="h-date7">Error message</output>
+													<input type="time" name="h-time8" id="h-time8">
+													<output for="h-time8">Error message</output>
+												</div>
+
+												<div class="field field-v">
+													<label>field-v</label>
+													<input type="checkbox" name="h-checkbox10" id="h-checkbox10">
+													<label>option 10</label>
+													<output for="h-checkbox10">Error message</output>
+													<input type="checkbox" name="h-checkbox11" id="h-checkbox11">
+													<label>option 11</label>
+													<output for="h-checkbox11">Error message</output>
+													<input type="checkbox" name="h-checkbox12" id="h-checkbox12">
+													<label>option 12</label>
+													<output for="h-checkbox12">Error message</output>
+													<input type="checkbox" name="h-checkbox13" id="h-checkbox13">
+													<label>option 13</label>
+													<output for="h-checkbox13">Error message</output>
+												</div>
+											</section>
+											<section class="column one">
+												<fieldset>
+													<legend>Fieldset</legend>
+
+													<div class="field field-1x1y error">
+														<label>field-1x1y</label>
+														<input type="text" name="h-text" id="h-text">
+														<output for="h-text">Error message</output>
+													</div>
+												</fieldset>
+
+												<fieldset>
+													<legend>Fieldset</legend>
+
+													<div class="field field-1x1y error">
+														<label>field-1x1y</label>
+														<input type="text" name="h-text" id="h-text">
+														<output for="h-text">Error message</output>
+													</div>
+												</fieldset>
+
+												<div class="field field-1x1y error">
+													<label>field-1x1y</label>
+													<input type="text" name="h-text" id="h-text">
+													<output for="h-text">Error message</output>
+												</div>
+
+												<div class="field field-1x2y error">
+													<label>field-1x2y</label>
+													<input type="date" name="h-date1" id="h-date1">
+													<output for="h-date1">Error message</output>
+													<input type="date" name="h-date2" id="h-date2">
+													<output for="h-date1">Error message</output>
+												</div>
+
+												<div class="field field-2x1y error">
+													<label>field-2x1y</label>
+													<input type="date" name="h-date3" id="h-date3">
+													<output for="h-date3">Error message</output>
+													<input type="time" name="h-time4" id="h-time4">
+													<output for="h-time4">Error message</output>
+												</div>
+
+												<div class="field field-2x2y error">
+													<label>field-2x2y</label>
+													<input type="date" name="h-date5" id="h-date5">
+													<output for="h-date5">Error message</output>
+													<input type="time" name="h-time6" id="h-time6">
+													<output for="h-time6">Error message</output>
+													<input type="date" name="h-date7" id="h-date7">
+													<output for="h-date7">Error message</output>
+													<input type="time" name="h-time8" id="h-time8">
+													<output for="h-time8">Error message</output>
+												</div>
+
+												<div class="field field-v error">
+													<label>field-v</label>
+													<input type="checkbox" name="h-checkbox10" id="h-checkbox10">
+													<label>option 10</label>
+													<output for="h-checkbox10">Error message</output>
+													<input type="checkbox" name="h-checkbox11" id="h-checkbox11">
+													<label>option 11</label>
+													<output for="h-checkbox11">Error message</output>
+													<input type="checkbox" name="h-checkbox12" id="h-checkbox12">
+													<label>option 12</label>
+													<output for="h-checkbox12">Error message</output>
+													<input type="checkbox" name="h-checkbox13" id="h-checkbox13">
+													<label>option 13</label>
+													<output for="h-checkbox13">Error message</output>
+												</div>
+											</section>
+										</section>
+									</form>
+								</div>
+
+								<div class="tab-content" data-id="tab-vform" role="tabpanel">
+									<form class="vertical" method="GET" enctype="multipart/form-data">
+										<section class="row">
+											<section class="column one">
+												<fieldset>
+													<legend>Fieldset</legend>
+
+													<div class="field field-1x1y">
+														<label>field-1x1y</label>
+														<input type="text" name="h-text" id="h-text">
+														<output for="h-text">Error message</output>
+													</div>
+												</fieldset>
+
+												<div class="field field-1x1y">
+													<label>field-1x1y</label>
+													<input type="text" name="h-text" id="h-text">
+													<output for="h-text">Error message</output>
+												</div>
+
+												<fieldset>
+													<legend>Fieldset</legend>
+
+													<div class="field field-1x1y">
+														<label>field-1x1y</label>
+														<input type="text" name="h-text" id="h-text">
+														<output for="h-text">Error message</output>
+													</div>
+												</fieldset>
+
+												<div class="field field-1x2y">
+													<label>field-1x2y</label>
+													<input type="date" name="h-date1" id="h-date1">
+													<output for="h-date1">Error message</output>
+													<input type="date" name="h-date2" id="h-date2">
+													<output for="h-date1">Error message</output>
+												</div>
+
+												<div class="field field-2x1y">
+													<label>field-2x1y</label>
+													<input type="date" name="h-date3" id="h-date3">
+													<output for="h-date3">Error message</output>
+													<input type="time" name="h-time4" id="h-time4">
+													<output for="h-time4">Error message</output>
+												</div>
+
+												<div class="field field-2x2y">
+													<label>field-2x2y</label>
+													<input type="date" name="h-date5" id="h-date5">
+													<output for="h-date5">Error message</output>
+													<input type="time" name="h-time6" id="h-time6">
+													<output for="h-time6">Error message</output>
+													<input type="date" name="h-date7" id="h-date7">
+													<output for="h-date7">Error message</output>
+													<input type="time" name="h-time8" id="h-time8">
+													<output for="h-time8">Error message</output>
+												</div>
+
+												<div class="field field-v">
+													<label>field-v</label>
+													<input type="checkbox" name="h-checkbox10" id="h-checkbox10">
+													<label>option 10</label>
+													<output for="h-checkbox10">Error message</output>
+													<input type="checkbox" name="h-checkbox11" id="h-checkbox11">
+													<label>option 11</label>
+													<output for="h-checkbox11">Error message</output>
+													<input type="checkbox" name="h-checkbox12" id="h-checkbox12">
+													<label>option 12</label>
+													<output for="h-checkbox12">Error message</output>
+													<input type="checkbox" name="h-checkbox13" id="h-checkbox13">
+													<label>option 13</label>
+													<output for="h-checkbox13">Error message</output>
+												</div>
+											</section>
+											<section class="column one">
+												<fieldset>
+													<legend>Fieldset</legend>
+
+													<div class="field field-1x1y error">
+														<label>field-1x1y</label>
+														<input type="text" name="h-text" id="h-text">
+														<output for="h-text">Error message</output>
+													</div>
+												</fieldset>
+
+												<fieldset>
+													<legend>Fieldset</legend>
+
+													<div class="field field-1x1y error">
+														<label>field-1x1y</label>
+														<input type="text" name="h-text" id="h-text">
+														<output for="h-text">Error message</output>
+													</div>
+												</fieldset>
+
+												<div class="field field-1x1y error">
+													<label>field-1x1y</label>
+													<input type="text" name="h-text" id="h-text">
+													<output for="h-text">Error message</output>
+												</div>
+
+												<div class="field field-1x2y error">
+													<label>field-1x2y</label>
+													<input type="date" name="h-date1" id="h-date1">
+													<output for="h-date1">Error message</output>
+													<input type="date" name="h-date2" id="h-date2">
+													<output for="h-date1">Error message</output>
+												</div>
+
+												<div class="field field-2x1y error">
+													<label>field-2x1y</label>
+													<input type="date" name="h-date3" id="h-date3">
+													<output for="h-date3">Error message</output>
+													<input type="time" name="h-time4" id="h-time4">
+													<output for="h-time4">Error message</output>
+												</div>
+
+												<div class="field field-2x2y error">
+													<label>field-2x2y</label>
+													<input type="date" name="h-date5" id="h-date5">
+													<output for="h-date5">Error message</output>
+													<input type="time" name="h-time6" id="h-time6">
+													<output for="h-time6">Error message</output>
+													<input type="date" name="h-date7" id="h-date7">
+													<output for="h-date7">Error message</output>
+													<input type="time" name="h-time8" id="h-time8">
+													<output for="h-time8">Error message</output>
+												</div>
+
+												<div class="field field-v error">
+													<label>field-v</label>
+													<input type="checkbox" name="h-checkbox10" id="h-checkbox10">
+													<label>option 10</label>
+													<output for="h-checkbox10">Error message</output>
+													<input type="checkbox" name="h-checkbox11" id="h-checkbox11">
+													<label>option 11</label>
+													<output for="h-checkbox11">Error message</output>
+													<input type="checkbox" name="h-checkbox12" id="h-checkbox12">
+													<label>option 12</label>
+													<output for="h-checkbox12">Error message</output>
+													<input type="checkbox" name="h-checkbox13" id="h-checkbox13">
+													<label>option 13</label>
+													<output for="h-checkbox13">Error message</output>
+												</div>
+											</section>
+											</section>
+									</form>
+								</div>
+
+								<div class="tab-content" data-id="tab-hpform" role="tabpanel">
+									<form class="horizontal" method="GET" enctype="multipart/form-data">
+										<section class="row">
+											<section class="column one">
+												<fieldset>
+													<legend>Fieldset</legend>
+
+													<div class="field field-1x1y-p">
+														<label>field-1x1y</label>
+														<label>&ge;</label>
+														<input type="text" name="h-text" id="h-text">
+														<output for="h-text">Error message</output>
+													</div>
+												</fieldset>
+
+												<div class="field field-1x1y-p">
+													<label>field-1x1y</label>
+													<label>&ge;</label>
+													<input type="text" name="h-text" id="h-text">
+													<output for="h-text">Error message</output>
+												</div>
+
+												<fieldset>
+													<legend>Fieldset</legend>
+
+													<div class="field field-1x1y-p">
+														<label>field-1x1y</label>
+														<label>&ge;</label>
+														<input type="text" name="h-text" id="h-text">
+														<output for="h-text">Error message</output>
+													</div>
+												</fieldset>
+
+												<div class="field field-1x2y-p">
+													<label>field-1x2y</label>
+													<label>&ge;</label>
+													<input type="date" name="h-date1" id="h-date1">
+													<output for="h-date1">Error message</output>
+													<label>&le;</label>
+													<input type="date" name="h-date2" id="h-date2">
+													<output for="h-date1">Error message</output>
+												</div>
+
+												<div class="field field-2x1y-p">
+													<label>field-2x1y</label>
+													<label>&ge;</label>
+													<input type="date" name="h-date3" id="h-date3">
+													<output for="h-date3">Error message</output>
+													<input type="time" name="h-time4" id="h-time4">
+													<output for="h-time4">Error message</output>
+												</div>
+
+												<div class="field field-2x2y-p">
+													<label>field-2x2y</label>
+													<label>&ge;</label>
+													<input type="date" name="h-date5" id="h-date5">
+													<output for="h-date5">Error message</output>
+													<input type="time" name="h-time6" id="h-time6">
+													<output for="h-time6">Error message</output>
+													<label>&le;</label>
+													<input type="date" name="h-date7" id="h-date7">
+													<output for="h-date7">Error message</output>
+													<input type="time" name="h-time8" id="h-time8">
+													<output for="h-time8">Error message</output>
+												</div>
+											</section>
+											<section class="column one">
+												<fieldset>
+													<legend>Fieldset</legend>
+
+													<div class="field field-1x1y-p error">
+														<label>field-1x1y</label>
+														<label>&ge;</label>
+														<input type="text" name="h-text" id="h-text">
+														<output for="h-text">Error message</output>
+													</div>
+												</fieldset>
+
+												<fieldset>
+													<legend>Fieldset</legend>
+
+													<div class="field field-1x1y-p error">
+														<label>field-1x1y</label>
+														<label>&ge;</label>
+														<input type="text" name="h-text" id="h-text">
+														<output for="h-text">Error message</output>
+													</div>
+												</fieldset>
+
+												<div class="field field-1x1y-p error">
+													<label>field-1x1y</label>
+													<label>&ge;</label>
+													<input type="text" name="h-text" id="h-text">
+													<output for="h-text">Error message</output>
+												</div>
+
+												<div class="field field-1x2y-p error">
+													<label>field-1x2y</label>
+													<label>&ge;</label>
+													<input type="date" name="h-date1" id="h-date1">
+													<output for="h-date1">Error message</output>
+													<label>&le;</label>
+													<input type="date" name="h-date2" id="h-date2">
+													<output for="h-date1">Error message</output>
+												</div>
+
+												<div class="field field-2x1y-p error">
+													<label>field-2x1y</label>
+													<label>&ge;</label>
+													<input type="date" name="h-date3" id="h-date3">
+													<output for="h-date3">Error message</output>
+													<input type="time" name="h-time4" id="h-time4">
+													<output for="h-time4">Error message</output>
+												</div>
+
+												<div class="field field-2x2y-p error">
+													<label>field-2x2y</label>
+													<label>&ge;</label>
+													<input type="date" name="h-date5" id="h-date5">
+													<output for="h-date5">Error message</output>
+													<input type="time" name="h-time6" id="h-time6">
+													<output for="h-time6">Error message</output>
+													<label>&le;</label>
+													<input type="date" name="h-date7" id="h-date7">
+													<output for="h-date7">Error message</output>
+													<input type="time" name="h-time8" id="h-time8">
+													<output for="h-time8">Error message</output>
+												</div>
+											</section>
+										</section>
+									</form>
+								</div>
+
+								<div class="tab-content" data-id="tab-vpform" role="tabpanel">
+									<form class="vertical" method="GET" enctype="multipart/form-data">
+										<section class="row">
+											<section class="column one">
+												<fieldset>
+													<legend>Fieldset</legend>
+
+													<div class="field field-1x1y-p">
+														<label>field-1x1y</label>
+														<label>&ge;</label>
+														<input type="text" name="h-text" id="h-text">
+														<output for="h-text">Error message</output>
+													</div>
+												</fieldset>
+
+												<div class="field field-1x1y-p">
+													<label>field-1x1y</label>
+													<label>&ge;</label>
+													<input type="text" name="h-text" id="h-text">
+													<output for="h-text">Error message</output>
+												</div>
+
+												<fieldset>
+													<legend>Fieldset</legend>
+
+													<div class="field field-1x1y-p">
+														<label>field-1x1y</label>
+														<label>&ge;</label>
+														<input type="text" name="h-text" id="h-text">
+														<output for="h-text">Error message</output>
+													</div>
+												</fieldset>
+
+												<div class="field field-1x2y-p">
+													<label>field-1x2y</label>
+													<label>&ge;</label>
+													<input type="date" name="h-date1" id="h-date1">
+													<output for="h-date1">Error message</output>
+													<label>&le;</label>
+													<input type="date" name="h-date2" id="h-date2">
+													<output for="h-date1">Error message</output>
+												</div>
+
+												<div class="field field-2x1y-p">
+													<label>field-2x1y</label>
+													<label>&ge;</label>
+													<input type="date" name="h-date3" id="h-date3">
+													<output for="h-date3">Error message</output>
+													<input type="time" name="h-time4" id="h-time4">
+													<output for="h-time4">Error message</output>
+												</div>
+
+												<div class="field field-2x2y-p">
+													<label>field-2x2y</label>
+													<label>&ge;</label>
+													<input type="date" name="h-date5" id="h-date5">
+													<output for="h-date5">Error message</output>
+													<input type="time" name="h-time6" id="h-time6">
+													<output for="h-time6">Error message</output>
+													<label>&le;</label>
+													<input type="date" name="h-date7" id="h-date7">
+													<output for="h-date7">Error message</output>
+													<input type="time" name="h-time8" id="h-time8">
+													<output for="h-time8">Error message</output>
+												</div>
+											</section>
+											<section class="column one">
+												<fieldset>
+													<legend>Fieldset</legend>
+
+													<div class="field field-1x1y-p error">
+														<label>field-1x1y</label>
+														<label>&ge;</label>
+														<input type="text" name="h-text" id="h-text">
+														<output for="h-text">Error message</output>
+													</div>
+												</fieldset>
+
+												<fieldset>
+													<legend>Fieldset</legend>
+
+													<div class="field field-1x1y-p error">
+														<label>field-1x1y</label>
+														<label>&ge;</label>
+														<input type="text" name="h-text" id="h-text">
+														<output for="h-text">Error message</output>
+													</div>
+												</fieldset>
+
+												<div class="field field-1x1y-p error">
+													<label>field-1x1y</label>
+													<label>&ge;</label>
+													<input type="text" name="h-text" id="h-text">
+													<output for="h-text">Error message</output>
+												</div>
+
+												<div class="field field-1x2y-p error">
+													<label>field-1x2y</label>
+													<label>&ge;</label>
+													<input type="date" name="h-date1" id="h-date1">
+													<output for="h-date1">Error message</output>
+													<label>&le;</label>
+													<input type="date" name="h-date2" id="h-date2">
+													<output for="h-date1">Error message</output>
+												</div>
+
+												<div class="field field-2x1y-p error">
+													<label>field-2x1y</label>
+													<label>&ge;</label>
+													<input type="date" name="h-date3" id="h-date3">
+													<output for="h-date3">Error message</output>
+													<input type="time" name="h-time4" id="h-time4">
+													<output for="h-time4">Error message</output>
+												</div>
+
+												<div class="field field-2x2y-p error">
+													<label>field-2x2y</label>
+													<label>&ge;</label>
+													<input type="date" name="h-date5" id="h-date5">
+													<output for="h-date5">Error message</output>
+													<input type="time" name="h-time6" id="h-time6">
+													<output for="h-time6">Error message</output>
+													<label>&le;</label>
+													<input type="date" name="h-date7" id="h-date7">
+													<output for="h-date7">Error message</output>
+													<input type="time" name="h-time8" id="h-time8">
+													<output for="h-time8">Error message</output>
+												</div>
+											</section>
+											<section class="column one">
+												<fieldset>
+														<legend>Fieldset</legend>
+	
+														<div class="field field-1x1y-p error">
+															<label>field-1x1y</label>
+															<label>&ge;</label>
+															<input type="text" name="h-text" id="h-text">
+															<output for="h-text">Error message</output>
+														</div>
+													</fieldset>
+											</section>
+										</section>
+									</form>
+								</div>
+
+								<div class="tab-content" data-id="tab-text" role="tabpanel">
+									<form class="horizontal" method="GET" enctype="multipart/form-data">
+										<fieldset>
+											<legend>Credentials</legend>
+											
+											<div class="field field-1x1y error">
+												<label for="password">Password</label>
+												<input type="password" name="password" id="password">
+												<output for="password">Invalid password</output>
+											</div>
+										</fieldset>
+										<div class="field field-1x1y">
+											<label for="email">E-Mail</label>
+											<input type="email" name="email" id="email">
+											<output for="email">Invalid e-mail</output>
+										</div>
+										<div class="field field-1x1y">
+											<label for="number">Number</label>
+											<input type="number" name="number" id="number">
+											<output for="number">Invalid number</output>
+										</div>
+										<div class="field field-1x1y">
+											<label for="search">Search</label>
+											<input type="search" name="search" id="search" readonly>
+											<output for="search">Invalid search</output>
+										</div>
+										<div class="field field-1x1y">
+											<label for="url">URL</label>
+											<input type="url" name="url" id="url">
+											<output for="url">Invalid url</output>
+										</div>
+									</form>
+								</div>
+
+								<div class="tab-content" data-id="tab-pickers" role="tabpanel">
+									<form class="horizontal" method="GET" enctype="multipart/form-data">
+										<div class="field field-2x1y">
+											<label for="date">Date & Time</label>
+											<input type="date" name="date" id="date">
+											<input type="time" name="time" id="time">
+											<output for="date">mm / dd / yyyy Invalid date</output>
+											<output for="time">Invalid time</output>
+										</div>
+										<div class="field field-2x2y error">
+											<label for="date">Date & Time Range</label>
+											<input type="date" name="date1" id="date1">
+											<input type="time" name="time1" id="time1">
+											<input type="date" name="date2" id="date2">
+											<input type="time" name="time2" id="time2">
+											<output for="date1">mm / dd / yyyy Invalid date</output>
+											<output for="time1">Invalid time</output>
+											<output for="date2">mm / dd / yyyy Invalid date</output>
+											<output for="time2">Invalid time</output>
+										</div>
+										<div class="field field-1x1y-f">
+											<label for="file">File</label>
+											<input type="file" name="file" id="file">
+											<label for="file" class="file-upload">&nbsp;</label>
+											<output for="file">Invalid file</output>
+										</div>
+									</form>
+								</div>
+
+								<div class="tab-content" data-id="tab-select" role="tabpanel">
+									<form class="horizontal" method="GET" enctype="multipart/form-data">
+										<div class="field field-v error">
+											<label for="checkbox">Checkbox</label>
+											<input type="checkbox" name="checkbox1" id="checkbox1">
+											<label for="checkbox1">Enable</label>
+											<input type="checkbox" name="checkbox2" id="checkbox2">
+											<label for="checkbox2">Disable</label>
+											<output for="checkbox">Invalid checkbox</output>
+										</div>
+										<div class="field field-v error">
+											<label for="radio">Radio</label>
+											<input type="radio" name="radio" id="radio1" value="1">
+											<label for="radio1">1</label>
+											<input type="radio" name="radio" id="radio2" value="2">
+											<label for="radio2">2</label>
+											<input type="radio" name="radio" id="radio3" value="3">
+											<label for="radio3">3</label>
+											<input type="radio" name="radio" id="radio4" value="4">
+											<label for="radio4">4</label>
+											<output for="radio">Invalid radio</output>
+										</div>
+										<div class="field field-1x1y error">
+											<label for="combobox">ComboBox</label>
+											<select name="combobox" id="combobox1" class="combobox">
+												<optgroup label="Asia">
+													<option value="zh">China</option>
+													<option value="jp">Japan</option>
+												</optgroup>
+												<optgroup label="Europe">
+													<option value="fr">France</option>
+													<option value="de">Germany</option>
+													<option value="no">Norway</option>
+													<option value="es">Spain</option>
+												</optgroup>
+											</select>
+											<output for="combobox">Invalid combobox</output>
+										</div>
+										<div class="field field-1x1y error">
+											<label for="combobox">ComboBox</label>
+											<input name="combobox" id="combobox2" class="combobox">
+											<output for="combobox">Invalid combobox</output>
+										</div>
+									</form>
+								</div>
+
+								<div class="tab-content" data-id="tab-tables" role="tabpanel">
+									<form class="horizontal" method="GET" enctype="multipart/form-data">
+										<table>
+											<thead>
+												<tr>
+													<th>#</th>
+													<th>First Name</th>
+													<th>Last Name</th>
+													<th>Date of Birth</th>
+													<th>Username</th>
+													<th>E-Mail</th>
+													<th>Action</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<th>1</th>
+													<td>John</td>
+													<td>Doe</td>
+													<td>01/02/1993</td>
+													<td>j.doe</td>
+													<td>j.doe@example.com</td>
+													<td><a href="https://www.google.com/">update</a> <a href="123">delete</a></td>
+												</tr>
+												<tr>
+													<th>2</th>
+													<td>James</td>
+													<td>Smith</td>
+													<td>02/03/1994</td>
+													<td>j.smith</td>
+													<td>j.smith@example.com</td>
+													<td><a href="https://www.google.com/">update</a> <a href="123">delete</a></td>
+												</tr>
+												<tr>
+													<th>3</th>
+													<td>William</td>
+													<td>Brown</td>
+													<td>03/04/1995</td>
+													<td>w.brown</td>
+													<td>w.brown@example.com</td>
+													<td><a href="https://www.google.com/">update</a> <a href="123">delete</a></td>
+												</tr>
+												<tr>
+													<th>4</th>
+													<td><div class="field"><input type="text"></div></td>
+													<td><div class="field"><input type="text"></div></td>
+													<td><div class="field"><input type="date"></div></td>
+													<td><div class="field"><input type="text"></div></td>
+													<td><div class="field"><input type="text" id="combobox3"></div></td>
+													<td><a href="https://www.google.com/">update</a> <a href="123">delete</a></td>
+												</tr>
+												<tr>
+													<th>5</th>
+													<td><div class="field"><input type="text"></div></td>
+													<td><div class="field"><input type="text"></div></td>
+													<td><div class="field"><input type="date"></div></td>
+													<td><div class="field"><input type="text"></div></td>
+													<td><div class="field"><input type="text"></div></td>
+													<td><a href="https://www.google.com/">update</a> <a href="123">delete</a></td>
+												</tr>
+											</tbody>
+										</table>
+									</form>
+								</div>
+							</div>
+						</div>
+
+						<div class="field field-2 error">
+							<button type="submit" value="test">Submit</button>
+						</div>
+					</section>
+				</section>
+			</section>
+		</main>
+		<aside>
+			<form class="vertical" method="GET" enctype="multipart/form-data">
+				<fieldset>
+					<legend>Credentials</legend>
+					<div class="field field-1x1y">
+						<label for="h-username">Username</label>
+						<input type="username" name="h-username" id="h-username">
+						<output for="h-username">Invalid username</output>
+					</div>
+					<div class="field field-1x1y error">
+						<label for="h-password">Password</label>
+						<input type="password" name="h-password" id="h-password">
+						<output for="h-password">Invalid password</output>
+					</div>
+				</fieldset>
+				<div class="field field-v error">
+					<label for="h-checkbox">Checkbox</label>
+					<input type="checkbox" name="h-checkbox1" id="h-checkbox1">
+					<label for="h-checkbox1">Enable</label>
+					<input type="checkbox" name="h-checkbox2" id="h-checkbox2">
+					<label for="h-checkbox2">Disable</label>
+					<output for="h-checkbox2">Invalid checkbox</output>
+				</div>
+				<div class="field field-v error">
+					<label for="radio">Radio</label>
+					<input type="radio" name="h-radio" id="h-radio1" value="1">
+					<label for="h-radio1">1</label>
+					<input type="radio" name="h-radio" id="h-radio2" value="2">
+					<label for="h-radio2">2</label>
+					<input type="radio" name="h-radio" id="h-radio3" value="3">
+					<label for="h-radio3">3</label>
+					<input type="radio" name="h-radio" id="h-radio4" value="4">
+					<label for="h-radio4">4</label>
+					<output for="radio">Invalid radio</output>
+				</div>
+				<div class="field field-2x1y">
+					<label for="h-date">Date & Time</label>
+					<input type="date" name="h-date" id="h-date">
+					<input type="time" name="h-time" id="h-time">
+					<output for="h-date">mm / dd / yyyy Invalid date</output>
+					<output for="h-time">Invalid time</output>
+				</div>
+				<div class="field field-2x2y error">
+					<label>Date &amp; Time Range</label>
+					<input type="date" name="h-date1" id="h-date1">
+					<input type="time" name="h-time1" id="h-time1">
+					<input type="date" name="h-date2" id="h-date2">
+					<input type="time" name="h-time2" id="h-time2">
+					<output for="h-date1">mm / dd / yyyy Invalid date</output>
+					<output for="h-time1">Invalid time</output>
+					<output for="h-date2">mm / dd / yyyy Invalid date</output>
+					<output for="h-time2">Invalid time</output>
+				</div>
+				<div class="field field-2x2y-p error">
+					<label>Date &amp; Time Range</label>
+					<label>&ge;</label>
+					<label>&le;</label>
+					<input type="date" name="h-date1" id="h-date1">
+					<input type="time" name="h-time1" id="h-time1">
+					<input type="date" name="h-date2" id="h-date2">
+					<input type="time" name="h-time2" id="h-time2">
+					<output for="h-date1">mm / dd / yyyy Invalid date</output>
+					<output for="h-time1">Invalid time</output>
+					<output for="h-date2">mm / dd / yyyy Invalid date</output>
+					<output for="h-time2">Invalid time</output>
+				</div>
+			</form>
+		</aside>
+		<footer>
+			FOOTER
+		</footer>
+		<script type="text/javascript">
+document.addEventListener("DOMContentLoaded", function(event) { 
+	initComboBox("#combobox1");
+	initComboBox("#combobox2,#combobox3", {
+		search: function(query, controlElement) {
+			var countries = [
+				{ value: "Afghanistan", text: "Afghanistan" },
+				{ value: "Albania", text: "Albania" },
+				{ value: "Algeria", text: "Algeria" },
+				{ value: "Andorra", text: "Andorra" },
+				{ value: "Angola", text: "Angola" },
+				{ value: "Antigua and Barbuda", text: "Antigua and Barbuda" },
+				{ value: "Argentina", text: "Argentina" },
+				{ value: "Armenia", text: "Armenia" },
+				{ value: "Aruba", text: "Aruba" },
+				{ value: "Australia", text: "Australia" },
+				{ value: "Austria", text: "Austria" },
+				{ value: "Azerbaijan", text: "Azerbaijan" },
+				{ value: "Bahamas, The", text: "Bahamas, The" },
+				{ value: "Bahrain", text: "Bahrain" },
+				{ value: "Bangladesh", text: "Bangladesh" },
+				{ value: "Barbados", text: "Barbados" },
+				{ value: "Belarus", text: "Belarus" },
+				{ value: "Belgium", text: "Belgium" },
+				{ value: "Belize", text: "Belize" },
+				{ value: "Benin", text: "Benin" },
+				{ value: "Bhutan", text: "Bhutan" },
+				{ value: "Bolivia", text: "Bolivia" },
+				{ value: "Bosnia and Herzegovina", text: "Bosnia and Herzegovina" },
+				{ value: "Botswana", text: "Botswana" },
+				{ value: "Brazil", text: "Brazil" },
+				{ value: "Brunei", text: "Brunei" },
+				{ value: "Bulgaria", text: "Bulgaria" },
+				{ value: "Burkina Faso", text: "Burkina Faso" },
+				{ value: "Burma", text: "Burma" },
+				{ value: "Burundi", text: "Burundi" },
+				{ value: "Cabo Verde", text: "Cabo Verde" },
+				{ value: "Cambodia", text: "Cambodia" },
+				{ value: "Cameroon", text: "Cameroon" },
+				{ value: "Canada", text: "Canada" },
+				{ value: "Central African Republic", text: "Central African Republic" },
+				{ value: "Chad", text: "Chad" },
+				{ value: "Chile", text: "Chile" },
+				{ value: "China", text: "China" },
+				{ value: "Colombia", text: "Colombia" },
+				{ value: "Comoros", text: "Comoros" },
+				{ value: "Congo, Democratic Republic of the", text: "Congo, Democratic Republic of the" },
+				{ value: "Congo, Republic of the", text: "Congo, Republic of the" },
+				{ value: "Costa Rica", text: "Costa Rica" },
+				{ value: "Cote d'Ivoire", text: "Cote d'Ivoire" },
+				{ value: "Croatia", text: "Croatia" },
+				{ value: "Cuba", text: "Cuba" },
+				{ value: "Curacao", text: "Curacao" },
+				{ value: "Cyprus", text: "Cyprus" },
+				{ value: "Czechia", text: "Czechia" },
+				{ value: "Denmark", text: "Denmark" },
+				{ value: "Djibouti", text: "Djibouti" },
+				{ value: "Dominica", text: "Dominica" },
+				{ value: "Dominican Republic", text: "Dominican Republic" },
+				{ value: "East Timor (see Timor-Leste)", text: "East Timor (see Timor-Leste)" },
+				{ value: "Ecuador", text: "Ecuador" },
+				{ value: "Egypt", text: "Egypt" },
+				{ value: "El Salvador", text: "El Salvador" },
+				{ value: "Equatorial Guinea", text: "Equatorial Guinea" },
+				{ value: "Eritrea", text: "Eritrea" },
+				{ value: "Estonia", text: "Estonia" },
+				{ value: "Eswatini", text: "Eswatini" },
+				{ value: "Ethiopia", text: "Ethiopia" },
+				{ value: "Fiji", text: "Fiji" },
+				{ value: "Finland", text: "Finland" },
+				{ value: "France", text: "France" },
+				{ value: "Gabon", text: "Gabon" },
+				{ value: "Gambia, The", text: "Gambia, The" },
+				{ value: "Georgia", text: "Georgia" },
+				{ value: "Germany", text: "Germany" },
+				{ value: "Ghana", text: "Ghana" },
+				{ value: "Greece", text: "Greece" },
+				{ value: "Grenada", text: "Grenada" },
+				{ value: "Guatemala", text: "Guatemala" },
+				{ value: "Guinea", text: "Guinea" },
+				{ value: "Guinea-Bissau", text: "Guinea-Bissau" },
+				{ value: "Guyana", text: "Guyana" },
+				{ value: "Haiti", text: "Haiti" },
+				{ value: "Holy See", text: "Holy See" },
+				{ value: "Honduras", text: "Honduras" },
+				{ value: "Hong Kong", text: "Hong Kong" },
+				{ value: "Hungary", text: "Hungary" },
+				{ value: "Iceland", text: "Iceland" },
+				{ value: "India", text: "India" },
+				{ value: "Indonesia", text: "Indonesia" },
+				{ value: "Iran", text: "Iran" },
+				{ value: "Iraq", text: "Iraq" },
+				{ value: "Ireland", text: "Ireland" },
+				{ value: "Israel", text: "Israel" },
+				{ value: "Italy", text: "Italy" },
+				{ value: "Jamaica", text: "Jamaica" },
+				{ value: "Japan", text: "Japan" },
+				{ value: "Jordan", text: "Jordan" },
+				{ value: "Kazakhstan", text: "Kazakhstan" },
+				{ value: "Kenya", text: "Kenya" },
+				{ value: "Kiribati", text: "Kiribati" },
+				{ value: "Korea, North", text: "Korea, North" },
+				{ value: "Korea, South", text: "Korea, South" },
+				{ value: "Kosovo", text: "Kosovo" },
+				{ value: "Kuwait", text: "Kuwait" },
+				{ value: "Kyrgyzstan", text: "Kyrgyzstan" },
+				{ value: "Laos", text: "Laos" },
+				{ value: "Latvia", text: "Latvia" },
+				{ value: "Lebanon", text: "Lebanon" },
+				{ value: "Lesotho", text: "Lesotho" },
+				{ value: "Liberia", text: "Liberia" },
+				{ value: "Libya", text: "Libya" },
+				{ value: "Liechtenstein", text: "Liechtenstein" },
+				{ value: "Lithuania", text: "Lithuania" },
+				{ value: "Luxembourg", text: "Luxembourg" },
+				{ value: "Macau", text: "Macau" },
+				{ value: "Macedonia", text: "Macedonia" },
+				{ value: "Madagascar", text: "Madagascar" },
+				{ value: "Malawi", text: "Malawi" },
+				{ value: "Malaysia", text: "Malaysia" },
+				{ value: "Maldives", text: "Maldives" },
+				{ value: "Mali", text: "Mali" },
+				{ value: "Malta", text: "Malta" },
+				{ value: "Marshall Islands", text: "Marshall Islands" },
+				{ value: "Mauritania", text: "Mauritania" },
+				{ value: "Mauritius", text: "Mauritius" },
+				{ value: "Mexico", text: "Mexico" },
+				{ value: "Micronesia", text: "Micronesia" },
+				{ value: "Moldova", text: "Moldova" },
+				{ value: "Monaco", text: "Monaco" },
+				{ value: "Mongolia", text: "Mongolia" },
+				{ value: "Montenegro", text: "Montenegro" },
+				{ value: "Morocco", text: "Morocco" },
+				{ value: "Mozambique", text: "Mozambique" },
+				{ value: "Namibia", text: "Namibia" },
+				{ value: "Nauru", text: "Nauru" },
+				{ value: "Nepal", text: "Nepal" },
+				{ value: "Netherlands", text: "Netherlands" },
+				{ value: "New Zealand", text: "New Zealand" },
+				{ value: "Nicaragua", text: "Nicaragua" },
+				{ value: "Niger", text: "Niger" },
+				{ value: "Nigeria", text: "Nigeria" },
+				{ value: "North Korea", text: "North Korea" },
+				{ value: "Norway", text: "Norway" },
+				{ value: "Oman", text: "Oman" },
+				{ value: "Pakistan", text: "Pakistan" },
+				{ value: "Palau", text: "Palau" },
+				{ value: "Palestinian Territories", text: "Palestinian Territories" },
+				{ value: "Panama", text: "Panama" },
+				{ value: "Papua New Guinea", text: "Papua New Guinea" },
+				{ value: "Paraguay", text: "Paraguay" },
+				{ value: "Peru", text: "Peru" },
+				{ value: "Philippines", text: "Philippines" },
+				{ value: "Poland", text: "Poland" },
+				{ value: "Portugal", text: "Portugal" },
+				{ value: "Qatar", text: "Qatar" },
+				{ value: "Romania", text: "Romania" },
+				{ value: "Russia", text: "Russia" },
+				{ value: "Rwanda", text: "Rwanda" },
+				{ value: "Saint Kitts and Nevis", text: "Saint Kitts and Nevis" },
+				{ value: "Saint Lucia", text: "Saint Lucia" },
+				{ value: "Saint Vincent and the Grenadines", text: "Saint Vincent and the Grenadines" },
+				{ value: "Samoa", text: "Samoa" },
+				{ value: "San Marino", text: "San Marino" },
+				{ value: "Sao Tome and Principe", text: "Sao Tome and Principe" },
+				{ value: "Saudi Arabia", text: "Saudi Arabia" },
+				{ value: "Senegal", text: "Senegal" },
+				{ value: "Serbia", text: "Serbia" },
+				{ value: "Seychelles", text: "Seychelles" },
+				{ value: "Sierra Leone", text: "Sierra Leone" },
+				{ value: "Singapore", text: "Singapore" },
+				{ value: "Sint Maarten", text: "Sint Maarten" },
+				{ value: "Slovakia", text: "Slovakia" },
+				{ value: "Slovenia", text: "Slovenia" },
+				{ value: "Solomon Islands", text: "Solomon Islands" },
+				{ value: "Somalia", text: "Somalia" },
+				{ value: "South Africa", text: "South Africa" },
+				{ value: "South Korea", text: "South Korea" },
+				{ value: "South Sudan", text: "South Sudan" },
+				{ value: "Spain", text: "Spain" },
+				{ value: "Sri Lanka", text: "Sri Lanka" },
+				{ value: "Sudan", text: "Sudan" },
+				{ value: "Suriname", text: "Suriname" },
+				{ value: "Swaziland (See Eswatini)", text: "Swaziland (See Eswatini)" },
+				{ value: "Sweden", text: "Sweden" },
+				{ value: "Switzerland", text: "Switzerland" },
+				{ value: "Syria", text: "Syria" },
+				{ value: "Taiwan", text: "Taiwan" },
+				{ value: "Tajikistan", text: "Tajikistan" },
+				{ value: "Tanzania", text: "Tanzania" },
+				{ value: "Thailand", text: "Thailand" },
+				{ value: "Timor-Leste", text: "Timor-Leste" },
+				{ value: "Togo", text: "Togo" },
+				{ value: "Tonga", text: "Tonga" },
+				{ value: "Trinidad and Tobago", text: "Trinidad and Tobago" },
+				{ value: "Tunisia", text: "Tunisia" },
+				{ value: "Turkey", text: "Turkey" },
+				{ value: "Turkmenistan", text: "Turkmenistan" },
+				{ value: "Tuvalu", text: "Tuvalu" },
+				{ value: "Uganda", text: "Uganda" },
+				{ value: "Ukraine", text: "Ukraine" },
+				{ value: "United Arab Emirates", text: "United Arab Emirates" },
+				{ value: "United Kingdom", text: "United Kingdom" },
+				{ value: "Uruguay", text: "Uruguay" },
+				{ value: "Uzbekistan", text: "Uzbekistan" },
+				{ value: "Vanuatu", text: "Vanuatu" },
+				{ value: "Venezuela", text: "Venezuela" },
+				{ value: "Vietnam", text: "Vietnam" },
+				{ value: "Yemen", text: "Yemen" },
+				{ value: "Zambia", text: "Zambia" },
+				{ value: "Zimbabwe", text: "Zimbabwe" },
+			];
+
+			var result = [];
+
+			countries.forEach(function(country) {
+				if (country.text.toLowerCase().indexOf(query.toLowerCase()) >= 0) {
+					result.push(country);
+				}
+			});
+
+			return result;
+		}
+	});
+
+	initTabs(".tabs");
+
+	initFile("input[type=file]");
+});
+		</script>
+	</body>
+</html>

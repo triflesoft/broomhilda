@@ -1,0 +1,417 @@
+nav {
+	.field {
+		border:  formBorderWidth solid $colorNavBackground;
+	}
+}
+
+main {
+	.field {
+		border: $formBorderWidth solid $colorMainBackground;
+	}
+}
+
+aside {
+	.field {
+		border: $formBorderWidth solid $colorAsideBackground;
+	}
+}
+
+form {
+	&.horizontal {
+		.field-1x1y {
+			grid-template-columns: [c0] 4fr [c1] $formInputSpacing [c2] $formPrefixWidth [c3] $formInputSpacing [c4] 5fr [c5] $formInputSpacing [c6] $formPrefixWidth [c7] $formInputSpacing [c8] 4fr [c9];
+			grid-template-rows:    [r0] auto [r1] auto [r2];
+
+			& > label:nth-of-type(1)  { grid-column-start: c0; grid-column-end: c1; grid-row-start: r0; grid-row-end: r1; }
+			& > input:nth-of-type(1)  { grid-column-start: c2; grid-column-end: c9; grid-row-start: r0; grid-row-end: r1; }
+			& > select:nth-of-type(1) { grid-column-start: c2; grid-column-end: c9; grid-row-start: r0; grid-row-end: r1; }
+			& > output:nth-of-type(1) { grid-column-start: c2; grid-column-end: c9; grid-row-start: r1; grid-row-end: r2; }
+		}
+
+		.field-1x1y-p {
+			grid-template-columns: [c0] 4fr [c1] $formInputSpacing [c2] $formPrefixWidth [c3] $formInputSpacing [c4] 5fr [c5] $formInputSpacing [c6] $formPrefixWidth [c7] $formInputSpacing [c8] 4fr [c9];
+			grid-template-rows:    [r0] auto [r1] auto [r2];
+
+			& > label:nth-of-type(1)  { grid-column-start: c0; grid-column-end: c1; grid-row-start: r0; grid-row-end: r1; }
+			& > label:nth-of-type(2)  { grid-column-start: c2; grid-column-end: c3; grid-row-start: r0; grid-row-end: r1; }
+			& > input:nth-of-type(1)  { grid-column-start: c3; grid-column-end: c9; grid-row-start: r0; grid-row-end: r1; }
+			& > select:nth-of-type(1) { grid-column-start: c3; grid-column-end: c9; grid-row-start: r0; grid-row-end: r1; }
+			& > output:nth-of-type(1) { grid-column-start: c2; grid-column-end: c9; grid-row-start: r1; grid-row-end: r2; }
+		}
+
+		.field-1x1y-f {
+			grid-template-columns: [c0] 4fr [c1] $formInputSpacing [c2] $formPrefixWidth [c3] $formInputSpacing [c4] 5fr [c5] $formInputSpacing [c6] $formPrefixWidth [c7] $formInputSpacing [c8] 4fr [c9];
+			grid-template-rows:    [r0] auto [r1] auto [r2];
+
+			& > label:nth-of-type(1)  { grid-column-start: c0; grid-column-end: c1; grid-row-start: r0; grid-row-end: r1; }
+			& > input                 { display: none; }
+			& > label:nth-of-type(2)  { grid-column-start: c2; grid-column-end: c9; grid-row-start: r0; grid-row-end: r1; }
+			& > output:nth-of-type(1) { grid-column-start: c2; grid-column-end: c9; grid-row-start: r1; grid-row-end: r2; }
+		}
+
+		.field-1x2y {
+			grid-template-columns: [c0] 4fr [c1] $formInputSpacing [c2] $formPrefixWidth [c3] $formInputSpacing [c4] 5fr [c5] $formInputSpacing [c6] $formPrefixWidth [c7] $formInputSpacing [c8] 4fr [c9];
+			grid-template-rows:    [r0] auto [r1] auto [r2] $formInputSpacing [r3] auto [r4] auto [r5];
+
+			& > label:nth-of-type(1)  { grid-column-start: c0; grid-column-end: c1; grid-row-start: r0; grid-row-end: r1; }
+			& > input:nth-of-type(1)  { grid-column-start: c2; grid-column-end: c9; grid-row-start: r0; grid-row-end: r1; }
+			& > select:nth-of-type(1) { grid-column-start: c2; grid-column-end: c9; grid-row-start: r0; grid-row-end: r1; }
+			& > output:nth-of-type(1) { grid-column-start: c2; grid-column-end: c9; grid-row-start: r1; grid-row-end: r2; }
+			& > input:nth-of-type(2)  { grid-column-start: c2; grid-column-end: c9; grid-row-start: r3; grid-row-end: r4; }
+			& > select:nth-of-type(2) { grid-column-start: c2; grid-column-end: c9; grid-row-start: r3; grid-row-end: r4; }
+			& > output:nth-of-type(2) { grid-column-start: c2; grid-column-end: c9; grid-row-start: r4; grid-row-end: r5; }
+		}
+
+		.field-1x2y-p {
+			grid-template-columns: [c0] 4fr [c1] $formInputSpacing [c2] $formPrefixWidth [c3] $formInputSpacing [c4] 5fr [c5] $formInputSpacing [c6] $formPrefixWidth [c7] $formInputSpacing [c8] 4fr [c9];
+			grid-template-rows:    [r0] auto [r1] auto [r2] $formInputSpacing [r3] auto [r4] auto [r5];
+
+			& > label:nth-of-type(1)  { grid-column-start: c0; grid-column-end: c1; grid-row-start: r0; grid-row-end: r1; }
+			& > label:nth-of-type(2)  { grid-column-start: c2; grid-column-end: c3; grid-row-start: r0; grid-row-end: r1; }
+			& > input:nth-of-type(1)  { grid-column-start: c3; grid-column-end: c9; grid-row-start: r0; grid-row-end: r1; }
+			& > select:nth-of-type(1) { grid-column-start: c3; grid-column-end: c9; grid-row-start: r0; grid-row-end: r1; }
+			& > output:nth-of-type(1) { grid-column-start: c3; grid-column-end: c9; grid-row-start: r1; grid-row-end: r2; }
+			& > label:nth-of-type(3)  { grid-column-start: c2; grid-column-end: c3; grid-row-start: r3; grid-row-end: r4; }
+			& > input:nth-of-type(2)  { grid-column-start: c3; grid-column-end: c9; grid-row-start: r3; grid-row-end: r4; }
+			& > select:nth-of-type(2) { grid-column-start: c3; grid-column-end: c9; grid-row-start: r3; grid-row-end: r4; }
+			& > output:nth-of-type(2) { grid-column-start: c3; grid-column-end: c9; grid-row-start: r4; grid-row-end: r5; }
+		}
+
+		.field-2x1y {
+			grid-template-columns: [c0] 4fr [c1] $formInputSpacing [c2] $formPrefixWidth [c3] $formInputSpacing [c4] 5fr [c5] $formInputSpacing [c6] $formPrefixWidth [c7] $formInputSpacing [c8] 4fr [c9];
+			grid-template-rows:    [r0] auto [r1] auto [r2];
+
+			& > label:nth-of-type(1)  { grid-column-start: c0; grid-column-end: c1; grid-row-start: r0; grid-row-end: r1; }
+			& > input:nth-of-type(1)  { grid-column-start: c2; grid-column-end: c5; grid-row-start: r0; grid-row-end: r1; }
+			& > select:nth-of-type(1) { grid-column-start: c2; grid-column-end: c5; grid-row-start: r0; grid-row-end: r1; }
+			& > output:nth-of-type(1) { grid-column-start: c2; grid-column-end: c5; grid-row-start: r1; grid-row-end: r2; }
+			& > input:nth-of-type(2)  { grid-column-start: c6; grid-column-end: c9; grid-row-start: r0; grid-row-end: r1; }
+			& > select:nth-of-type(2) { grid-column-start: c6; grid-column-end: c9; grid-row-start: r0; grid-row-end: r1; }
+			& > output:nth-of-type(2) { grid-column-start: c6; grid-column-end: c9; grid-row-start: r1; grid-row-end: r2; }
+		}
+
+		.field-2x1y-p {
+			grid-template-columns: [c0] 4fr [c1] $formInputSpacing [c2] $formPrefixWidth [c3] $formInputSpacing [c4] 5fr [c5] $formInputSpacing [c6] $formPrefixWidth [c7] $formInputSpacing [c8] 4fr [c9];
+			grid-template-rows:    [r0] auto [r1] auto [r2];
+
+			& > label:nth-of-type(1)  { grid-column-start: c0; grid-column-end: c1; grid-row-start: r0; grid-row-end: r1; }
+			& > label:nth-of-type(2)  { grid-column-start: c2; grid-column-end: c3; grid-row-start: r0; grid-row-end: r1; }
+			& > input:nth-of-type(1)  { grid-column-start: c3; grid-column-end: c5; grid-row-start: r0; grid-row-end: r1; }
+			& > select:nth-of-type(1) { grid-column-start: c3; grid-column-end: c5; grid-row-start: r0; grid-row-end: r1; }
+			& > output:nth-of-type(1) { grid-column-start: c2; grid-column-end: c5; grid-row-start: r1; grid-row-end: r2; }
+			& > input:nth-of-type(2)  { grid-column-start: c6; grid-column-end: c9; grid-row-start: r0; grid-row-end: r1; }
+			& > select:nth-of-type(2) { grid-column-start: c6; grid-column-end: c9; grid-row-start: r0; grid-row-end: r1; }
+			& > output:nth-of-type(2) { grid-column-start: c6; grid-column-end: c9; grid-row-start: r1; grid-row-end: r2; }
+		}
+
+		.field-2x2y {
+			grid-template-columns: [c0] 4fr [c1] $formInputSpacing [c2] $formPrefixWidth [c3] $formInputSpacing [c4] 5fr [c5] $formInputSpacing [c6] $formPrefixWidth [c7] $formInputSpacing [c8] 4fr [c9];
+			grid-template-rows:    [r0] auto [r1] auto [r2] $formInputSpacing [r3] auto [r4] auto [r5];
+
+			& > label:nth-of-type(1)  { grid-column-start: c0; grid-column-end: c1; grid-row-start: r0; grid-row-end: r1; }
+			& > input:nth-of-type(1)  { grid-column-start: c2; grid-column-end: c5; grid-row-start: r0; grid-row-end: r1; }
+			& > select:nth-of-type(1) { grid-column-start: c2; grid-column-end: c5; grid-row-start: r0; grid-row-end: r1; }
+			& > output:nth-of-type(1) { grid-column-start: c2; grid-column-end: c5; grid-row-start: r1; grid-row-end: r2; }
+			& > input:nth-of-type(2)  { grid-column-start: c6; grid-column-end: c9; grid-row-start: r0; grid-row-end: r1; }
+			& > select:nth-of-type(2) { grid-column-start: c6; grid-column-end: c9; grid-row-start: r0; grid-row-end: r1; }
+			& > output:nth-of-type(2) { grid-column-start: c6; grid-column-end: c9; grid-row-start: r1; grid-row-end: r2; }
+			& > input:nth-of-type(3)  { grid-column-start: c2; grid-column-end: c5; grid-row-start: r3; grid-row-end: r4; }
+			& > select:nth-of-type(3) { grid-column-start: c2; grid-column-end: c5; grid-row-start: r3; grid-row-end: r4; }
+			& > output:nth-of-type(3) { grid-column-start: c2; grid-column-end: c5; grid-row-start: r4; grid-row-end: r5; }
+			& > input:nth-of-type(4)  { grid-column-start: c6; grid-column-end: c9; grid-row-start: r3; grid-row-end: r4; }
+			& > select:nth-of-type(4) { grid-column-start: c6; grid-column-end: c9; grid-row-start: r3; grid-row-end: r4; }
+			& > output:nth-of-type(4) { grid-column-start: c6; grid-column-end: c9; grid-row-start: r4; grid-row-end: r5; }
+		}
+
+		.field-2x2y-p {
+			grid-template-columns: [c0] 4fr [c1] $formInputSpacing [c2] $formPrefixWidth [c3] $formInputSpacing [c4] 5fr [c5] $formInputSpacing [c6] $formPrefixWidth [c7] $formInputSpacing [c8] 4fr [c9];
+			grid-template-rows:    [r0] auto [r1] auto [r2] $formInputSpacing [r3] auto [r4] auto [r5];
+
+			& > label:nth-of-type(1)  { grid-column-start: c0; grid-column-end: c1; grid-row-start: r0; grid-row-end: r1; }
+			& > label:nth-of-type(2)  { grid-column-start: c2; grid-column-end: c3; grid-row-start: r0; grid-row-end: r1; }
+			& > input:nth-of-type(1)  { grid-column-start: c3; grid-column-end: c5; grid-row-start: r0; grid-row-end: r1; }
+			& > select:nth-of-type(1) { grid-column-start: c3; grid-column-end: c5; grid-row-start: r0; grid-row-end: r1; }
+			& > output:nth-of-type(1) { grid-column-start: c3; grid-column-end: c5; grid-row-start: r1; grid-row-end: r2; }
+			& > input:nth-of-type(2)  { grid-column-start: c6; grid-column-end: c9; grid-row-start: r0; grid-row-end: r1; }
+			& > select:nth-of-type(2) { grid-column-start: c6; grid-column-end: c9; grid-row-start: r0; grid-row-end: r1; }
+			& > output:nth-of-type(2) { grid-column-start: c6; grid-column-end: c9; grid-row-start: r1; grid-row-end: r2; }
+			& > label:nth-of-type(3)  { grid-column-start: c2; grid-column-end: c3; grid-row-start: r3; grid-row-end: r4; }
+			& > input:nth-of-type(3)  { grid-column-start: c3; grid-column-end: c5; grid-row-start: r3; grid-row-end: r4; }
+			& > select:nth-of-type(3) { grid-column-start: c3; grid-column-end: c5; grid-row-start: r3; grid-row-end: r4; }
+			& > output:nth-of-type(3) { grid-column-start: c3; grid-column-end: c5; grid-row-start: r4; grid-row-end: r5; }
+			& > input:nth-of-type(4)  { grid-column-start: c6; grid-column-end: c9; grid-row-start: r3; grid-row-end: r4; }
+			& > select:nth-of-type(4) { grid-column-start: c6; grid-column-end: c9; grid-row-start: r3; grid-row-end: r4; }
+			& > output:nth-of-type(4) { grid-column-start: c6; grid-column-end: c9; grid-row-start: r4; grid-row-end: r5; }
+		}
+
+		.field-v {
+			grid-template-columns: [c0] 4fr [c1] $formInputSpacing [c2] $formPrefixWidth [c3] $formInputSpacing [c4] 5fr [c5] $formInputSpacing [c6] $formPrefixWidth [c7] $formInputSpacing [c8] 4fr [c9];
+			grid-template-rows:    [r0] auto [r1] repeat(20, auto [rn]);
+
+			& > label:nth-of-type(1)     { grid-column-start: c0; grid-column-end: c1; grid-row-start: r0;   grid-row-end: r1; }
+			& > input:nth-of-type(1n+1)  { grid-column-start: c2; grid-column-end: c3; grid-row-start: auto; grid-row-end: span 1; margin-bottom: $formInputSpacing; }
+			& > label:nth-of-type(1n+2)  { grid-column-start: c4; grid-column-end: c9; grid-row-start: auto; grid-row-end: span 1; }
+			& > output:nth-of-type(1n+1) { grid-column-start: c2; grid-column-end: c9; grid-row-start: auto; grid-row-end: span 1; }
+		}
+	}
+
+	&.vertical {
+		.field-1x1y {
+			grid-template-columns: [c0] $formPrefixWidth [c1] $formInputSpacing [c2] 7fr [c3] $formInputSpacing [c4] $formPrefixWidth [c5] $formInputSpacing [c6] 4fr [c7];
+			grid-template-rows:    [r0] auto [r1] $formInputSpacing [r2] auto [r3] auto [r4];
+		
+			& > label:nth-of-type(1)  { grid-column-start: c0; grid-column-end: c7; grid-row-start: r0; grid-row-end: r1; }
+			& > input:nth-of-type(1)  { grid-column-start: c0; grid-column-end: c7; grid-row-start: r2; grid-row-end: r3; }
+			& > select:nth-of-type(1) { grid-column-start: c0; grid-column-end: c7; grid-row-start: r2; grid-row-end: r3; }
+			& > output:nth-of-type(1) { grid-column-start: c0; grid-column-end: c7; grid-row-start: r3; grid-row-end: r4; }
+		}
+
+		.field-1x1y-p {
+			grid-template-columns: [c0] $formPrefixWidth [c1] $formInputSpacing [c2] 7fr [c3] $formInputSpacing [c4] $formPrefixWidth [c5] $formInputSpacing [c6] 4fr [c7];
+			grid-template-rows:    [r0] auto [r1] $formInputSpacing [r2] auto [r3] auto [r4];
+		
+			& > label:nth-of-type(1)  { grid-column-start: c0; grid-column-end: c7; grid-row-start: r0; grid-row-end: r1; }
+			& > label:nth-of-type(2)  { grid-column-start: c0; grid-column-end: c1; grid-row-start: r2; grid-row-end: r3; }
+			& > input:nth-of-type(1)  { grid-column-start: c1; grid-column-end: c7; grid-row-start: r2; grid-row-end: r3; }
+			& > select:nth-of-type(1) { grid-column-start: c1; grid-column-end: c7; grid-row-start: r2; grid-row-end: r3; }
+			& > output:nth-of-type(1) { grid-column-start: c0; grid-column-end: c7; grid-row-start: r3; grid-row-end: r4; }
+		}
+		
+		.field-2x1y {
+			grid-template-columns: [c0] $formPrefixWidth [c1] $formInputSpacing [c2] 7fr [c3] $formInputSpacing [c4] $formPrefixWidth [c5] $formInputSpacing [c6] 4fr [c7];
+			grid-template-rows:    [r0] auto [r1] $formInputSpacing [r2] auto [r3] auto [r4];
+		
+			& > label:nth-of-type(1)  { grid-column-start: c0; grid-column-end: c7; grid-row-start: r0; grid-row-end: r1; }
+			& > input:nth-of-type(1)  { grid-column-start: c0; grid-column-end: c3; grid-row-start: r2; grid-row-end: r3; }
+			& > select:nth-of-type(1) { grid-column-start: c0; grid-column-end: c3; grid-row-start: r2; grid-row-end: r3; }
+			& > output:nth-of-type(1) { grid-column-start: c0; grid-column-end: c3; grid-row-start: r3; grid-row-end: r4; }
+			& > input:nth-of-type(2)  { grid-column-start: c4; grid-column-end: c7; grid-row-start: r2; grid-row-end: r3; }
+			& > select:nth-of-type(2) { grid-column-start: c4; grid-column-end: c7; grid-row-start: r2; grid-row-end: r3; }
+			& > output:nth-of-type(2) { grid-column-start: c4; grid-column-end: c7; grid-row-start: r3; grid-row-end: r4; }
+		}
+
+		.field-2x1y-p {
+			grid-template-columns: [c0] $formPrefixWidth [c1] $formInputSpacing [c2] 7fr [c3] $formInputSpacing [c4] $formPrefixWidth [c5] $formInputSpacing [c6] 4fr [c7];
+			grid-template-rows:    [r0] auto [r1] $formInputSpacing [r2] auto [r3] auto [r4];
+		
+			& > label:nth-of-type(1)  { grid-column-start: c0; grid-column-end: c7; grid-row-start: r0; grid-row-end: r1; }
+			& > label:nth-of-type(2)  { grid-column-start: c0; grid-column-end: c1; grid-row-start: r2; grid-row-end: r3; }
+			& > input:nth-of-type(1)  { grid-column-start: c1; grid-column-end: c3; grid-row-start: r2; grid-row-end: r3; }
+			& > select:nth-of-type(1) { grid-column-start: c1; grid-column-end: c3; grid-row-start: r2; grid-row-end: r3; }
+			& > output:nth-of-type(1) { grid-column-start: c0; grid-column-end: c3; grid-row-start: r3; grid-row-end: r4; }
+			& > input:nth-of-type(2)  { grid-column-start: c4; grid-column-end: c7; grid-row-start: r2; grid-row-end: r3; }
+			& > select:nth-of-type(2) { grid-column-start: c4; grid-column-end: c7; grid-row-start: r2; grid-row-end: r3; }
+			& > output:nth-of-type(2) { grid-column-start: c4; grid-column-end: c7; grid-row-start: r3; grid-row-end: r4; }
+		}
+
+		.field-1x2y {
+			grid-template-columns: [c0] $formPrefixWidth [c1] $formInputSpacing [c2] 7fr [c3] $formInputSpacing [c4] $formPrefixWidth [c5] $formInputSpacing [c6] 4fr [c7];
+			grid-template-rows:    [r0] auto [r1] $formInputSpacing [r2] auto [r3] auto [r4] $formInputSpacing [r5] auto [r6] auto [r7];
+		
+			& > label:nth-of-type(1)  { grid-column-start: c0; grid-column-end: c7; grid-row-start: r0; grid-row-end: r1; }
+			& > input:nth-of-type(1)  { grid-column-start: c0; grid-column-end: c7; grid-row-start: r2; grid-row-end: r3; }
+			& > select:nth-of-type(1) { grid-column-start: c0; grid-column-end: c7; grid-row-start: r2; grid-row-end: r3; }
+			& > output:nth-of-type(1) { grid-column-start: c0; grid-column-end: c7; grid-row-start: r3; grid-row-end: r4; }
+			& > input:nth-of-type(2)  { grid-column-start: c0; grid-column-end: c7; grid-row-start: r5; grid-row-end: r6; }
+			& > select:nth-of-type(2) { grid-column-start: c0; grid-column-end: c7; grid-row-start: r5; grid-row-end: r6; }
+			& > output:nth-of-type(2) { grid-column-start: c0; grid-column-end: c7; grid-row-start: r6; grid-row-end: r7; }
+		}
+
+		.field-1x2y-p {
+			grid-template-columns: [c0] $formPrefixWidth [c1] $formInputSpacing [c2] 7fr [c3] $formInputSpacing [c4] $formPrefixWidth [c5] $formInputSpacing [c6] 4fr [c7];
+			grid-template-rows:    [r0] auto [r1] $formInputSpacing [r2] auto [r3] auto [r4] $formInputSpacing [r5] auto [r6] auto [r7];
+		
+			& > label:nth-of-type(1)  { grid-column-start: c0; grid-column-end: c7; grid-row-start: r0; grid-row-end: r1; }
+			& > label:nth-of-type(2)  { grid-column-start: c0; grid-column-end: c1; grid-row-start: r2; grid-row-end: r3; }
+			& > input:nth-of-type(1)  { grid-column-start: c1; grid-column-end: c7; grid-row-start: r2; grid-row-end: r3; }
+			& > select:nth-of-type(1) { grid-column-start: c1; grid-column-end: c7; grid-row-start: r2; grid-row-end: r3; }
+			& > output:nth-of-type(1) { grid-column-start: c0; grid-column-end: c7; grid-row-start: r3; grid-row-end: r4; }
+			& > label:nth-of-type(3)  { grid-column-start: c0; grid-column-end: c1; grid-row-start: r5; grid-row-end: r6; }
+			& > input:nth-of-type(2)  { grid-column-start: c1; grid-column-end: c7; grid-row-start: r5; grid-row-end: r6; }
+			& > select:nth-of-type(2) { grid-column-start: c1; grid-column-end: c7; grid-row-start: r5; grid-row-end: r6; }
+			& > output:nth-of-type(2) { grid-column-start: c0; grid-column-end: c7; grid-row-start: r6; grid-row-end: r7; }
+		}
+
+		.field-2x2y {
+			grid-template-columns: [c0] $formPrefixWidth [c1] $formInputSpacing [c2] 7fr [c3] $formInputSpacing [c4] $formPrefixWidth [c5] $formInputSpacing [c6] 4fr [c7];
+			grid-template-rows:    [r0] auto [r1] $formInputSpacing [r2] auto [r3] auto [r4] $formInputSpacing [r5] auto [r6] auto [r7];
+		
+			& > label:nth-of-type(1)  { grid-column-start: c0; grid-column-end: c7; grid-row-start: r0; grid-row-end: r1; }
+			& > input:nth-of-type(1)  { grid-column-start: c0; grid-column-end: c3; grid-row-start: r2; grid-row-end: r3; }
+			& > select:nth-of-type(1) { grid-column-start: c0; grid-column-end: c3; grid-row-start: r2; grid-row-end: r3; }
+			& > output:nth-of-type(1) { grid-column-start: c0; grid-column-end: c3; grid-row-start: r3; grid-row-end: r4; }
+			& > input:nth-of-type(2)  { grid-column-start: c4; grid-column-end: c7; grid-row-start: r2; grid-row-end: r3; }
+			& > select:nth-of-type(2) { grid-column-start: c4; grid-column-end: c7; grid-row-start: r2; grid-row-end: r3; }
+			& > output:nth-of-type(2) { grid-column-start: c4; grid-column-end: c7; grid-row-start: r3; grid-row-end: r4; }
+			& > input:nth-of-type(3)  { grid-column-start: c0; grid-column-end: c3; grid-row-start: r5; grid-row-end: r6; }
+			& > select:nth-of-type(3) { grid-column-start: c0; grid-column-end: c3; grid-row-start: r5; grid-row-end: r6; }
+			& > output:nth-of-type(3) { grid-column-start: c0; grid-column-end: c3; grid-row-start: r6; grid-row-end: r7; }
+			& > input:nth-of-type(4)  { grid-column-start: c4; grid-column-end: c7; grid-row-start: r5; grid-row-end: r6; }
+			& > select:nth-of-type(4) { grid-column-start: c4; grid-column-end: c7; grid-row-start: r5; grid-row-end: r6; }
+			& > output:nth-of-type(4) { grid-column-start: c4; grid-column-end: c7; grid-row-start: r6; grid-row-end: r7; }
+		}
+
+		.field-2x2y-p {
+			grid-template-columns: [c0] $formPrefixWidth [c1] $formInputSpacing [c2] 7fr [c3] $formInputSpacing [c4] $formPrefixWidth [c5] $formInputSpacing [c6] 4fr [c7];
+			grid-template-rows:    [r0] auto [r1] $formInputSpacing [r2] auto [r3] auto [r4] $formInputSpacing [r5] auto [r6] auto [r7];
+		
+			& > label:nth-of-type(1)  { grid-column-start: c0; grid-column-end: c7; grid-row-start: r0; grid-row-end: r1; }
+			& > label:nth-of-type(2)  { grid-column-start: c0; grid-column-end: c1; grid-row-start: r2; grid-row-end: r3; }
+			& > input:nth-of-type(1)  { grid-column-start: c1; grid-column-end: c3; grid-row-start: r2; grid-row-end: r3; }
+			& > select:nth-of-type(1) { grid-column-start: c1; grid-column-end: c3; grid-row-start: r2; grid-row-end: r3; }
+			& > output:nth-of-type(1) { grid-column-start: c0; grid-column-end: c3; grid-row-start: r3; grid-row-end: r4; }
+			& > input:nth-of-type(2)  { grid-column-start: c4; grid-column-end: c7; grid-row-start: r2; grid-row-end: r3; }
+			& > select:nth-of-type(2) { grid-column-start: c4; grid-column-end: c7; grid-row-start: r2; grid-row-end: r3; }
+			& > output:nth-of-type(2) { grid-column-start: c4; grid-column-end: c7; grid-row-start: r3; grid-row-end: r4; }
+			& > label:nth-of-type(3)  { grid-column-start: c0; grid-column-end: c1; grid-row-start: r5; grid-row-end: r6; }
+			& > input:nth-of-type(3)  { grid-column-start: c1; grid-column-end: c3; grid-row-start: r5; grid-row-end: r6; }
+			& > select:nth-of-type(3) { grid-column-start: c1; grid-column-end: c3; grid-row-start: r5; grid-row-end: r6; }
+			& > output:nth-of-type(3) { grid-column-start: c0; grid-column-end: c3; grid-row-start: r6; grid-row-end: r7; }
+			& > input:nth-of-type(4)  { grid-column-start: c4; grid-column-end: c7; grid-row-start: r5; grid-row-end: r6; }
+			& > select:nth-of-type(4) { grid-column-start: c4; grid-column-end: c7; grid-row-start: r5; grid-row-end: r6; }
+			& > output:nth-of-type(4) { grid-column-start: c4; grid-column-end: c7; grid-row-start: r6; grid-row-end: r7; }
+		}
+
+		.field-v {
+			grid-template-columns: [c0] $formPrefixWidth [c1] $formInputSpacing [c2] 7fr [c3] $formInputSpacing [c4] $formPrefixWidth [c5] $formInputSpacing [c6] 4fr [c7];
+			grid-template-rows:    [r0] auto [r1] repeat(20, auto [rn]);
+
+			& > label:nth-of-type(1)     { grid-column-start: c0; grid-column-end: c7; grid-row-start: r0;   grid-row-end: r1;     margin-bottom: $formInputSpacing; }
+			& > input:nth-of-type(1n+1)  { grid-column-start: c0; grid-column-end: c1; grid-row-start: auto; grid-row-end: span 1; margin-bottom: $formInputSpacing; }
+			& > label:nth-of-type(1n+2)  { grid-column-start: c2; grid-column-end: c7; grid-row-start: auto; grid-row-end: span 1; }
+			& > output:nth-of-type(1n+1) { grid-column-start: c0; grid-column-end: c9; grid-row-start: auto; grid-row-end: span 1; }
+		}
+	}
+
+	fieldset {
+		padding: 0;
+		margin: 0;
+		border-width: $formBorderWidth;
+		border-style: solid;
+		border-color: $colorNeutral;
+	
+		& > .field {
+			border-width: 0.0rem;
+		}
+
+		& + .field {
+			margin-top: $formInputSpacing;
+		}
+	
+		& + fieldset {
+			margin-top: $formInputSpacing;
+		}
+
+		& > legend {
+			padding: 0;
+			margin: 0 0 0 0.5rem;
+		}
+	}
+
+	td > .field {
+		padding: 0;
+		border: none;
+	}
+
+	.field {
+		display: grid;
+		padding: $formFieldPadding;
+	
+		&+.field {
+			margin-top: $formInputSpacing;
+		}
+
+		&+fieldset {
+			margin-top: $formInputSpacing;
+		}
+
+		input {
+			&[type=color], &[type=date], &[type=email], &[type=number], &[type=search], &[type=text], &[type=time], &[type=url] {
+				width: 100%;
+			}
+
+			&[type=checkbox], &[type=radio] {
+				width: 1rem;
+				height: 1rem;
+			}
+
+			&[type=checkbox] {
+				& + label {
+					padding: $formBorderWidth 0 0 0.25rem;
+				}
+			}
+
+			&[type=radio] {
+				& + label {
+					padding: 2 * $formBorderWidth 0 0 0.25rem;
+				}
+			}
+
+			&[type=number] {
+				text-align: right;
+			}
+		}
+
+		label {
+			padding: 0.25rem 0 0 0.25rem;
+		}
+
+		button, select {
+			width: 100%;
+		}
+
+		button, input, select, &.field-1x1y-f > label:nth-of-type(2) {
+			padding: $formInputPadding;
+			border-width: $formBorderWidth;
+			border-style: solid;
+			border-color: $colorNeutral;
+			color: $colorMainForeground;
+			background-color: $colorClouds;
+			font-family: 'DejaVu Sans Mono';
+			font-size: 1rem;
+
+			&:focus {
+				border-color: $colorSelected;
+				box-shadow: 0 0 0 $formBorderWidth $colorSelected;
+			}
+	
+			&:hover {
+				border-color: $colorNeutral;
+				box-shadow: 0 0 0 $formBorderWidth $colorNeutral;
+			}
+
+			&:hover {
+				border-color: $colorNeutral;
+				box-shadow: 0 0 0 $formBorderWidth $colorNeutral;
+			}
+		}
+	
+		output {
+			display: none;
+			visibility: collapse;
+			padding: $formBorderWidth 0.5rem;
+			color: $colorFailure;
+			font-family: 'DejaVu Sans Mono';
+			font-size: 0.8rem;
+		}
+	
+		&.error {
+			& > input, select {
+				border-color: $colorFailure;
+	
+				&:focus {
+					box-shadow: 0 0 0 $formBorderWidth $colorFailure;
+				}
+	
+				&:hover {
+					box-shadow: 0 0 0 $formBorderWidth $colorFailure;
+				}
+			}
+	
+			& > output {
+				display: block;
+				visibility: visible;
+			}
+		}
+	}
+}

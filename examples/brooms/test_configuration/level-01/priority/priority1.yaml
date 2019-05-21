@@ -1,0 +1,30 @@
+priority:
+  dict:
+    low1-normal2-high3:
+      __priority: -1
+      value: 11
+      dict:
+        value: 111
+    low1-high2-normal3:
+      __priority: -1
+      value: 11
+      dict:
+        value: 111
+    normal1-low2-high3:
+      value: 11
+      dict:
+        value: 111
+    normal1-high2-low3:
+      value: 11
+      dict:
+        value: 111
+    high1-low2-normal3:
+      __priority: +1
+      value: 11
+      dict:
+        value: 111
+    high1-normal2-low3:
+      __priority: +1
+      value: 11
+      dict:
+        value: 111

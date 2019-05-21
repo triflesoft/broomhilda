@@ -1,0 +1,9 @@
+traverse-order:
+  low_priority:
+    value: 1111
+
+  normal_priority:
+    value: 2222
+
+  high_priority:
+    value: 3333

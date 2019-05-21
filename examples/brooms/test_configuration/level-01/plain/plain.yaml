@@ -1,0 +1,9 @@
+plain-yaml:
+  array:
+  - 0
+  - 1
+  - 2
+  - 4
+  dict:
+    a: 0
+    b: 1

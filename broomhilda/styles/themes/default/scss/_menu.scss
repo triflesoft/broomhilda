@@ -1,0 +1,114 @@
+nav {
+	overflow: visible;
+
+	.dropdown-menu {
+		position: relative;
+
+		ul {
+			list-style-type: none;
+			z-index: 1000;
+			padding: 0;
+			margin: 0;
+			overflow: visible;
+			float: left;
+		}
+
+		li {
+			position: relative;
+
+			& > a {
+				display: block;
+				padding: 0.5rem 1.0rem;
+				text-decoration: none;
+				color: $colorNavForeground;
+
+				&:hover {
+					color: $colorNavForeground;
+				}
+
+				&:visited {
+					color: $colorNavForeground;
+				}
+			}
+		}
+
+		& > ul {
+			& > li {
+				float: left;
+
+				& > ul {
+					border: 0.08rem solid $colorWetAsphalt;
+					visibility: hidden;
+					opacity: 0;
+					position: absolute;
+					top: 2.0rem;
+					transition: opacity 0.2s ease-in 0.1s, visibility 0.4s;
+
+					& > li {
+						color: $colorNavForeground;
+						background-color: $colorNavBackground;
+						min-width: 10rem;
+
+						& > a {
+							background-color: $colorNavBackground;
+		
+							&:hover {
+								color: $colorNavBackground;
+								background-color: $colorNavForeground;
+							}
+						}
+
+						& > ul {
+							border: 0.08rem solid $colorWetAsphalt;
+							visibility: hidden;
+							opacity: 0;
+							position: absolute;
+							top: 0;
+							left: 100%;
+							transition: opacity 0.2s ease-in 0.1s, visibility 0.4s;
+
+							& > li {
+								color: $colorNavForeground;
+								background-color: $colorNavBackground;
+								min-width: 10rem;
+
+								& > a {
+									background-color: $colorNavBackground;
+				
+									&:hover {
+										color: $colorNavBackground;
+										background-color: $colorNavForeground;
+									}
+								}
+							}
+						}
+
+						&:hover {
+							& > a {
+								color: $colorNavBackground;
+								background-color: $colorNavForeground;
+							}
+		
+							& > ul {
+								visibility: visible;
+								opacity: 1;
+							}
+						}
+					}
+				}
+	
+				&:hover {
+					& > a {
+						color: $colorNavBackground;
+						background-color: $colorNavForeground;
+					}
+
+					& > ul {
+						visibility: visible;
+						opacity: 1;
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,7 @@
+extended-then-discarded-yaml:
+  array:
+  - 2
+  - 3
+  dict:
+    b: 2
+    c: 3

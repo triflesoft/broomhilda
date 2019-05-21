@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+		<title>{{ status_code }}: {{ status_text }}</title>
+		<style>
+* { box-sizing: border-box; }
+html { margin: 0; padding: 0; }
+body { margin: 0; padding: 0; min-height: 100vh; font-family: Helvetica }
+div.block { position: absolute; padding: 2vmin; }
+div.head { left:  0vw; top:  0vh; width: 100vw;     height: 12vh; color: #FFFFFF; background-color: #C0392B; font-size: 6vmin; }
+div.body { left:  0vw; top: 12vh; width: 100vw; min-height: 88vh; color: #000000; background-color: #BDC3C7; }
+h1  { font-size: 16px; padding: 1vmin; margin: 0 1vmin 0vmin 1vmin; }
+h2  { font-size: 12px; padding: 1vmin; margin: 0 1vmin 0vmin 1vmin; }
+p   { font-size: 12px; padding: 1vmin; margin: 0 1vmin 0vmin 2vmin; }
+pre { font-size: 12px; padding: 1vmin; margin: 0 1vmin 0vmin 2vmin; color: #ecf0f1; background-color: #9b59b6; }
+details { font-size: 12px; padding: 0vmin; margin: 0 1vmin 0vmin 2vmin; }
+summary { font-size: 12px; padding: 1vmin; }
+ol  { font-size: 12px; padding: 1vmin 1vmin 1vmin 6vmin; margin: 0 1vmin 0vmin 2vmin; color: #ecf0f1; background-color: #9b59b6; }
+li  { white-space: pre; font-family: monospace; }
+		</style>
+	</head>
+	<body>{% block body %}{% endblock %}</body>
+</html>

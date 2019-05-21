@@ -1,0 +1,45 @@
+.combobox-dropdown {
+	position: absolute;
+	max-height: 20rem;
+	background-color: transparent;
+	overflow: hidden;
+}
+
+.combobox-dropdown > div {
+	max-height: 18rem;
+	margin: 0 1rem 1rem 1rem;
+	background-color: $colorMainBackground;
+	border-width: 0 $formBorderWidth $formBorderWidth $formBorderWidth;
+	border-style: solid;
+	border-color: $colorNeutral;
+	box-shadow: 0 0 0 $formBorderWidth $colorSelected;
+	overflow-y: scroll;
+}
+
+.combobox-dropdown.error > div {
+	border-color: $colorFailure;
+}
+
+ul.combobox-list {
+	padding: 0;
+	margin: 0;
+	list-style-type: none;
+	cursor: pointer;
+
+	& > li {
+		padding: 2 * $formBorderWidth;
+		margin: $formBorderWidth;
+		color: $colorMainForeground;
+		background-color: $colorMainBackground;
+
+		&:hover {
+			color: $colorHoverForeground;
+			background-color: $colorHoverBackground;
+		}
+
+		&.selected {
+			color: $colorMainBackground;
+			background-color: $colorSelected;
+		}
+	}
+}

@@ -1,0 +1,1470 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  padding: 0;
+  margin: 0;
+  font-family: "DejaVu Sans";
+  font-size: 14px;
+  font-weight: normal;
+  color: #22313F;
+  background-color: #FFFFFF;
+}
+
+h1 {
+  font-size: 6rem;
+}
+
+h2 {
+  font-size: 5rem;
+}
+
+h3 {
+  font-size: 4rem;
+}
+
+h4 {
+  font-size: 3rem;
+}
+
+h5 {
+  font-size: 2rem;
+}
+
+h6 {
+  font-size: 1rem;
+}
+
+mark {
+  background-color: #F1C40F;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: [c0] auto [c1] 24rem [c2];
+  grid-template-rows: [r0] 3em [r1] auto [r2] 3em [r3];
+  grid-template-areas: "nav    nav" "main   aside" "footer footer";
+  min-height: 100vh;
+}
+
+header {
+  grid-area: header;
+  padding: 0.5rem;
+  color: #EEEEEE;
+  background-color: #22313F;
+}
+
+nav {
+  grid-area: nav;
+  padding: 0.5rem;
+  color: #EEEEEE;
+  background-color: #22313F;
+}
+
+main {
+  grid-area: main;
+  padding: 0.5rem;
+  color: #22313F;
+  background-color: #FFFFFF;
+}
+
+aside {
+  grid-area: aside;
+  padding: 0.5rem;
+  color: #22313F;
+  background-color: #ECF0F1;
+}
+
+footer {
+  grid-area: footer;
+  padding: 0.5rem;
+  color: #22313F;
+  background-color: #67809F;
+}
+
+section {
+  display: flex;
+}
+
+section.container {
+  flex-direction: column;
+}
+
+section.row {
+  flex-direction: row;
+  margin-top: 0;
+}
+
+section.row + section.row {
+  margin-top: 0.5rem;
+}
+
+section.column {
+  flex-direction: column;
+  margin-left: 0;
+}
+
+section.column + section.column {
+  margin-left: 0.5rem;
+}
+
+section.one {
+  flex: 1;
+}
+
+section.two {
+  flex: 2;
+}
+
+section.three {
+  flex: 3;
+}
+
+section.four {
+  flex: 4;
+}
+
+section.five {
+  flex: 5;
+}
+
+section.six {
+  flex: 6;
+}
+
+section.seven {
+  flex: 7;
+}
+
+section.eight {
+  flex: 8;
+}
+
+section.nine {
+  flex: 9;
+}
+
+section.ten {
+  flex: 10;
+}
+
+section.eleven {
+  flex: 11;
+}
+
+section.twelve {
+  flex: 12;
+}
+
+a {
+  color: #2980B9;
+}
+a:hover {
+  color: #19B5FE;
+}
+a:visited {
+  color: #8E44AD;
+}
+a:visited:hover {
+  color: #BE90D4;
+}
+
+p {
+  padding: 0.25rem 0.75rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead > tr {
+  border-bottom: 0.08rem solid #95A5A6;
+}
+
+tbody > tr {
+  border-bottom: 0.08rem solid #FFFFFF;
+}
+tbody > tr:nth-child(even) {
+  background-color: #ECF0F1;
+}
+tbody > tr:hover {
+  color: #000000;
+  background-color: #DADFE1;
+}
+
+tfoot > tr {
+  border-bottom: 0.08rem solid #95A5A6;
+}
+
+td {
+  padding: 0.25rem 0.75rem;
+}
+
+th {
+  padding: 0.25rem 0.75rem;
+  white-space: nowrap;
+  text-align: left;
+}
+
+nav .field {
+  border: formBorderWidth solid #22313F;
+}
+
+main .field {
+  border: 0.08rem solid #FFFFFF;
+}
+
+aside .field {
+  border: 0.08rem solid #ECF0F1;
+}
+
+form.horizontal .field-1x1y {
+  grid-template-columns: [c0] 4fr [c1] 0.5rem [c2] 1.5rem [c3] 0.5rem [c4] 5fr [c5] 0.5rem [c6] 1.5rem [c7] 0.5rem [c8] 4fr [c9];
+  grid-template-rows: [r0] auto [r1] auto [r2];
+}
+form.horizontal .field-1x1y > label:nth-of-type(1) {
+  grid-column-start: c0;
+  grid-column-end: c1;
+  grid-row-start: r0;
+  grid-row-end: r1;
+}
+form.horizontal .field-1x1y > input:nth-of-type(1) {
+  grid-column-start: c2;
+  grid-column-end: c9;
+  grid-row-start: r0;
+  grid-row-end: r1;
+}
+form.horizontal .field-1x1y > select:nth-of-type(1) {
+  grid-column-start: c2;
+  grid-column-end: c9;
+  grid-row-start: r0;
+  grid-row-end: r1;
+}
+form.horizontal .field-1x1y > output:nth-of-type(1) {
+  grid-column-start: c2;
+  grid-column-end: c9;
+  grid-row-start: r1;
+  grid-row-end: r2;
+}
+form.horizontal .field-1x1y-p {
+  grid-template-columns: [c0] 4fr [c1] 0.5rem [c2] 1.5rem [c3] 0.5rem [c4] 5fr [c5] 0.5rem [c6] 1.5rem [c7] 0.5rem [c8] 4fr [c9];
+  grid-template-rows: [r0] auto [r1] auto [r2];
+}
+form.horizontal .field-1x1y-p > label:nth-of-type(1) {
+  grid-column-start: c0;
+  grid-column-end: c1;
+  grid-row-start: r0;
+  grid-row-end: r1;
+}
+form.horizontal .field-1x1y-p > label:nth-of-type(2) {
+  grid-column-start: c2;
+  grid-column-end: c3;
+  grid-row-start: r0;
+  grid-row-end: r1;
+}
+form.horizontal .field-1x1y-p > input:nth-of-type(1) {
+  grid-column-start: c3;
+  grid-column-end: c9;
+  grid-row-start: r0;
+  grid-row-end: r1;
+}
+form.horizontal .field-1x1y-p > select:nth-of-type(1) {
+  grid-column-start: c3;
+  grid-column-end: c9;
+  grid-row-start: r0;
+  grid-row-end: r1;
+}
+form.horizontal .field-1x1y-p > output:nth-of-type(1) {
+  grid-column-start: c2;
+  grid-column-end: c9;
+  grid-row-start: r1;
+  grid-row-end: r2;
+}
+form.horizontal .field-1x1y-f {
+  grid-template-columns: [c0] 4fr [c1] 0.5rem [c2] 1.5rem [c3] 0.5rem [c4] 5fr [c5] 0.5rem [c6] 1.5rem [c7] 0.5rem [c8] 4fr [c9];
+  grid-template-rows: [r0] auto [r1] auto [r2];
+}
+form.horizontal .field-1x1y-f > label:nth-of-type(1) {
+  grid-column-start: c0;
+  grid-column-end: c1;
+  grid-row-start: r0;
+  grid-row-end: r1;
+}
+form.horizontal .field-1x1y-f > input {
+  display: none;
+}
+form.horizontal .field-1x1y-f > label:nth-of-type(2) {
+  grid-column-start: c2;
+  grid-column-end: c9;
+  grid-row-start: r0;
+  grid-row-end: r1;
+}
+form.horizontal .field-1x1y-f > output:nth-of-type(1) {
+  grid-column-start: c2;
+  grid-column-end: c9;
+  grid-row-start: r1;
+  grid-row-end: r2;
+}
+form.horizontal .field-1x2y {
+  grid-template-columns: [c0] 4fr [c1] 0.5rem [c2] 1.5rem [c3] 0.5rem [c4] 5fr [c5] 0.5rem [c6] 1.5rem [c7] 0.5rem [c8] 4fr [c9];
+  grid-template-rows: [r0] auto [r1] auto [r2] 0.5rem [r3] auto [r4] auto [r5];
+}
+form.horizontal .field-1x2y > label:nth-of-type(1) {
+  grid-column-start: c0;
+  grid-column-end: c1;
+  grid-row-start: r0;
+  grid-row-end: r1;
+}
+form.horizontal .field-1x2y > input:nth-of-type(1) {
+  grid-column-start: c2;
+  grid-column-end: c9;
+  grid-row-start: r0;
+  grid-row-end: r1;
+}
+form.horizontal .field-1x2y > select:nth-of-type(1) {
+  grid-column-start: c2;
+  grid-column-end: c9;
+  grid-row-start: r0;
+  grid-row-end: r1;
+}
+form.horizontal .field-1x2y > output:nth-of-type(1) {
+  grid-column-start: c2;
+  grid-column-end: c9;
+  grid-row-start: r1;
+  grid-row-end: r2;
+}
+form.horizontal .field-1x2y > input:nth-of-type(2) {
+  grid-column-start: c2;
+  grid-column-end: c9;
+  grid-row-start: r3;
+  grid-row-end: r4;
+}
+form.horizontal .field-1x2y > select:nth-of-type(2) {
+  grid-column-start: c2;
+  grid-column-end: c9;
+  grid-row-start: r3;
+  grid-row-end: r4;
+}
+form.horizontal .field-1x2y > output:nth-of-type(2) {
+  grid-column-start: c2;
+  grid-column-end: c9;
+  grid-row-start: r4;
+  grid-row-end: r5;
+}
+form.horizontal .field-1x2y-p {
+  grid-template-columns: [c0] 4fr [c1] 0.5rem [c2] 1.5rem [c3] 0.5rem [c4] 5fr [c5] 0.5rem [c6] 1.5rem [c7] 0.5rem [c8] 4fr [c9];
+  grid-template-rows: [r0] auto [r1] auto [r2] 0.5rem [r3] auto [r4] auto [r5];
+}
+form.horizontal .field-1x2y-p > label:nth-of-type(1) {
+  grid-column-start: c0;
+  grid-column-end: c1;
+  grid-row-start: r0;
+  grid-row-end: r1;
+}
+form.horizontal .field-1x2y-p > label:nth-of-type(2) {
+  grid-column-start: c2;
+  grid-column-end: c3;
+  grid-row-start: r0;
+  grid-row-end: r1;
+}
+form.horizontal .field-1x2y-p > input:nth-of-type(1) {
+  grid-column-start: c3;
+  grid-column-end: c9;
+  grid-row-start: r0;
+  grid-row-end: r1;
+}
+form.horizontal .field-1x2y-p > select:nth-of-type(1) {
+  grid-column-start: c3;
+  grid-column-end: c9;
+  grid-row-start: r0;
+  grid-row-end: r1;
+}
+form.horizontal .field-1x2y-p > output:nth-of-type(1) {
+  grid-column-start: c3;
+  grid-column-end: c9;
+  grid-row-start: r1;
+  grid-row-end: r2;
+}
+form.horizontal .field-1x2y-p > label:nth-of-type(3) {
+  grid-column-start: c2;
+  grid-column-end: c3;
+  grid-row-start: r3;
+  grid-row-end: r4;
+}
+form.horizontal .field-1x2y-p > input:nth-of-type(2) {
+  grid-column-start: c3;
+  grid-column-end: c9;
+  grid-row-start: r3;
+  grid-row-end: r4;
+}
+form.horizontal .field-1x2y-p > select:nth-of-type(2) {
+  grid-column-start: c3;
+  grid-column-end: c9;
+  grid-row-start: r3;
+  grid-row-end: r4;
+}
+form.horizontal .field-1x2y-p > output:nth-of-type(2) {
+  grid-column-start: c3;
+  grid-column-end: c9;
+  grid-row-start: r4;
+  grid-row-end: r5;
+}
+form.horizontal .field-2x1y {
+  grid-template-columns: [c0] 4fr [c1] 0.5rem [c2] 1.5rem [c3] 0.5rem [c4] 5fr [c5] 0.5rem [c6] 1.5rem [c7] 0.5rem [c8] 4fr [c9];
+  grid-template-rows: [r0] auto [r1] auto [r2];
+}
+form.horizontal .field-2x1y > label:nth-of-type(1) {
+  grid-column-start: c0;
+  grid-column-end: c1;
+  grid-row-start: r0;
+  grid-row-end: r1;
+}
+form.horizontal .field-2x1y > input:nth-of-type(1) {
+  grid-column-start: c2;
+  grid-column-end: c5;
+  grid-row-start: r0;
+  grid-row-end: r1;
+}
+form.horizontal .field-2x1y > select:nth-of-type(1) {
+  grid-column-start: c2;
+  grid-column-end: c5;
+  grid-row-start: r0;
+  grid-row-end: r1;
+}
+form.horizontal .field-2x1y > output:nth-of-type(1) {
+  grid-column-start: c2;
+  grid-column-end: c5;
+  grid-row-start: r1;
+  grid-row-end: r2;
+}
+form.horizontal .field-2x1y > input:nth-of-type(2) {
+  grid-column-start: c6;
+  grid-column-end: c9;
+  grid-row-start: r0;
+  grid-row-end: r1;
+}
+form.horizontal .field-2x1y > select:nth-of-type(2) {
+  grid-column-start: c6;
+  grid-column-end: c9;
+  grid-row-start: r0;
+  grid-row-end: r1;
+}
+form.horizontal .field-2x1y > output:nth-of-type(2) {
+  grid-column-start: c6;
+  grid-column-end: c9;
+  grid-row-start: r1;
+  grid-row-end: r2;
+}
+form.horizontal .field-2x1y-p {
+  grid-template-columns: [c0] 4fr [c1] 0.5rem [c2] 1.5rem [c3] 0.5rem [c4] 5fr [c5] 0.5rem [c6] 1.5rem [c7] 0.5rem [c8] 4fr [c9];
+  grid-template-rows: [r0] auto [r1] auto [r2];
+}
+form.horizontal .field-2x1y-p > label:nth-of-type(1) {
+  grid-column-start: c0;
+  grid-column-end: c1;
+  grid-row-start: r0;
+  grid-row-end: r1;
+}
+form.horizontal .field-2x1y-p > label:nth-of-type(2) {
+  grid-column-start: c2;
+  grid-column-end: c3;
+  grid-row-start: r0;
+  grid-row-end: r1;
+}
+form.horizontal .field-2x1y-p > input:nth-of-type(1) {
+  grid-column-start: c3;
+  grid-column-end: c5;
+  grid-row-start: r0;
+  grid-row-end: r1;
+}
+form.horizontal .field-2x1y-p > select:nth-of-type(1) {
+  grid-column-start: c3;
+  grid-column-end: c5;
+  grid-row-start: r0;
+  grid-row-end: r1;
+}
+form.horizontal .field-2x1y-p > output:nth-of-type(1) {
+  grid-column-start: c2;
+  grid-column-end: c5;
+  grid-row-start: r1;
+  grid-row-end: r2;
+}
+form.horizontal .field-2x1y-p > input:nth-of-type(2) {
+  grid-column-start: c6;
+  grid-column-end: c9;
+  grid-row-start: r0;
+  grid-row-end: r1;
+}
+form.horizontal .field-2x1y-p > select:nth-of-type(2) {
+  grid-column-start: c6;
+  grid-column-end: c9;
+  grid-row-start: r0;
+  grid-row-end: r1;
+}
+form.horizontal .field-2x1y-p > output:nth-of-type(2) {
+  grid-column-start: c6;
+  grid-column-end: c9;
+  grid-row-start: r1;
+  grid-row-end: r2;
+}
+form.horizontal .field-2x2y {
+  grid-template-columns: [c0] 4fr [c1] 0.5rem [c2] 1.5rem [c3] 0.5rem [c4] 5fr [c5] 0.5rem [c6] 1.5rem [c7] 0.5rem [c8] 4fr [c9];
+  grid-template-rows: [r0] auto [r1] auto [r2] 0.5rem [r3] auto [r4] auto [r5];
+}
+form.horizontal .field-2x2y > label:nth-of-type(1) {
+  grid-column-start: c0;
+  grid-column-end: c1;
+  grid-row-start: r0;
+  grid-row-end: r1;
+}
+form.horizontal .field-2x2y > input:nth-of-type(1) {
+  grid-column-start: c2;
+  grid-column-end: c5;
+  grid-row-start: r0;
+  grid-row-end: r1;
+}
+form.horizontal .field-2x2y > select:nth-of-type(1) {
+  grid-column-start: c2;
+  grid-column-end: c5;
+  grid-row-start: r0;
+  grid-row-end: r1;
+}
+form.horizontal .field-2x2y > output:nth-of-type(1) {
+  grid-column-start: c2;
+  grid-column-end: c5;
+  grid-row-start: r1;
+  grid-row-end: r2;
+}
+form.horizontal .field-2x2y > input:nth-of-type(2) {
+  grid-column-start: c6;
+  grid-column-end: c9;
+  grid-row-start: r0;
+  grid-row-end: r1;
+}
+form.horizontal .field-2x2y > select:nth-of-type(2) {
+  grid-column-start: c6;
+  grid-column-end: c9;
+  grid-row-start: r0;
+  grid-row-end: r1;
+}
+form.horizontal .field-2x2y > output:nth-of-type(2) {
+  grid-column-start: c6;
+  grid-column-end: c9;
+  grid-row-start: r1;
+  grid-row-end: r2;
+}
+form.horizontal .field-2x2y > input:nth-of-type(3) {
+  grid-column-start: c2;
+  grid-column-end: c5;
+  grid-row-start: r3;
+  grid-row-end: r4;
+}
+form.horizontal .field-2x2y > select:nth-of-type(3) {
+  grid-column-start: c2;
+  grid-column-end: c5;
+  grid-row-start: r3;
+  grid-row-end: r4;
+}
+form.horizontal .field-2x2y > output:nth-of-type(3) {
+  grid-column-start: c2;
+  grid-column-end: c5;
+  grid-row-start: r4;
+  grid-row-end: r5;
+}
+form.horizontal .field-2x2y > input:nth-of-type(4) {
+  grid-column-start: c6;
+  grid-column-end: c9;
+  grid-row-start: r3;
+  grid-row-end: r4;
+}
+form.horizontal .field-2x2y > select:nth-of-type(4) {
+  grid-column-start: c6;
+  grid-column-end: c9;
+  grid-row-start: r3;
+  grid-row-end: r4;
+}
+form.horizontal .field-2x2y > output:nth-of-type(4) {
+  grid-column-start: c6;
+  grid-column-end: c9;
+  grid-row-start: r4;
+  grid-row-end: r5;
+}
+form.horizontal .field-2x2y-p {
+  grid-template-columns: [c0] 4fr [c1] 0.5rem [c2] 1.5rem [c3] 0.5rem [c4] 5fr [c5] 0.5rem [c6] 1.5rem [c7] 0.5rem [c8] 4fr [c9];
+  grid-template-rows: [r0] auto [r1] auto [r2] 0.5rem [r3] auto [r4] auto [r5];
+}
+form.horizontal .field-2x2y-p > label:nth-of-type(1) {
+  grid-column-start: c0;
+  grid-column-end: c1;
+  grid-row-start: r0;
+  grid-row-end: r1;
+}
+form.horizontal .field-2x2y-p > label:nth-of-type(2) {
+  grid-column-start: c2;
+  grid-column-end: c3;
+  grid-row-start: r0;
+  grid-row-end: r1;
+}
+form.horizontal .field-2x2y-p > input:nth-of-type(1) {
+  grid-column-start: c3;
+  grid-column-end: c5;
+  grid-row-start: r0;
+  grid-row-end: r1;
+}
+form.horizontal .field-2x2y-p > select:nth-of-type(1) {
+  grid-column-start: c3;
+  grid-column-end: c5;
+  grid-row-start: r0;
+  grid-row-end: r1;
+}
+form.horizontal .field-2x2y-p > output:nth-of-type(1) {
+  grid-column-start: c3;
+  grid-column-end: c5;
+  grid-row-start: r1;
+  grid-row-end: r2;
+}
+form.horizontal .field-2x2y-p > input:nth-of-type(2) {
+  grid-column-start: c6;
+  grid-column-end: c9;
+  grid-row-start: r0;
+  grid-row-end: r1;
+}
+form.horizontal .field-2x2y-p > select:nth-of-type(2) {
+  grid-column-start: c6;
+  grid-column-end: c9;
+  grid-row-start: r0;
+  grid-row-end: r1;
+}
+form.horizontal .field-2x2y-p > output:nth-of-type(2) {
+  grid-column-start: c6;
+  grid-column-end: c9;
+  grid-row-start: r1;
+  grid-row-end: r2;
+}
+form.horizontal .field-2x2y-p > label:nth-of-type(3) {
+  grid-column-start: c2;
+  grid-column-end: c3;
+  grid-row-start: r3;
+  grid-row-end: r4;
+}
+form.horizontal .field-2x2y-p > input:nth-of-type(3) {
+  grid-column-start: c3;
+  grid-column-end: c5;
+  grid-row-start: r3;
+  grid-row-end: r4;
+}
+form.horizontal .field-2x2y-p > select:nth-of-type(3) {
+  grid-column-start: c3;
+  grid-column-end: c5;
+  grid-row-start: r3;
+  grid-row-end: r4;
+}
+form.horizontal .field-2x2y-p > output:nth-of-type(3) {
+  grid-column-start: c3;
+  grid-column-end: c5;
+  grid-row-start: r4;
+  grid-row-end: r5;
+}
+form.horizontal .field-2x2y-p > input:nth-of-type(4) {
+  grid-column-start: c6;
+  grid-column-end: c9;
+  grid-row-start: r3;
+  grid-row-end: r4;
+}
+form.horizontal .field-2x2y-p > select:nth-of-type(4) {
+  grid-column-start: c6;
+  grid-column-end: c9;
+  grid-row-start: r3;
+  grid-row-end: r4;
+}
+form.horizontal .field-2x2y-p > output:nth-of-type(4) {
+  grid-column-start: c6;
+  grid-column-end: c9;
+  grid-row-start: r4;
+  grid-row-end: r5;
+}
+form.horizontal .field-v {
+  grid-template-columns: [c0] 4fr [c1] 0.5rem [c2] 1.5rem [c3] 0.5rem [c4] 5fr [c5] 0.5rem [c6] 1.5rem [c7] 0.5rem [c8] 4fr [c9];
+  grid-template-rows: [r0] auto [r1] repeat(20, auto [rn]);
+}
+form.horizontal .field-v > label:nth-of-type(1) {
+  grid-column-start: c0;
+  grid-column-end: c1;
+  grid-row-start: r0;
+  grid-row-end: r1;
+}
+form.horizontal .field-v > input:nth-of-type(1n+1) {
+  grid-column-start: c2;
+  grid-column-end: c3;
+  grid-row-start: auto;
+  grid-row-end: span 1;
+  margin-bottom: 0.5rem;
+}
+form.horizontal .field-v > label:nth-of-type(1n+2) {
+  grid-column-start: c4;
+  grid-column-end: c9;
+  grid-row-start: auto;
+  grid-row-end: span 1;
+}
+form.horizontal .field-v > output:nth-of-type(1n+1) {
+  grid-column-start: c2;
+  grid-column-end: c9;
+  grid-row-start: auto;
+  grid-row-end: span 1;
+}
+form.vertical .field-1x1y {
+  grid-template-columns: [c0] 1.5rem [c1] 0.5rem [c2] 7fr [c3] 0.5rem [c4] 1.5rem [c5] 0.5rem [c6] 4fr [c7];
+  grid-template-rows: [r0] auto [r1] 0.5rem [r2] auto [r3] auto [r4];
+}
+form.vertical .field-1x1y > label:nth-of-type(1) {
+  grid-column-start: c0;
+  grid-column-end: c7;
+  grid-row-start: r0;
+  grid-row-end: r1;
+}
+form.vertical .field-1x1y > input:nth-of-type(1) {
+  grid-column-start: c0;
+  grid-column-end: c7;
+  grid-row-start: r2;
+  grid-row-end: r3;
+}
+form.vertical .field-1x1y > select:nth-of-type(1) {
+  grid-column-start: c0;
+  grid-column-end: c7;
+  grid-row-start: r2;
+  grid-row-end: r3;
+}
+form.vertical .field-1x1y > output:nth-of-type(1) {
+  grid-column-start: c0;
+  grid-column-end: c7;
+  grid-row-start: r3;
+  grid-row-end: r4;
+}
+form.vertical .field-1x1y-p {
+  grid-template-columns: [c0] 1.5rem [c1] 0.5rem [c2] 7fr [c3] 0.5rem [c4] 1.5rem [c5] 0.5rem [c6] 4fr [c7];
+  grid-template-rows: [r0] auto [r1] 0.5rem [r2] auto [r3] auto [r4];
+}
+form.vertical .field-1x1y-p > label:nth-of-type(1) {
+  grid-column-start: c0;
+  grid-column-end: c7;
+  grid-row-start: r0;
+  grid-row-end: r1;
+}
+form.vertical .field-1x1y-p > label:nth-of-type(2) {
+  grid-column-start: c0;
+  grid-column-end: c1;
+  grid-row-start: r2;
+  grid-row-end: r3;
+}
+form.vertical .field-1x1y-p > input:nth-of-type(1) {
+  grid-column-start: c1;
+  grid-column-end: c7;
+  grid-row-start: r2;
+  grid-row-end: r3;
+}
+form.vertical .field-1x1y-p > select:nth-of-type(1) {
+  grid-column-start: c1;
+  grid-column-end: c7;
+  grid-row-start: r2;
+  grid-row-end: r3;
+}
+form.vertical .field-1x1y-p > output:nth-of-type(1) {
+  grid-column-start: c0;
+  grid-column-end: c7;
+  grid-row-start: r3;
+  grid-row-end: r4;
+}
+form.vertical .field-2x1y {
+  grid-template-columns: [c0] 1.5rem [c1] 0.5rem [c2] 7fr [c3] 0.5rem [c4] 1.5rem [c5] 0.5rem [c6] 4fr [c7];
+  grid-template-rows: [r0] auto [r1] 0.5rem [r2] auto [r3] auto [r4];
+}
+form.vertical .field-2x1y > label:nth-of-type(1) {
+  grid-column-start: c0;
+  grid-column-end: c7;
+  grid-row-start: r0;
+  grid-row-end: r1;
+}
+form.vertical .field-2x1y > input:nth-of-type(1) {
+  grid-column-start: c0;
+  grid-column-end: c3;
+  grid-row-start: r2;
+  grid-row-end: r3;
+}
+form.vertical .field-2x1y > select:nth-of-type(1) {
+  grid-column-start: c0;
+  grid-column-end: c3;
+  grid-row-start: r2;
+  grid-row-end: r3;
+}
+form.vertical .field-2x1y > output:nth-of-type(1) {
+  grid-column-start: c0;
+  grid-column-end: c3;
+  grid-row-start: r3;
+  grid-row-end: r4;
+}
+form.vertical .field-2x1y > input:nth-of-type(2) {
+  grid-column-start: c4;
+  grid-column-end: c7;
+  grid-row-start: r2;
+  grid-row-end: r3;
+}
+form.vertical .field-2x1y > select:nth-of-type(2) {
+  grid-column-start: c4;
+  grid-column-end: c7;
+  grid-row-start: r2;
+  grid-row-end: r3;
+}
+form.vertical .field-2x1y > output:nth-of-type(2) {
+  grid-column-start: c4;
+  grid-column-end: c7;
+  grid-row-start: r3;
+  grid-row-end: r4;
+}
+form.vertical .field-2x1y-p {
+  grid-template-columns: [c0] 1.5rem [c1] 0.5rem [c2] 7fr [c3] 0.5rem [c4] 1.5rem [c5] 0.5rem [c6] 4fr [c7];
+  grid-template-rows: [r0] auto [r1] 0.5rem [r2] auto [r3] auto [r4];
+}
+form.vertical .field-2x1y-p > label:nth-of-type(1) {
+  grid-column-start: c0;
+  grid-column-end: c7;
+  grid-row-start: r0;
+  grid-row-end: r1;
+}
+form.vertical .field-2x1y-p > label:nth-of-type(2) {
+  grid-column-start: c0;
+  grid-column-end: c1;
+  grid-row-start: r2;
+  grid-row-end: r3;
+}
+form.vertical .field-2x1y-p > input:nth-of-type(1) {
+  grid-column-start: c1;
+  grid-column-end: c3;
+  grid-row-start: r2;
+  grid-row-end: r3;
+}
+form.vertical .field-2x1y-p > select:nth-of-type(1) {
+  grid-column-start: c1;
+  grid-column-end: c3;
+  grid-row-start: r2;
+  grid-row-end: r3;
+}
+form.vertical .field-2x1y-p > output:nth-of-type(1) {
+  grid-column-start: c0;
+  grid-column-end: c3;
+  grid-row-start: r3;
+  grid-row-end: r4;
+}
+form.vertical .field-2x1y-p > input:nth-of-type(2) {
+  grid-column-start: c4;
+  grid-column-end: c7;
+  grid-row-start: r2;
+  grid-row-end: r3;
+}
+form.vertical .field-2x1y-p > select:nth-of-type(2) {
+  grid-column-start: c4;
+  grid-column-end: c7;
+  grid-row-start: r2;
+  grid-row-end: r3;
+}
+form.vertical .field-2x1y-p > output:nth-of-type(2) {
+  grid-column-start: c4;
+  grid-column-end: c7;
+  grid-row-start: r3;
+  grid-row-end: r4;
+}
+form.vertical .field-1x2y {
+  grid-template-columns: [c0] 1.5rem [c1] 0.5rem [c2] 7fr [c3] 0.5rem [c4] 1.5rem [c5] 0.5rem [c6] 4fr [c7];
+  grid-template-rows: [r0] auto [r1] 0.5rem [r2] auto [r3] auto [r4] 0.5rem [r5] auto [r6] auto [r7];
+}
+form.vertical .field-1x2y > label:nth-of-type(1) {
+  grid-column-start: c0;
+  grid-column-end: c7;
+  grid-row-start: r0;
+  grid-row-end: r1;
+}
+form.vertical .field-1x2y > input:nth-of-type(1) {
+  grid-column-start: c0;
+  grid-column-end: c7;
+  grid-row-start: r2;
+  grid-row-end: r3;
+}
+form.vertical .field-1x2y > select:nth-of-type(1) {
+  grid-column-start: c0;
+  grid-column-end: c7;
+  grid-row-start: r2;
+  grid-row-end: r3;
+}
+form.vertical .field-1x2y > output:nth-of-type(1) {
+  grid-column-start: c0;
+  grid-column-end: c7;
+  grid-row-start: r3;
+  grid-row-end: r4;
+}
+form.vertical .field-1x2y > input:nth-of-type(2) {
+  grid-column-start: c0;
+  grid-column-end: c7;
+  grid-row-start: r5;
+  grid-row-end: r6;
+}
+form.vertical .field-1x2y > select:nth-of-type(2) {
+  grid-column-start: c0;
+  grid-column-end: c7;
+  grid-row-start: r5;
+  grid-row-end: r6;
+}
+form.vertical .field-1x2y > output:nth-of-type(2) {
+  grid-column-start: c0;
+  grid-column-end: c7;
+  grid-row-start: r6;
+  grid-row-end: r7;
+}
+form.vertical .field-1x2y-p {
+  grid-template-columns: [c0] 1.5rem [c1] 0.5rem [c2] 7fr [c3] 0.5rem [c4] 1.5rem [c5] 0.5rem [c6] 4fr [c7];
+  grid-template-rows: [r0] auto [r1] 0.5rem [r2] auto [r3] auto [r4] 0.5rem [r5] auto [r6] auto [r7];
+}
+form.vertical .field-1x2y-p > label:nth-of-type(1) {
+  grid-column-start: c0;
+  grid-column-end: c7;
+  grid-row-start: r0;
+  grid-row-end: r1;
+}
+form.vertical .field-1x2y-p > label:nth-of-type(2) {
+  grid-column-start: c0;
+  grid-column-end: c1;
+  grid-row-start: r2;
+  grid-row-end: r3;
+}
+form.vertical .field-1x2y-p > input:nth-of-type(1) {
+  grid-column-start: c1;
+  grid-column-end: c7;
+  grid-row-start: r2;
+  grid-row-end: r3;
+}
+form.vertical .field-1x2y-p > select:nth-of-type(1) {
+  grid-column-start: c1;
+  grid-column-end: c7;
+  grid-row-start: r2;
+  grid-row-end: r3;
+}
+form.vertical .field-1x2y-p > output:nth-of-type(1) {
+  grid-column-start: c0;
+  grid-column-end: c7;
+  grid-row-start: r3;
+  grid-row-end: r4;
+}
+form.vertical .field-1x2y-p > label:nth-of-type(3) {
+  grid-column-start: c0;
+  grid-column-end: c1;
+  grid-row-start: r5;
+  grid-row-end: r6;
+}
+form.vertical .field-1x2y-p > input:nth-of-type(2) {
+  grid-column-start: c1;
+  grid-column-end: c7;
+  grid-row-start: r5;
+  grid-row-end: r6;
+}
+form.vertical .field-1x2y-p > select:nth-of-type(2) {
+  grid-column-start: c1;
+  grid-column-end: c7;
+  grid-row-start: r5;
+  grid-row-end: r6;
+}
+form.vertical .field-1x2y-p > output:nth-of-type(2) {
+  grid-column-start: c0;
+  grid-column-end: c7;
+  grid-row-start: r6;
+  grid-row-end: r7;
+}
+form.vertical .field-2x2y {
+  grid-template-columns: [c0] 1.5rem [c1] 0.5rem [c2] 7fr [c3] 0.5rem [c4] 1.5rem [c5] 0.5rem [c6] 4fr [c7];
+  grid-template-rows: [r0] auto [r1] 0.5rem [r2] auto [r3] auto [r4] 0.5rem [r5] auto [r6] auto [r7];
+}
+form.vertical .field-2x2y > label:nth-of-type(1) {
+  grid-column-start: c0;
+  grid-column-end: c7;
+  grid-row-start: r0;
+  grid-row-end: r1;
+}
+form.vertical .field-2x2y > input:nth-of-type(1) {
+  grid-column-start: c0;
+  grid-column-end: c3;
+  grid-row-start: r2;
+  grid-row-end: r3;
+}
+form.vertical .field-2x2y > select:nth-of-type(1) {
+  grid-column-start: c0;
+  grid-column-end: c3;
+  grid-row-start: r2;
+  grid-row-end: r3;
+}
+form.vertical .field-2x2y > output:nth-of-type(1) {
+  grid-column-start: c0;
+  grid-column-end: c3;
+  grid-row-start: r3;
+  grid-row-end: r4;
+}
+form.vertical .field-2x2y > input:nth-of-type(2) {
+  grid-column-start: c4;
+  grid-column-end: c7;
+  grid-row-start: r2;
+  grid-row-end: r3;
+}
+form.vertical .field-2x2y > select:nth-of-type(2) {
+  grid-column-start: c4;
+  grid-column-end: c7;
+  grid-row-start: r2;
+  grid-row-end: r3;
+}
+form.vertical .field-2x2y > output:nth-of-type(2) {
+  grid-column-start: c4;
+  grid-column-end: c7;
+  grid-row-start: r3;
+  grid-row-end: r4;
+}
+form.vertical .field-2x2y > input:nth-of-type(3) {
+  grid-column-start: c0;
+  grid-column-end: c3;
+  grid-row-start: r5;
+  grid-row-end: r6;
+}
+form.vertical .field-2x2y > select:nth-of-type(3) {
+  grid-column-start: c0;
+  grid-column-end: c3;
+  grid-row-start: r5;
+  grid-row-end: r6;
+}
+form.vertical .field-2x2y > output:nth-of-type(3) {
+  grid-column-start: c0;
+  grid-column-end: c3;
+  grid-row-start: r6;
+  grid-row-end: r7;
+}
+form.vertical .field-2x2y > input:nth-of-type(4) {
+  grid-column-start: c4;
+  grid-column-end: c7;
+  grid-row-start: r5;
+  grid-row-end: r6;
+}
+form.vertical .field-2x2y > select:nth-of-type(4) {
+  grid-column-start: c4;
+  grid-column-end: c7;
+  grid-row-start: r5;
+  grid-row-end: r6;
+}
+form.vertical .field-2x2y > output:nth-of-type(4) {
+  grid-column-start: c4;
+  grid-column-end: c7;
+  grid-row-start: r6;
+  grid-row-end: r7;
+}
+form.vertical .field-2x2y-p {
+  grid-template-columns: [c0] 1.5rem [c1] 0.5rem [c2] 7fr [c3] 0.5rem [c4] 1.5rem [c5] 0.5rem [c6] 4fr [c7];
+  grid-template-rows: [r0] auto [r1] 0.5rem [r2] auto [r3] auto [r4] 0.5rem [r5] auto [r6] auto [r7];
+}
+form.vertical .field-2x2y-p > label:nth-of-type(1) {
+  grid-column-start: c0;
+  grid-column-end: c7;
+  grid-row-start: r0;
+  grid-row-end: r1;
+}
+form.vertical .field-2x2y-p > label:nth-of-type(2) {
+  grid-column-start: c0;
+  grid-column-end: c1;
+  grid-row-start: r2;
+  grid-row-end: r3;
+}
+form.vertical .field-2x2y-p > input:nth-of-type(1) {
+  grid-column-start: c1;
+  grid-column-end: c3;
+  grid-row-start: r2;
+  grid-row-end: r3;
+}
+form.vertical .field-2x2y-p > select:nth-of-type(1) {
+  grid-column-start: c1;
+  grid-column-end: c3;
+  grid-row-start: r2;
+  grid-row-end: r3;
+}
+form.vertical .field-2x2y-p > output:nth-of-type(1) {
+  grid-column-start: c0;
+  grid-column-end: c3;
+  grid-row-start: r3;
+  grid-row-end: r4;
+}
+form.vertical .field-2x2y-p > input:nth-of-type(2) {
+  grid-column-start: c4;
+  grid-column-end: c7;
+  grid-row-start: r2;
+  grid-row-end: r3;
+}
+form.vertical .field-2x2y-p > select:nth-of-type(2) {
+  grid-column-start: c4;
+  grid-column-end: c7;
+  grid-row-start: r2;
+  grid-row-end: r3;
+}
+form.vertical .field-2x2y-p > output:nth-of-type(2) {
+  grid-column-start: c4;
+  grid-column-end: c7;
+  grid-row-start: r3;
+  grid-row-end: r4;
+}
+form.vertical .field-2x2y-p > label:nth-of-type(3) {
+  grid-column-start: c0;
+  grid-column-end: c1;
+  grid-row-start: r5;
+  grid-row-end: r6;
+}
+form.vertical .field-2x2y-p > input:nth-of-type(3) {
+  grid-column-start: c1;
+  grid-column-end: c3;
+  grid-row-start: r5;
+  grid-row-end: r6;
+}
+form.vertical .field-2x2y-p > select:nth-of-type(3) {
+  grid-column-start: c1;
+  grid-column-end: c3;
+  grid-row-start: r5;
+  grid-row-end: r6;
+}
+form.vertical .field-2x2y-p > output:nth-of-type(3) {
+  grid-column-start: c0;
+  grid-column-end: c3;
+  grid-row-start: r6;
+  grid-row-end: r7;
+}
+form.vertical .field-2x2y-p > input:nth-of-type(4) {
+  grid-column-start: c4;
+  grid-column-end: c7;
+  grid-row-start: r5;
+  grid-row-end: r6;
+}
+form.vertical .field-2x2y-p > select:nth-of-type(4) {
+  grid-column-start: c4;
+  grid-column-end: c7;
+  grid-row-start: r5;
+  grid-row-end: r6;
+}
+form.vertical .field-2x2y-p > output:nth-of-type(4) {
+  grid-column-start: c4;
+  grid-column-end: c7;
+  grid-row-start: r6;
+  grid-row-end: r7;
+}
+form.vertical .field-v {
+  grid-template-columns: [c0] 1.5rem [c1] 0.5rem [c2] 7fr [c3] 0.5rem [c4] 1.5rem [c5] 0.5rem [c6] 4fr [c7];
+  grid-template-rows: [r0] auto [r1] repeat(20, auto [rn]);
+}
+form.vertical .field-v > label:nth-of-type(1) {
+  grid-column-start: c0;
+  grid-column-end: c7;
+  grid-row-start: r0;
+  grid-row-end: r1;
+  margin-bottom: 0.5rem;
+}
+form.vertical .field-v > input:nth-of-type(1n+1) {
+  grid-column-start: c0;
+  grid-column-end: c1;
+  grid-row-start: auto;
+  grid-row-end: span 1;
+  margin-bottom: 0.5rem;
+}
+form.vertical .field-v > label:nth-of-type(1n+2) {
+  grid-column-start: c2;
+  grid-column-end: c7;
+  grid-row-start: auto;
+  grid-row-end: span 1;
+}
+form.vertical .field-v > output:nth-of-type(1n+1) {
+  grid-column-start: c0;
+  grid-column-end: c9;
+  grid-row-start: auto;
+  grid-row-end: span 1;
+}
+form fieldset {
+  padding: 0;
+  margin: 0;
+  border-width: 0.08rem;
+  border-style: solid;
+  border-color: #95A5A6;
+}
+form fieldset > .field {
+  border-width: 0rem;
+}
+form fieldset + .field {
+  margin-top: 0.5rem;
+}
+form fieldset + fieldset {
+  margin-top: 0.5rem;
+}
+form fieldset > legend {
+  padding: 0;
+  margin: 0 0 0 0.5rem;
+}
+form td > .field {
+  padding: 0;
+  border: none;
+}
+form .field {
+  display: grid;
+  padding: 0.5rem 0.75rem 0.5rem 0.75rem;
+}
+form .field + .field {
+  margin-top: 0.5rem;
+}
+form .field + fieldset {
+  margin-top: 0.5rem;
+}
+form .field input[type=color], form .field input[type=date], form .field input[type=email], form .field input[type=number], form .field input[type=search], form .field input[type=text], form .field input[type=time], form .field input[type=url] {
+  width: 100%;
+}
+form .field input[type=checkbox], form .field input[type=radio] {
+  width: 1rem;
+  height: 1rem;
+}
+form .field input[type=checkbox] + label {
+  padding: 0.08rem 0 0 0.25rem;
+}
+form .field input[type=radio] + label {
+  padding: 0.16rem 0 0 0.25rem;
+}
+form .field input[type=number] {
+  text-align: right;
+}
+form .field label {
+  padding: 0.25rem 0 0 0.25rem;
+}
+form .field button, form .field select {
+  width: 100%;
+}
+form .field button, form .field input, form .field select, form .field.field-1x1y-f > label:nth-of-type(2) {
+  padding: 0.25rem;
+  border-width: 0.08rem;
+  border-style: solid;
+  border-color: #95A5A6;
+  color: #22313F;
+  background-color: #ECF0F1;
+  font-family: "DejaVu Sans Mono";
+  font-size: 1rem;
+}
+form .field button:focus, form .field input:focus, form .field select:focus, form .field.field-1x1y-f > label:nth-of-type(2):focus {
+  border-color: #19B5FE;
+  box-shadow: 0 0 0 0.08rem #19B5FE;
+}
+form .field button:hover, form .field input:hover, form .field select:hover, form .field.field-1x1y-f > label:nth-of-type(2):hover {
+  border-color: #95A5A6;
+  box-shadow: 0 0 0 0.08rem #95A5A6;
+}
+form .field button:hover, form .field input:hover, form .field select:hover, form .field.field-1x1y-f > label:nth-of-type(2):hover {
+  border-color: #95A5A6;
+  box-shadow: 0 0 0 0.08rem #95A5A6;
+}
+form .field output {
+  display: none;
+  visibility: collapse;
+  padding: 0.08rem 0.5rem;
+  color: #CF000F;
+  font-family: "DejaVu Sans Mono";
+  font-size: 0.8rem;
+}
+form .field.error > input, form .field.error select {
+  border-color: #CF000F;
+}
+form .field.error > input:focus, form .field.error select:focus {
+  box-shadow: 0 0 0 0.08rem #CF000F;
+}
+form .field.error > input:hover, form .field.error select:hover {
+  box-shadow: 0 0 0 0.08rem #CF000F;
+}
+form .field.error > output {
+  display: block;
+  visibility: visible;
+}
+
+nav {
+  overflow: visible;
+}
+nav .dropdown-menu {
+  position: relative;
+}
+nav .dropdown-menu ul {
+  list-style-type: none;
+  z-index: 1000;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+  float: left;
+}
+nav .dropdown-menu li {
+  position: relative;
+}
+nav .dropdown-menu li > a {
+  display: block;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  color: #EEEEEE;
+}
+nav .dropdown-menu li > a:hover {
+  color: #EEEEEE;
+}
+nav .dropdown-menu li > a:visited {
+  color: #EEEEEE;
+}
+nav .dropdown-menu > ul > li {
+  float: left;
+}
+nav .dropdown-menu > ul > li > ul {
+  border: 0.08rem solid #34495E;
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  top: 2rem;
+  transition: opacity 0.2s ease-in 0.1s, visibility 0.4s;
+}
+nav .dropdown-menu > ul > li > ul > li {
+  color: #EEEEEE;
+  background-color: #22313F;
+  min-width: 10rem;
+}
+nav .dropdown-menu > ul > li > ul > li > a {
+  background-color: #22313F;
+}
+nav .dropdown-menu > ul > li > ul > li > a:hover {
+  color: #22313F;
+  background-color: #EEEEEE;
+}
+nav .dropdown-menu > ul > li > ul > li > ul {
+  border: 0.08rem solid #34495E;
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  transition: opacity 0.2s ease-in 0.1s, visibility 0.4s;
+}
+nav .dropdown-menu > ul > li > ul > li > ul > li {
+  color: #EEEEEE;
+  background-color: #22313F;
+  min-width: 10rem;
+}
+nav .dropdown-menu > ul > li > ul > li > ul > li > a {
+  background-color: #22313F;
+}
+nav .dropdown-menu > ul > li > ul > li > ul > li > a:hover {
+  color: #22313F;
+  background-color: #EEEEEE;
+}
+nav .dropdown-menu > ul > li > ul > li:hover > a {
+  color: #22313F;
+  background-color: #EEEEEE;
+}
+nav .dropdown-menu > ul > li > ul > li:hover > ul {
+  visibility: visible;
+  opacity: 1;
+}
+nav .dropdown-menu > ul > li:hover > a {
+  color: #22313F;
+  background-color: #EEEEEE;
+}
+nav .dropdown-menu > ul > li:hover > ul {
+  visibility: visible;
+  opacity: 1;
+}
+
+.combobox-dropdown {
+  position: absolute;
+  max-height: 20rem;
+  background-color: transparent;
+  overflow: hidden;
+}
+
+.combobox-dropdown > div {
+  max-height: 18rem;
+  margin: 0 1rem 1rem 1rem;
+  background-color: #FFFFFF;
+  border-width: 0 0.08rem 0.08rem 0.08rem;
+  border-style: solid;
+  border-color: #95A5A6;
+  box-shadow: 0 0 0 0.08rem #19B5FE;
+  overflow-y: scroll;
+}
+
+.combobox-dropdown.error > div {
+  border-color: #CF000F;
+}
+
+ul.combobox-list {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  cursor: pointer;
+}
+ul.combobox-list > li {
+  padding: 0.16rem;
+  margin: 0.08rem;
+  color: #22313F;
+  background-color: #FFFFFF;
+}
+ul.combobox-list > li:hover {
+  color: #000000;
+  background-color: #DADFE1;
+}
+ul.combobox-list > li.selected {
+  color: #FFFFFF;
+  background-color: #19B5FE;
+}
+
+.tabs {
+  width: 100%;
+}
+.tabs .header {
+  display: flex;
+  flex-direction: row;
+  padding-left: 1rem;
+}
+.tabs .header input[type=radio] {
+  display: none;
+}
+.tabs .header label {
+  position: relative;
+  top: 0.08rem;
+  padding: 0.58rem 1.08rem 0.58rem 1.08rem;
+  margin: 0rem 0.5rem 0.08rem 0rem;
+}
+.tabs .header label:not(.selected):hover {
+  color: #000000;
+  background-color: #DADFE1;
+}
+.tabs .header label.selected {
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  margin: 0rem 0.5rem 0rem 0rem;
+  border-width: 0.08rem;
+  border-style: solid;
+  border-color: #19B5FE #19B5FE #FFFFFF #19B5FE;
+}
+.tabs .content {
+  border: 0.08rem solid #19B5FE;
+  background-color: #FFFFFF;
+}
+.tabs .content > * {
+  padding: 0.5rem;
+  background-color: #FFFFFF;
+}
+
+/*
+blockquote {}
+caption {}
+code {}
+details {}
+legend {}
+meter {}
+progress {}
+summary {}
+*/
+
+/*# sourceMappingURL=broomhilda.css.map */

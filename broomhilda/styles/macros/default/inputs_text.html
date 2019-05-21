@@ -1,0 +1,242 @@
+{# EMAIL #}
+
+{% if not item_select_email %}
+{% macro  item_select_email(obj, prefix) -%}
+<div class="field field-1x1y{% if obj.is_invalid('value') %} error{% endif %}">
+    <label for="{{ prefix }}{{ obj.name }}">{{ obj.verbose_name }}</label>
+    <input
+        type="email"
+        id="{{ prefix }}{{ obj.name }}"
+        name="{{ prefix }}{{ obj.name }}"
+        value="{{ obj.item_value('value') }}"
+        maxlength="{{ obj.max_length }}"
+        disabled="disabled">
+    {% if obj.is_invalid('value') %}<output for="{{ prefix }}{{ obj.name }}">{% for error in obj.item_errors('value') %}{{ error }}{% endfor %}</output>{% endif %}
+</div>
+{%- endmacro %}
+{% endif %}
+
+{% if not item_update_email %}
+{% macro  item_update_email(obj, prefix) -%}
+<div class="field field-1x1y{% if obj.is_invalid('value') %} error{% endif %}">
+    <label for="{{ prefix }}{{ obj.name }}">{{ obj.verbose_name }}</label>
+    <input
+        type="email"
+        id="{{ prefix }}{{ obj.name }}"
+        name="{{ prefix }}{{ obj.name }}"
+        value="{{ obj.item_value('value') }}"
+        maxlength="{{ obj.max_length }}">
+    {% if obj.is_invalid('value') %}<output for="{{ prefix }}{{ obj.name }}">{% for error in obj.item_errors('value') %}{{ error }}{% endfor %}</output>{% endif %}
+</div>
+{%- endmacro %}
+{% endif %}
+
+{% if not list_filter_email %}
+{% macro  list_filter_email(obj, prefix) -%}
+<div class="field field-1x1y{% if obj.is_invalid('value') %} error{% endif %}">
+    <label for="{{ prefix }}{{ obj.name }}">{{ obj.verbose_name }}</label>
+    <input
+        type="search"
+        id="{{ prefix }}{{ obj.name }}"
+        name="{{ prefix }}{{ obj.name }}"
+        value="{{ obj.item_value('value') }}">
+    {% if obj.is_invalid('value') %}<output for="{{ prefix }}{{ obj.name }}">{% for error in obj.item_errors('value') %}{{ error }}{% endfor %}</output>{% endif %}
+</div>
+{%- endmacro %}
+{% endif %}
+
+{# HIDDEN #}
+
+{% if not item_select_hidden %}
+{% macro  item_select_hidden(obj, prefix) -%}
+<input type="hidden" name="{{ obj.name }}" value="{{ obj.item_value('value') }}" />
+{%- endmacro %}
+{% endif %}
+
+{% if not item_update_hidden %}
+{% macro  item_update_hidden(obj, prefix) -%}
+<input type="hidden" name="{{ obj.name }}" value="{{ obj.item_value('value') }}" />
+{%- endmacro %}
+{% endif %}
+
+{% if not list_filter_hidden %}
+{% macro  list_filter_hidden(obj, prefix) -%}{%- endmacro %}
+{% endif %}
+
+{# PASSWORD #}
+
+{% if not item_select_password %}
+{% macro  item_select_password(obj, prefix) -%}
+<div class="field field-1x1y{% if obj.is_invalid('value') %} error{% endif %}">
+    <label for="{{ prefix }}{{ obj.name }}">{{ obj.verbose_name }}</label>
+    <input
+        type="password"
+        id="{{ prefix }}{{ obj.name }}"
+        name="{{ prefix }}{{ obj.name }}"
+        value="{{ obj.item_value('value') }}"
+        maxlength="{{ obj.max_length }}"
+        disabled="disabled">
+    {% if obj.is_invalid('value') %}<output for="{{ prefix }}{{ obj.name }}">{% for error in obj.item_errors('value') %}{{ error }}{% endfor %}</output>{% endif %}
+</div>
+{%- endmacro %}
+{% endif %}
+
+{% if not item_update_password %}
+{% macro  item_update_password(obj, prefix) -%}
+<div class="field field-1x1y{% if obj.is_invalid('value') %} error{% endif %}">
+    <label for="{{ prefix }}{{ obj.name }}">{{ obj.verbose_name }}</label>
+    <input
+        type="password"
+        id="{{ prefix }}{{ obj.name }}"
+        name="{{ prefix }}{{ obj.name }}"
+        value="{{ obj.item_value('value') }}"
+        maxlength="{{ obj.max_length }}">
+    {% if obj.is_invalid('value') %}<output for="{{ prefix }}{{ obj.name }}">{% for error in obj.item_errors('value') %}{{ error }}{% endfor %}</output>{% endif %}
+</div>
+{%- endmacro %}
+{% endif %}
+
+{% if not list_filter_password %}
+{% macro  list_filter_password(obj, prefix) -%}{%- endmacro %}
+{% endif %}
+
+{# SEARCH #}
+
+{% if not item_select_search %}
+{% macro  item_select_search(obj, prefix) -%}
+<div class="field field-1x1y{% if obj.is_invalid('value') %} error{% endif %}">
+    <label for="{{ prefix }}{{ obj.name }}">{{ obj.verbose_name }}</label>
+    <input
+        type="search"
+        id="{{ prefix }}{{ obj.name }}"
+        name="{{ prefix }}{{ obj.name }}"
+        value="{{ obj.item_value('value') }}"
+        maxlength="{{ obj.max_length }}"
+        disabled="disabled">
+    {% if obj.is_invalid('value') %}<output for="{{ prefix }}{{ obj.name }}">{% for error in obj.item_errors('value') %}{{ error }}{% endfor %}</output>{% endif %}
+</div>
+{%- endmacro %}
+{% endif %}
+
+{% if not item_update_search %}
+{% macro  item_update_search(obj, prefix) -%}
+<div class="field field-1x1y{% if obj.is_invalid('value') %} error{% endif %}">
+    <label for="{{ prefix }}{{ obj.name }}">{{ obj.verbose_name }}</label>
+    <input
+        type="search"
+        id="{{ prefix }}{{ obj.name }}"
+        name="{{ prefix }}{{ obj.name }}"
+        value="{{ obj.item_value('value') }}"
+        maxlength="{{ obj.max_length }}">
+    {% if obj.is_invalid('value') %}<output for="{{ prefix }}{{ obj.name }}">{% for error in obj.item_errors('value') %}{{ error }}{% endfor %}</output>{% endif %}
+</div>
+{%- endmacro %}
+{% endif %}
+
+{% if not list_filter_search %}
+{% macro  list_filter_search(obj, prefix) -%}
+<div class="field field-1x1y{% if obj.is_invalid('value') %} error{% endif %}">
+    <label for="{{ prefix }}{{ obj.name }}">{{ obj.verbose_name }}</label>
+    <input
+        type="search"
+        id="{{ prefix }}{{ obj.name }}"
+        name="{{ prefix }}{{ obj.name }}"
+        value="{{ obj.item_value('value') }}">
+    {% if obj.is_invalid('value') %}<output for="{{ prefix }}{{ obj.name }}">{% for error in obj.item_errors('value') %}{{ error }}{% endfor %}</output>{% endif %}
+</div>
+{%- endmacro %}
+{% endif %}
+
+{# TEXT #}
+
+{% if not item_select_text %}
+{% macro  item_select_text(obj, prefix) -%}
+<div class="field field-1x1y{% if obj.is_invalid('value') %} error{% endif %}">
+    <label for="{{ prefix }}{{ obj.name }}">{{ obj.verbose_name }}</label>
+    <input
+        type="text"
+        id="{{ prefix }}{{ obj.name }}"
+        name="{{ prefix }}{{ obj.name }}"
+        value="{{ obj.item_value('value') }}"
+        maxlength="{{ obj.max_length }}"
+        disabled="disabled">
+    {% if obj.is_invalid('value') %}<output for="{{ prefix }}{{ obj.name }}">{% for error in obj.item_errors('value') %}{{ error }}{% endfor %}</output>{% endif %}
+</div>
+{%- endmacro %}
+{% endif %}
+
+{% if not item_update_text %}
+{% macro  item_update_text(obj, prefix) -%}
+<div class="field field-1x1y{% if obj.is_invalid('value') %} error{% endif %}">
+    <label for="{{ prefix }}{{ obj.name }}">{{ obj.verbose_name }}</label>
+    <input
+        type="text"
+        id="{{ prefix }}{{ obj.name }}"
+        name="{{ prefix }}{{ obj.name }}"
+        value="{{ obj.item_value('value') }}"
+        maxlength="{{ obj.max_length }}">
+    {% if obj.is_invalid('value') %}<output for="{{ prefix }}{{ obj.name }}">{% for error in obj.item_errors('value') %}{{ error }}{% endfor %}</output>{% endif %}
+</div>
+{%- endmacro %}
+{% endif %}
+
+{% if not list_filter_text %}
+{% macro  list_filter_text(obj, prefix) -%}
+<div class="field field-1x1y{% if obj.is_invalid('value') %} error{% endif %}">
+    <label for="{{ prefix }}{{ obj.name }}">{{ obj.verbose_name }}</label>
+    <input
+        type="search"
+        id="{{ prefix }}{{ obj.name }}"
+        name="{{ prefix }}{{ obj.name }}"
+        value="{{ obj.item_value('value') }}">
+    {% if obj.is_invalid('value') %}<output for="{{ prefix }}{{ obj.name }}">{% for error in obj.item_errors('value') %}{{ error }}{% endfor %}</output>{% endif %}
+</div>
+{%- endmacro %}
+{% endif %}
+
+{# URL #}
+
+{% if not item_select_url %}
+{% macro  item_select_url(obj, prefix) -%}
+<div class="field field-1x1y{% if obj.is_invalid('value') %} error{% endif %}">
+    <label for="{{ prefix }}{{ obj.name }}">{{ obj.verbose_name }}</label>
+    <input
+        type="url"
+        id="{{ prefix }}{{ obj.name }}"
+        name="{{ prefix }}{{ obj.name }}"
+        value="{{ obj.item_value('value') }}"
+        maxlength="{{ obj.max_length }}"
+        disabled="disabled">
+    {% if obj.is_invalid('value') %}<output for="{{ prefix }}{{ obj.name }}">{% for error in obj.item_errors('value') %}{{ error }}{% endfor %}</output>{% endif %}
+</div>
+{%- endmacro %}
+{% endif %}
+
+{% if not item_update_url %}
+{% macro  item_update_url(obj, prefix) -%}
+<div class="field field-1x1y{% if obj.is_invalid('value') %} error{% endif %}">
+    <label for="{{ prefix }}{{ obj.name }}">{{ obj.verbose_name }}</label>
+    <input
+        type="url"
+        id="{{ prefix }}{{ obj.name }}"
+        name="{{ prefix }}{{ obj.name }}"
+        value="{{ obj.item_value('value') }}"
+        maxlength="{{ obj.max_length }}">
+    {% if obj.is_invalid('value') %}<output for="{{ prefix }}{{ obj.name }}">{% for error in obj.item_errors('value') %}{{ error }}{% endfor %}</output>{% endif %}
+</div>
+{%- endmacro %}
+{% endif %}
+
+{% if not list_filter_url %}
+{% macro  list_filter_url(obj, prefix) -%}
+<div class="field field-1x1y{% if obj.is_invalid('value') %} error{% endif %}">
+    <label for="{{ prefix }}{{ obj.name }}">{{ obj.verbose_name }}</label>
+    <input
+        type="search"
+        id="{{ prefix }}{{ obj.name }}"
+        name="{{ prefix }}{{ obj.name }}"
+        value="{{ obj.item_value('value') }}">
+    {% if obj.is_invalid('value') %}<output for="{{ prefix }}{{ obj.name }}">{% for error in obj.item_errors('value') %}{{ error }}{% endfor %}</output>{% endif %}
+</div>
+{%- endmacro %}
+{% endif %}

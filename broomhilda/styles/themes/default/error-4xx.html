@@ -1,0 +1,10 @@
+{% extends 'error-base.html' %}
+{% block body %}
+		<div class="block head">{{ status_code }}: {{ status_text }}</div>
+		<div class="block body">
+			<h1>Method</h1>
+			<p>{{ method }}</p>
+			<h1>Path</h1>
+			<p>{{ path }}</p>
+		</div>
+{% endblock %}

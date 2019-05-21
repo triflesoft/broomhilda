@@ -1,0 +1,107 @@
+{# RADIO #}
+
+{% if not item_select_radio %}
+{% macro  item_select_radio(obj, prefix) -%}
+<div class="field field-v{% if obj.is_invalid('value') %} error{% endif %}">
+    <label for="{{ prefix }}{{ obj.name }}">{{ obj.verbose_name }}</label>
+    {% for value, label in obj.choices.items() %}
+    <input
+        type="radio"
+        id="{{ prefix }}{{ obj.name }}:{{ value }}"
+        name="{{ prefix }}{{ obj.name }}"
+        value="{{ value }}"
+        disabled="disabled"{% if obj.item_value('value') == value %}
+        checked="checked"{% endif %}>
+    <label for="{{ prefix }}{{ obj.name }}:{{ value }}">{{ label }}</label>
+    {% if obj.is_invalid(value) %}<output for="{{ prefix }}{{ obj.name }}:{{ value }}">{% for error in obj.item_errors(value) %}{{ error }}{% endfor %}</output>{% endif %}{% endfor %}
+    {% if obj.is_invalid('value') %}<output for="{{ prefix }}{{ obj.name }}">{% for error in obj.item_errors('value') %}{{ error }}{% endfor %}</output>{% endif %}
+</div>
+{%- endmacro %}
+{% endif %}
+
+{% if not item_update_radio %}
+{% macro  item_update_radio(obj, prefix) -%}
+<div class="field field-v{% if obj.is_invalid('value') %} error{% endif %}">
+    <label for="{{ prefix }}{{ obj.name }}">{{ obj.verbose_name }}</label>
+    {% for value, label in obj.choices.items() %}
+    <input
+        type="radio"
+        id="{{ prefix }}{{ obj.name }}:{{ value }}"
+        name="{{ prefix }}{{ obj.name }}"
+        value="{{ value }}"{% if obj.item_value('value') == value %}
+        checked="checked"{% endif %}>
+    <label for="{{ prefix }}{{ obj.name }}:{{ value }}">{{ label }}</label>
+    {% if obj.is_invalid(value) %}<output for="{{ prefix }}{{ obj.name }}:{{ value }}">{% for error in obj.item_errors(value) %}{{ error }}{% endfor %}</output>{% endif %}{% endfor %}
+    {% if obj.is_invalid('value') %}<output for="{{ prefix }}{{ obj.name }}">{% for error in obj.item_errors('value') %}{{ error }}{% endfor %}</output>{% endif %}
+</div>
+{%- endmacro %}
+{% endif %}
+
+{% if not list_filter_radio %}
+{% macro  list_filter_radio(obj, prefix) -%}
+<div class="field field-v{% if obj.is_invalid('value') %} error{% endif %}">
+    <label for="{{ prefix }}{{ obj.name }}">{{ obj.verbose_name }}</label>
+    {% for value, label in obj.choices.items() %}
+    <input
+        type="checkbox"
+        id="{{ prefix }}{{ obj.name }}:{{ value }}"
+        name="{{ prefix }}{{ obj.name }}:{{ value }}"
+        value="true"{% if obj.item_value(value) %}
+        checked="checked"{% endif %}>
+    <label for="{{ prefix }}{{ obj.name }}:{{ value }}">{{ label }}</label>
+    {% if obj.is_invalid(value) %}<output for="{{ prefix }}{{ obj.name }}:{{ value }}">{% for error in obj.item_errors(value) %}{{ error }}{% endfor %}</output>{% endif %}{% endfor %}
+</div>
+{%- endmacro %}
+{% endif %}
+
+{# SELECT #}
+
+{% if not item_select_select %}
+{% macro  item_select_select(obj, prefix) -%}
+<div class="field field-1x1y{% if obj.is_invalid('value') %} error{% endif %}">
+<label for="{{ prefix }}{{ obj.name }}">{{ obj.verbose_name }}</label>
+    <select
+        id="{{ prefix }}{{ obj.name }}"
+        name="{{ prefix }}{{ obj.name }}"
+        disabled="disabled"
+        class="combobox">
+{% for value, label in obj.choices.items() %}
+        <option value="{{ value }}"{% if obj.item_value('value') == value %} selected="selected"{% endif %}>{{ label }}</option>{% endfor %}
+    </select>
+    {% if obj.is_invalid('value') %}<output for="{{ prefix }}{{ obj.name }}">{% for error in obj.item_errors('value') %}{{ error }}{% endfor %}</output>{% endif %}
+</div>
+{%- endmacro %}
+{% endif %}
+
+{% if not item_update_select %}
+{% macro  item_update_select(obj, prefix) -%}
+<div class="field field-1x1y{% if obj.is_invalid('value') %} error{% endif %}">
+<label for="{{ prefix }}{{ obj.name }}">{{ obj.verbose_name }}</label>
+    <select
+        id="{{ prefix }}{{ obj.name }}"
+        name="{{ prefix }}{{ obj.name }}"
+        class="combobox">
+{% for value, label in obj.choices.items() %}
+        <option value="{{ value }}"{% if obj.item_value('value') == value %} selected="selected"{% endif %}>{{ label }}</option>{% endfor %}
+    </select>
+    {% if obj.is_invalid('value') %}<output for="{{ prefix }}{{ obj.name }}">{% for error in obj.item_errors('value') %}{{ error }}{% endfor %}</output>{% endif %}
+</div>
+{%- endmacro %}
+{% endif %}
+
+{% if not list_filter_select %}
+{% macro  list_filter_select(obj, prefix) -%}
+<div class="field field-v{% if obj.is_invalid('value') %} error{% endif %}">
+    <label for="{{ prefix }}{{ obj.name }}">{{ obj.verbose_name }}</label>
+    {% for value, label in obj.choices.items() %}{% if value %}
+    <input
+        type="checkbox"
+        id="{{ prefix }}{{ obj.name }}:{{ value }}"
+        name="{{ prefix }}{{ obj.name }}:{{ value }}"
+        value="true"{% if obj.item_value(value) %}
+        checked="checked"{% endif %}>
+    <label for="{{ prefix }}{{ obj.name }}:{{ value }}">{{ label }}</label>
+    {% if obj.is_invalid(value) %}<output for="{{ prefix }}{{ obj.name }}:{{ value }}">{% for error in obj.item_errors(value) %}{{ error }}{% endfor %}</output>{% endif %}{% endif %}{% endfor %}
+</div>
+{%- endmacro %}
+{% endif %}

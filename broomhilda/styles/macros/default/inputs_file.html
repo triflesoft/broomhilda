@@ -1,0 +1,34 @@
+{# FILE #}
+
+{% if not item_select_file %}
+{% macro  item_select_file(obj, prefix) -%}
+<div class="field field-1x1y-f{% if obj.is_invalid('value') %} error{% endif %}">
+    <label for="{{ prefix }}{{ obj.name }}">{{ obj.verbose_name }}</label>
+    <input
+        type="file"
+        id="{{ prefix }}{{ obj.name }}"
+        name="{{ prefix }}{{ obj.name }}"
+        disabled="disabled">
+    <label for="{{ prefix }}{{ obj.name }}" class="file-upload">&nbsp;</label>
+    {% if obj.is_invalid('value') %}<output for="{{ prefix }}{{ obj.name }}">{% for error in obj.item_errors('value') %}{{ error }}{% endfor %}</output>{% endif %}
+</div>
+{%- endmacro %}
+{% endif %}
+
+{% if not item_update_file %}
+{% macro  item_update_file(obj, prefix) -%}
+<div class="field field-1x1y-f{% if obj.is_invalid('value') %} error{% endif %}">
+    <label for="{{ prefix }}{{ obj.name }}">{{ obj.verbose_name }}</label>
+    <input
+        type="file"
+        id="{{ prefix }}{{ obj.name }}"
+        name="{{ prefix }}{{ obj.name }}">
+    <label for="{{ prefix }}{{ obj.name }}" class="file-upload">&nbsp;</label>
+    {% if obj.is_invalid('value') %}<output for="{{ prefix }}{{ obj.name }}">{% for error in obj.item_errors('value') %}{{ error }}{% endfor %}</output>{% endif %}
+</div>
+{%- endmacro %}
+{% endif %}
+
+{% if not list_filter_file %}
+{% macro  list_filter_file(obj, prefix) -%}{%- endmacro %}
+{% endif %}

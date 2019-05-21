@@ -1,0 +1,63 @@
+{# NUMBER #}
+
+{% if not item_select_number %}
+{% macro  item_select_number(obj, prefix) -%}
+<div class="field field-1x1y{% if obj.is_invalid('value') %} error{% endif %}">
+    <label for="{{ prefix }}{{ obj.name }}">{{ obj.verbose_name }}</label>
+    <input
+        type="number"
+        id="{{ prefix }}{{ obj.name }}"
+        name="{{ prefix }}{{ obj.name }}"
+        value="{{ obj.item_value('value') }}"
+        step="{{ obj.step }}"
+        disabled="disabled">
+    {% if obj.is_invalid('value') %}<output for="{{ prefix }}{{ obj.name }}">{% for error in obj.item_errors('value') %}{{ error }}{% endfor %}</output>{% endif %}
+</div>
+{%- endmacro %}
+{% endif %}
+
+{% if not item_update_number %}
+{% macro  item_update_number(obj, prefix) -%}
+<div class="field field-1x1y{% if obj.is_invalid('value') %} error{% endif %}">
+    <label for="{{ prefix }}{{ obj.name }}">{{ obj.verbose_name }}</label>
+    <input
+        type="number"
+        id="{{ prefix }}{{ obj.name }}"
+        name="{{ prefix }}{{ obj.name }}"
+        value="{{ obj.item_value('value') }}"
+        step="{{ obj.step }}"
+        min="{{ obj.min_value }}"
+        max="{{ obj.max_value }}">
+    {% if obj.is_invalid('value') %}<output for="{{ prefix }}{{ obj.name }}">{% for error in obj.item_errors('value') %}{{ error }}{% endfor %}</output>{% endif %}
+</div>
+{%- endmacro %}
+{% endif %}
+
+{% if not list_filter_number %}
+{% macro  list_filter_number(obj, prefix) -%}
+<div
+    class="field field-1x2y-p{% if obj.is_invalid('lower') or obj.is_invalid('upper') %} error{% endif %}">
+    <label for="{{ prefix }}{{ obj.name }}">{{ obj.verbose_name }}</label>
+    <label for="{{ prefix }}{{ obj.name }}:lower">&ge;</label>
+    <input
+        type="number"
+        id="{{ prefix }}{{ obj.name }}:lower"
+        name="{{ prefix }}{{ obj.name }}:lower"
+        value="{{ obj.item_value('lower') }}"
+        step="{{ obj.step }}"
+        min="{{ obj.min_value }}"
+        max="{{ obj.max_value }}">
+    {% if obj.is_invalid('lower') %}<output for="{{ prefix }}{{ obj.name }}:lower">{% for error in obj.item_errors('lower') %}{{ error }}{% endfor %}</output>{% endif %}
+    <label for="{{ prefix }}{{ obj.name }}:upper">&le;</label>
+    <input
+        type="number"
+        id="{{ prefix }}{{ obj.name }}:upper"
+        name="{{ prefix }}{{ obj.name }}:upper"
+        value="{{ obj.item_value('upper') }}"
+        step="{{ obj.step }}"
+        min="{{ obj.min_value }}"
+        max="{{ obj.max_value }}">
+    {% if obj.is_invalid('upper') %}<output for="{{ prefix }}{{ obj.name }}:upper">{% for error in obj.item_errors('upper') %}{{ error }}{% endfor %}</output>{% endif %}
+</div>
+{%- endmacro %}
+{% endif %}

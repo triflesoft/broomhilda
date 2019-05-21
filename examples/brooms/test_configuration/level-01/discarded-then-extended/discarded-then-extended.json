@@ -1,0 +1,9 @@
+{
+    "discarded-then-extended-json": {
+        "array": [0, 1],
+        "dict": {
+            "a": 0,
+            "b": 1
+        }
+    }
+}

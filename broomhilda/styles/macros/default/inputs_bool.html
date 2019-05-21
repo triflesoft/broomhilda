@@ -1,0 +1,62 @@
+{# CHECKBOX #}
+
+{% if not item_select_checkbox %}
+{% macro  item_select_checkbox(obj, prefix) -%}
+<div class="field field-v{% if obj.is_invalid('value') %} error{% endif %}">
+    <label for="{{ prefix }}{{ obj.name }}">{{ obj.verbose_name }}</label>
+    <input
+        type="checkbox"
+        id="{{ prefix }}{{ obj.name }}"
+        name="{{ prefix }}{{ obj.name }}"{% if obj.item_value('value') %}
+        checked="checked"{% endif %}
+        disabled="disabled">
+    {% if obj.is_invalid('value') %}<output for="{{ prefix }}{{ obj.name }}">{% for error in obj.item_errors('value') %}{{ error }}{% endfor %}</output>{% endif %}
+</div>
+{%- endmacro %}
+{% endif %}
+
+{% if not item_update_checkbox %}
+{% macro  item_update_checkbox(obj, prefix) -%}
+<div class="field field-v{% if obj.is_invalid('value') %} error{% endif %}">
+    <label for="{{ prefix }}{{ obj.name }}">{{ obj.verbose_name }}</label>
+    <input
+        type="checkbox"
+        id="{{ prefix }}{{ obj.name }}"
+        name="{{ prefix }}{{ obj.name }}"{% if obj.item_value('value') %}
+        checked="checked"{% endif %}>
+    {% if obj.is_invalid('value') %}<output for="{{ prefix }}{{ obj.name }}">{% for error in obj.item_errors('value') %}{{ error }}{% endfor %}</output>{% endif %}
+</div>
+{%- endmacro %}
+{% endif %}
+
+{% if not list_filter_checkbox %}
+{% macro  list_filter_checkbox(obj, prefix) -%}
+<div class="field field-v{% if obj.is_invalid('value') %} error{% endif %}">
+    <label for="{{ prefix }}{{ obj.name }}">{{ obj.verbose_name }}</label>
+    <input
+        type="checkbox"
+        id="{{ prefix }}{{ obj.name }}:none"
+        name="{{ prefix }}{{ obj.name }}:none"
+        value="true"
+        {% if obj.item_value('none') %}checked="checked"{% endif %}>
+    <label for="{{ prefix }}{{ obj.name }}:none">{{ obj.choices[None] }}</label>
+    {% if obj.is_invalid('none') %}<output for="{{ prefix }}{{ obj.name }}:none">{% for error in obj.item_errors('none') %}{{ error }}{% endfor %}</output>{% endif %}
+    <input
+        type="checkbox"
+        id="{{ prefix }}{{ obj.name }}:false"
+        name="{{ prefix }}{{ obj.name }}:false"
+        value="true"
+        {% if obj.item_value('false') %}checked="checked"{% endif %}>
+    <label for="{{ prefix }}{{ obj.name }}:false">{{ obj.choices[False] }}</label>
+    {% if obj.is_invalid('false') %}<output for="{{ prefix }}{{ obj.name }}:false">{% for error in obj.item_errors('false') %}{{ error }}{% endfor %}</output>{% endif %}
+    <input
+        type="checkbox"
+        id="{{ prefix }}{{ obj.name }}:true"
+        name="{{ prefix }}{{ obj.name }}:true"
+        value="true"
+        {% if obj.item_value('true') %}checked="checked"{% endif %}>
+    <label for="{{ prefix }}{{ obj.name }}:true">{{ obj.choices[True] }}</label>
+    {% if obj.is_invalid('true') %}<output for="{{ prefix }}{{ obj.name }}:true">{% for error in obj.item_errors('true') %}{{ error }}{% endfor %}</output>{% endif %}
+</div>
+{%- endmacro %}
+{% endif %}

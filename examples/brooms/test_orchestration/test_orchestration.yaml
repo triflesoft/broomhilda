@@ -1,0 +1,71 @@
+brooms:
+  brooms.broom1:
+    configuration:
+      variable1: value1
+    middlewares:
+      .middlewares.Middleware1: {}
+      .middlewares.Middleware2: null
+    routes:
+      prefixes:
+        - /x
+      handlers:
+        .handlers.HandlerA: a/
+        .handlers.HandlerB: b/<id:int>/
+      static:
+        static/: static/
+    workers:
+      prepare:
+        .tasks.TaskA: {}
+      cleanup:
+        .tasks.TaskB: {}
+      process:
+        .tasks.TaskC: {}
+#  brooms.broom2:
+#    middlewares:
+#      100: middlewares.Middleware2
+#    routes:
+#      handlerA: /a/
+#      handlerB: /b/<id:int>/
+#    assets:
+#      assets/: assets/
+#    options:
+#      variable1: value2
+
+endpoints:
+  - host: localhost
+    port: 8080
+    routes:
+      brooms.broom1: /1/
+      brooms.broom2: /2/
+
+debug: True
+
+# monitoring:
+#   statsd:
+#     host: 127.0.0.1
+#     port: 8125
+#   alerting:
+#     email:
+#       host: smtp.gmail.com
+#       port: 587
+#       username: alerting@gmail.com
+#       password: "@13rt1ng"
+#   logging:
+#     version: 1
+#     formatters:
+#       simple:
+#         format: '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+#     handlers:
+#       console:
+#         class: logging.StreamHandler
+#         level: DEBUG
+#         formatter: simple
+#         stream: ext://sys.stdout
+#     loggers:
+#       simpleExample:
+#         level: DEBUG
+#         handlers: [console]
+#         propagate: no
+#     root:
+#       level: DEBUG
+#       handlers: [console]
