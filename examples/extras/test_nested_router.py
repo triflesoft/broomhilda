@@ -35,14 +35,16 @@ server = Server11(
     default_headers=(('Server', 'broomhilda-http-server/1.2.3.4'),))
 
 print('Execute the following commands to test:')
-print('curl -i http://localhost:8080/1/4/')
-print('curl -i http://localhost:8080/2/-5')
-print('curl -i http://localhost:8080/3-6')
+print('curl -i http://localhost:8080/1/2/')
+print('curl -i http://localhost:8080/3/-4')
+print('curl -i http://localhost:8080/5-6')
+print('curl -i http://localhost:8080/7.8')
 
 from webbrowser import open
 
-open('http://localhost:8080/1/4/')
-open('http://localhost:8080/2/-5')
-open('http://localhost:8080/3-6')
+open('http://localhost:8080/1/2/')
+open('http://localhost:8080/3/-4')
+open('http://localhost:8080/5-6')
+open('http://localhost:8080/7.8')
 
 server.run(port=8080)
