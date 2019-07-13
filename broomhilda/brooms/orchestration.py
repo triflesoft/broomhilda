@@ -1,57 +1,65 @@
-from collections import namedtuple
-from importlib import import_module
+class Broom:
+    def _import_identifier(self, name):
+        from importlib import import_module
 
-from broomhilda.brooms.configuration import load
+        if '.' in name:
+            module_name, function_name = name.rsplit('.', 1)
+            module = import_module(module_name, package=self.module.__name__)
 
-from pprint import pprint
+            return getattr(module, function_name)
+        else:
+            return getattr(self.module, name)
 
+    def __init__(self, root_package, global_context, name, configuration):
+        from importlib import import_module
+        from inspect import signature
+        from os.path import abspath
 
-class Broom(object):
-    def __init__(self, name, configuration):
-        self._name = name
-        self._assets = {}
-        self._middlewares = {}
-        self._options = {}
-        self._routes = {}
-        self._tasks = {}
-        self._module = None
-        self._object = None
+        self.name = name
+        self.module = import_module(self.name, package=root_package)
+        self.middlewares = []
 
+        for middleware_name in configuration.get('middlewares', []):
+            middleware_class = self._import_identifier(middleware_name)
+            parameters = dict(signature(middleware_class).parameters)
 
-class Server(object):
-    def __init__(self, configuration_paths):
+            if len(parameters) == 0:
+                middleware = self._import_identifier(middleware_name)()
+            elif len(parameters) == 1:
+                middleware = self._import_identifier(middleware_name)(global_context)
+            else:
+                raise Exception()
+
+            self.middlewares.append(middleware)
+
         pass
 
-    def run(self):
-        pass
+        """
+        self.routes = configuration.get('routes', {})
+        self.tasks = configuration.get('tasks', {})"""
 
 
-async def _serve(configuration_paths):
-    configuration = load(configuration_paths)
+def serve(configuration, global_context={}):
+    from broomhilda.extras.middlewares import RoutingMiddleware
+    from broomhilda.extras.routes import Router
+    from broomhilda.facade.server.server11 import Server11
+    from importlib import import_module
+    from traceback import extract_stack
+    from os.path import abspath
+
+    from pprint import pprint
+
+    stack = extract_stack()
+    root_package = ''
+
+    for frame in reversed(stack):
+        if frame.name == '<module>':
+            root_package = abspath(frame.filename)
+            break
+
     brooms = configuration.get('brooms', {})
-    endpoints = configuration.get('endpoints', [])
 
+    for broom_name, broom_conf in brooms.items():
+        broom = Broom(root_package, global_context, broom_name, broom_conf)
 
-    for item_name, item_data in brooms.items():
-        item_root_module = import_module(item_name)
-        item_broom_module = import_module('.broom', item_root_module.__package__)
-        item_broom_class = getattr(item_broom_module, 'Broom')
-        item_broom = item_broom_class(**item_data.get('options', {}))
-        print(item_root_module)
-        print(item_broom_module)
-        pprint(item_data)
-
-
-    # pprint(configuration, compact=False)
-
-    async with TaskGroup() as task_group:
-        pass
-        #await task_group.spawn(additional_coroutine)
-
-        # server = Server11(
-        #     middlewares=[RoutingMiddleware(router)],
-        #     default_headers=(('Server', 'broomhilda-http-server/1.2.3.4'),))
-        # task_group.spawn(server.run(port=8080))
-
-def serve(configuration_paths):
-    run(_serve(configuration_paths))
+    pprint(configuration)

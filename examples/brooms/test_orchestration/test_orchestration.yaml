@@ -1,42 +1,46 @@
 brooms:
   brooms.broom1:
-    configuration:
-      variable1: value1
     middlewares:
-      .middlewares.Middleware1: {}
-      .middlewares.Middleware2: null
+      - .middlewares.Middleware1
+      - .middlewares.Middleware2
     routes:
       prefixes:
         - /x
       handlers:
-        .handlers.HandlerA: a/
-        .handlers.HandlerB: b/<id:int>/
+        a/:          .handlers.HandlerA
+        b/<id:int>/: .handlers.HandlerB
       static:
         static/: static/
     workers:
       prepare:
-        .tasks.TaskA: {}
+        - .tasks.TaskA
       cleanup:
-        .tasks.TaskB: {}
+        - .tasks.TaskB
       process:
-        .tasks.TaskC: {}
-#  brooms.broom2:
-#    middlewares:
-#      100: middlewares.Middleware2
-#    routes:
-#      handlerA: /a/
-#      handlerB: /b/<id:int>/
-#    assets:
-#      assets/: assets/
-#    options:
-#      variable1: value2
-
-endpoints:
-  - host: localhost
-    port: 8080
+        - .tasks.TaskC
+  brooms.broom2:
+    middlewares:
+      - .middlewares.Middleware2
+      - .middlewares.Middleware1
     routes:
-      brooms.broom1: /1/
-      brooms.broom2: /2/
+      prefixes:
+        - /y
+      handlers:
+        a/:          .handlers.HandlerC
+        b/<id:int>/: .handlers.HandlerD
+      static:
+        static/: static/
+    workers:
+      prepare:
+        - .tasks.TaskD
+      cleanup:
+        - .tasks.TaskE
+      process:
+        - .tasks.TaskF
+
+endpoint:
+  host: localhost
+  port: 8080
 
 debug: True
 
