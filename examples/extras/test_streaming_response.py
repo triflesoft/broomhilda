@@ -3,7 +3,7 @@
 from broomhilda.facade.server.server11 import Server11
 from broomhilda.extras.middlewares import RoutingMiddleware
 from broomhilda.extras.routes import Router
-from time import sleep
+from broomio import sleep
 
 
 async def default_handler(request, response):
@@ -23,8 +23,7 @@ async def default_handler(request, response):
             await stream.write(b'%04d 0123456789\n' % i)
 
             # Slow down a bit so you can watch incremental download
-            # NEVER use sleep in asyncio coroutine, this is for demostration only!
-            sleep(0.1)
+            await sleep(0.1)
 
 router = Router()
 router.add('/', default_handler, 'GET')
