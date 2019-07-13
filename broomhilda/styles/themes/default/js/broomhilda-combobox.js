@@ -17,23 +17,36 @@ function initComboBox(controlElement, options) {
         return;
     }
 
-    function defaultSearch(query, controlElement) {
+    function defaultSearch(query, context) {
         result = []
 
-        controlElement.querySelectorAll("option").forEach(
+        context.controlElement.querySelectorAll("option").forEach(
             function(element) {
-                if (element.innerText.toLowerCase().indexOf(query.toLowerCase()) >= 0) {
-                    result.push({ "value": element.value, "text": element.innerText });
+                if (result.length < context.settings.searchMaxItems) {
+                    if (element.innerText.toLowerCase().indexOf(query.toLowerCase()) >= 0) {
+                        result.push({ "value": element.value, "text": element.innerText });
+                    }
                 }
             });
+
+        if (result.length == 1) {
+            context.controlElement.querySelectorAll("option").forEach(
+                function(element) {
+                    if (result.length < context.settings.searchMaxItems) {
+                        if (element.value != result[0].value) {
+                            result.push({ "value": element.value, "text": element.innerText });
+                        }
+                    }
+                });
+        }
 
         return result;
     }
 
-    function defaultSelect(value, controlElement) {
+    function defaultSelect(value, context) {
         option = null
 
-        controlElement.querySelectorAll("option").forEach(
+        context.controlElement.querySelectorAll("option").forEach(
             function(element) {
                 if (element.value == value) {
                     option = element;
@@ -52,19 +65,26 @@ function initComboBox(controlElement, options) {
     }
 
     function defaultRenderHtml(dataItem, searchQuery) {
-        var leftIndex = dataItem.text.toLowerCase().indexOf(searchQuery.toLowerCase());
-
-        if (leftIndex == -1) {
+        if (searchQuery.length == 0) {
             return dataItem.text;
         }
 
-        var rightIndex = leftIndex + searchQuery.length;
+        var source = dataItem.text.toLowerCase();
+        var result = "";
 
-        return dataItem.text.substring(0, leftIndex) +
-            "<mark>" +
-            dataItem.text.substring(leftIndex, rightIndex) +
-            "</mark>" +
-            dataItem.text.substring(rightIndex, dataItem.text.length);
+        searchQuery = searchQuery.toLowerCase();
+
+        var prevIndex = 0;
+
+        for (var nextIndex = source.indexOf(searchQuery, prevIndex); nextIndex != -1; nextIndex = source.indexOf(searchQuery, prevIndex)) {
+            result += dataItem.text.substring(prevIndex, nextIndex)
+            result += "<mark>" + dataItem.text.substring(nextIndex, nextIndex + searchQuery.length) + "</mark>";
+            prevIndex = nextIndex + searchQuery.length;
+        }
+
+        result += dataItem.text.substring(prevIndex, dataItem.text.length);
+
+        return result;
     }
 
     function updateSelection(context) {
@@ -157,7 +177,7 @@ function initComboBox(controlElement, options) {
         searchQuery = context.inputElement.value;
 
         if ((context.searchQuery != searchQuery) || force) {
-            context.items = context.settings.search(searchQuery, context.controlElement);
+            context.items = context.settings.searchFunction(searchQuery, context);
 
             if (context.selectedItem == null) {
                 if (context.items.length > 0) {
@@ -297,8 +317,9 @@ function initComboBox(controlElement, options) {
         return false;
     };
 
-    var searchFunction = options && options.hasOwnProperty('search') ? options.search : defaultSearch;
-    var selectFunction = options && options.hasOwnProperty('select') ? options.select : defaultSelect;
+    var searchFunction = options && options.hasOwnProperty('searchFunction') ? options.searchFunction : defaultSearch;
+    var searchMaxItems = options && options.hasOwnProperty('searchMaxItems') ? options.searchMaxItems : 100;
+    var selectFunction = options && options.hasOwnProperty('selectFunction') ? options.selectFunction : defaultSelect;
     var renderTextFunction = options && options.hasOwnProperty('renderText') ? options.renderText : defaultRenderText;
     var renderHtmlFunction = options && options.hasOwnProperty('renderHtml') ? options.renderHtml : defaultRenderHtml;
     var dropdownElement = document.createElement('div');
@@ -318,8 +339,9 @@ function initComboBox(controlElement, options) {
 
     var context = {
         settings: {
-            search: searchFunction,
-            select: selectFunction,
+            searchFunction: searchFunction,
+            searchMaxItems: searchMaxItems,
+            selectFunction: selectFunction,
             renderText: renderTextFunction,
             renderHtml: renderHtmlFunction,
         },
@@ -439,7 +461,7 @@ function initComboBox(controlElement, options) {
     }
 
     if (selectedValue) {
-        context.selectedItem = context.settings.select(selectedValue, controlElement);
+        context.selectedItem = context.settings.selectFunction(selectedValue, context);
         updateSelection(context);
     }
 }

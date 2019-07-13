@@ -34,6 +34,7 @@ from broomhilda.extras.handlers.template import jinja2_template
 from broomhilda.extras.handlers.template import jinja2_template
 from broomhilda.extras.middlewares import RoutingMiddleware
 from broomhilda.extras.routes import Router
+from unicodedata import name
 
 
 class TestBinder(BinderBase):
@@ -50,7 +51,9 @@ class TestBinder(BinderBase):
         can_list_filter=True)
     select = SelectInput(
         verbose_name='Test Select',
-        choices={'': 'Select Something', 'X': 'select X', 'Y': 'select Y', 'Z': 'select Z'},
+        choices=dict(
+                [('', 'NOTHING')] +
+                [(c, name(c)) for c in 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz']),
         help_text="Some help text here to give user an advice.",
         can_list_filter=True)
 
