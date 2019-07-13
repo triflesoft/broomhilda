@@ -7,7 +7,7 @@ from broomhilda.facade.server.server11 import Server11
 # If you return True from before() the rest of middlewares will not be executed.
 # Always return True if you send body.
 # You cannot change anything in after(), it's too late.
-class PostMiddleware(object):
+class PostMiddleware:
     async def before(self, request, response):
         if request.method == 'POST':
             response.status_code = 200
@@ -17,7 +17,7 @@ class PostMiddleware(object):
     async def after(self, request, response):
         pass
 
-class GetMiddleware(object):
+class GetMiddleware:
     async def before(self, request, response):
         if request.method == 'GET':
             response.status_code = 200

@@ -32,7 +32,7 @@ def render_macro(context, obj, module_name, macro_name, *args):
     return macro(obj, *args)
 
 
-class Jinja2HandlerBase(object):
+class Jinja2HandlerBase:
     def _get_wrapper(self, original_function):
         async def wrapper(request, response, *args, **kwargs):
             template = self._environment.get_template(original_function._template_name)

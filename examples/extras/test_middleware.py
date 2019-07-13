@@ -13,7 +13,7 @@ async def default_handler(request, response):
 # If you return True from before() the rest of middlewares as well as matched routing handler called by routing middleware will not be executed.
 # Always return True if you send body.
 # You cannot change anything in after(), it's too late.
-class Middleware(object):
+class Middleware:
     async def before(self, request, response):
         if request.method == 'POST':
             response.status_code = 200

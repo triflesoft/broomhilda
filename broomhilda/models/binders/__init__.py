@@ -18,7 +18,7 @@ from broomhilda.models.binders.inputs.text import TextInput
 from broomhilda.models.binders.inputs.text import UrlInput
 
 
-class InputProxy(object):
+class InputProxy:
     def __getattr__(self, name):
         return getattr(self._input, name)
 
@@ -82,12 +82,12 @@ class InputProxy(object):
         return input_errors.get(item, [])
 
 
-class BinderMeta(object):
+class BinderMeta:
     def __init__(self, inputs, *args, **kwargs):
         self.inputs = inputs
 
 
-class BinderBase(object):
+class BinderBase:
     def __new__(cls, *args, **kwargs):
         meta_dict = {}
         input_dict = {}

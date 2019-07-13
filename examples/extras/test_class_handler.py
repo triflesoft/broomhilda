@@ -8,37 +8,37 @@ from broomhilda.facade.server.server11 import Server11
 # Class method names shoud match HTTP method names.
 # Supported method names are 'connect', 'delete', 'get', 'head', 'options', 'patch', 'post', 'put', 'trace'.
 
-class NoParameter(object):
+class NoParameter:
     async def get(self, request, response):
         await response.send_text('No parameters')
 
 
-class ForceError(object):
+class ForceError:
     async def get(self, request, response):
         raise Exception()
 
 
-class IntParameter(object):
+class IntParameter:
     async def get(self, request, response, parameter):
         await response.send_text(f'Value of int parameter is "{parameter}", type is {type(parameter)}.')
 
 
-class StrParameter(object):
+class StrParameter:
     async def get(self, request, response, parameter):
         await response.send_text(f'Value of str parameter is "{parameter}", type is {type(parameter)}.')
 
 
-class SlugParameter(object):
+class SlugParameter:
     async def get(self, request, response, parameter):
         await response.send_text(f'Value of slug parameter is "{parameter}", type is {type(parameter)}.')
 
 
-class UuidParameter(object):
+class UuidParameter:
     async def get(self, request, response, parameter):
         await response.send_text(f'Value of uuid parameter is "{parameter}", type is {type(parameter)}.')
 
 
-class PathParameter(object):
+class PathParameter:
     async def get(self, request, response, parameter):
         await response.send_text(f'Value of path parameter is "{parameter}", type is {type(parameter)}.')
 

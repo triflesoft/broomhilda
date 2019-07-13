@@ -5,7 +5,7 @@ from setuptools import find_packages
 from setuptools import setup
 from subprocess import run
 
-with open('README.rst', 'r') as readme_file:
+with open('README.md', 'r') as readme_file:
     readme_text = readme_file.read()
 
 with open('LICENSE') as license_file:

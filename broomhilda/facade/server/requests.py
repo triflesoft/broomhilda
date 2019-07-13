@@ -12,7 +12,7 @@ from broomhilda.facade.server.headers import ServerFormPartHeaders
 from broomhilda.facade.server.headers import ServerRequestHeaders
 
 
-class ServerRequestBodyStream(object):
+class ServerRequestBodyStream:
     def __init__(self, request):
         self.request = request
 
@@ -33,7 +33,7 @@ class ServerRequestBodyStream(object):
         return body
 
 
-class ServerRequestBodyStreamContext(object):
+class ServerRequestBodyStreamContext:
     def __init__(self, request):
         self.request = request
         self.stream = ServerRequestBodyStream(self.request)
@@ -52,7 +52,7 @@ def message_factory():
     return message
 
 
-class ServerRequestFilePart(object):
+class ServerRequestFilePart:
     def __init__(self, filename, headers, content):
         self.filename = filename
         self.headers = ServerFormPartHeaders()
@@ -65,7 +65,7 @@ class ServerRequestFilePart(object):
         return self.filename
 
 
-class ServerRequest(object):
+class ServerRequest:
     def on_message_begin(self):
         pass
 

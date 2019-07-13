@@ -7,7 +7,7 @@ from uuid import UUID
 url_parameter_pattern = compile(r'<(?P<name>[A-Za-z0-9_]+?)(?:\:(?P<pattern>.+?))?>')
 
 
-class Route(object):
+class Route:
     def _add_parameter_converter(self, match):
         name = match.group('name')
         pattern = match.group('pattern')
@@ -84,7 +84,7 @@ class Route(object):
         self.method_handlers.update(new_route.method_handlers)
 
 
-class Router(object):
+class Router:
     def __init__(self):
         self.routes = {}
 

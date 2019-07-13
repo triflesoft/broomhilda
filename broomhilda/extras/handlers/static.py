@@ -11,7 +11,7 @@ from os.path import join
 from broomhilda.facade.server.headers import ContentTypeHeader
 
 
-class StaticHandler(object):
+class StaticHandler:
     def __init__(self, base_path, index=True, single_chunk_limit=64*1024):
         self._base_path = abspath(base_path)
         self._index = index

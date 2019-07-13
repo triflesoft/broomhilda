@@ -1,4 +1,4 @@
-class InputBase(object):
+class InputBase:
     def __init__(
         self,
         jinja2_module_name,

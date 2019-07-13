@@ -72,7 +72,7 @@ STATUS_DATA = {
 STATUS_TEXT = { code: data.decode('ascii') for code, data in STATUS_DATA.items() }
 
 
-class ServerResponseBodyStream(object):
+class ServerResponseBodyStream:
     def __init__(self, response):
         self.response = response
 
@@ -86,7 +86,7 @@ class ServerResponseBodyStream(object):
         await self.response._connection.write_response(b'0\r\n\r\n')
 
 
-class ServerResponseBodyStreamContext(object):
+class ServerResponseBodyStreamContext:
     def __init__(self, response):
         self.response = response
         self.stream = ServerResponseBodyStream(self.response)
@@ -98,7 +98,7 @@ class ServerResponseBodyStreamContext(object):
         await self.stream.close()
 
 
-class ServerResponse(object):
+class ServerResponse:
     async def _send_headers(self):
         if not self._are_headers_sent:
             self._are_headers_sent = True

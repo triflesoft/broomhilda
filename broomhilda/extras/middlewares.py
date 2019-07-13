@@ -10,7 +10,7 @@ from sys import exc_info
 from traceback import format_exc
 
 
-class RoutingMiddleware(object):
+class RoutingMiddleware:
     def __init__(self, router, template_search_paths=None):
         if template_search_paths is None:
             template_search_paths = [normpath(join(dirname(__file__), '../styles/themes/default/'))]

@@ -5,7 +5,7 @@ from multidict import CIMultiDict
 from ua_parser import user_agent_parser
 
 
-class AuthorizationHeader(object):
+class AuthorizationHeader:
     __slots__ = 'type', 'credentials', 'username', 'password', 'token', 'value'
 
     @classmethod
@@ -33,7 +33,7 @@ class AuthorizationHeader(object):
             self.token = self.credentials
 
 
-class ContentDispositionHeader(object):
+class ContentDispositionHeader:
     __slots__ = 'type', 'params', 'value'
 
     def __init__(self, type, params, value):
@@ -45,7 +45,7 @@ class ContentDispositionHeader(object):
         return self.value
 
 
-class ContentTypeHeader(object):
+class ContentTypeHeader:
     __slots__ = 'type', 'subtype', 'suffix', 'params', 'value'
 
     @classmethod
@@ -91,7 +91,7 @@ class ContentTypeHeader(object):
         return self.value
 
 
-class _UserAgentBrowser(object):
+class _UserAgentBrowser:
     __slots__ = 'family', 'major', 'minor', 'patch'
 
     def __init__(self, family, major, minor, patch):
@@ -113,7 +113,7 @@ class _UserAgentBrowser(object):
             return self.family
 
 
-class _UserAgentOperatingSystem(object):
+class _UserAgentOperatingSystem:
     __slots__ = 'family', 'major', 'minor', 'patch', 'patch_minor'
 
     def __init__(self, family, major, minor, patch, patch_minor):
@@ -139,7 +139,7 @@ class _UserAgentOperatingSystem(object):
             return self.family
 
 
-class _UserAgentDevice(object):
+class _UserAgentDevice:
     __slots__ = 'family', 'brand', 'model'
 
     def __init__(self, family, brand, model):
@@ -157,7 +157,7 @@ class _UserAgentDevice(object):
             return self.family
 
 
-class UserAgentHeader(object):
+class UserAgentHeader:
     __slots__ = 'browser', 'operating_system', 'device', 'value'
 
     @classmethod
