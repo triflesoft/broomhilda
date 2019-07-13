@@ -125,7 +125,7 @@ class ServerRequest:
 
     async def _read_body(self, max_length=64*1024):
         while (not self._is_body_complete) or (len(self._body_buffer) > 0):
-            chunk_length = min(max_length, self._body_length - (self._body_position + len(self._body_buffer))) 
+            chunk_length = min(max_length, self._body_length - (self._body_position + len(self._body_buffer)))
             data = await self._connection.read_request(chunk_length)
 
             if not data:

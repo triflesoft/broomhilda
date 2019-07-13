@@ -22,4 +22,3 @@
 {% macro list_filter(obj) %}
 {% for input in obj._inputs %}{% if input.can_list_filter %}{{ input|render_macro(input.jinja2_module_name, 'list_filter_' + input.jinja2_macro_name, obj._prefix) }}{% endif %}{% endfor %}
 {%- endmacro %}
-

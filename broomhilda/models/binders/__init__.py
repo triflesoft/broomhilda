@@ -1,5 +1,4 @@
 from inspect import isclass
-
 from broomhilda.models.binders.inputs.base import InputBase
 from broomhilda.models.binders.inputs.bool import CheckboxInput
 from broomhilda.models.binders.inputs.choice import RadioInput
