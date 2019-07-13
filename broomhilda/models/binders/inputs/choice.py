@@ -15,18 +15,11 @@ class ChoiceInputBase(NullableInputBase):
 
             result = default
         else:
-            if raw_data is True or raw_data is False:
+            if raw_data in self.choices:
                 result = raw_data
             else:
-                raw_data = str(raw_data).lower()
-
-                if raw_data in ('t', 'true',  'on',  'yes', '1', 'checked'):
-                    result = True
-                elif raw_data in ('f', 'false', 'off', 'no',  '0'):
-                    result = False
-                else:
-                    result = None
-                    errors.append(f'Invalid value ({raw_data}).')
+                result = None
+                errors.append(f'Invalid value ({raw_data}).')
 
         return result, errors
 
