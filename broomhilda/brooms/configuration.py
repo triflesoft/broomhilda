@@ -144,8 +144,8 @@ class Configuration:
 
         self._clear_dict()
 
+    def __getitem__(self, key):
+        return self.data.get(key)
 
-def merge(configuration_paths):
-    configuration = Configuration(configuration_paths)
-
-    return configuration.data
+    def get(self, key, default=None):
+        return self.data.get(key, default)
