@@ -2,6 +2,7 @@ class Connection11:
     def __init__(self, server, socket, address):
         self.server = server
         self.socket = socket
+        self.fileno = self.socket._socket.fileno()
         self.address = address
         self.request = None
         self.match_result = None
@@ -81,8 +82,12 @@ class Server11:
                     if not request.keep_alive:
                         break
             finally:
-                tcp_server_socket.shutdown()
-                tcp_server_socket.close()
+                try:
+                    await tcp_server_socket.shutdown()
+                except:
+                    pass
+
+                await tcp_server_socket.close()
         except:
             pass # TODO log errors
 

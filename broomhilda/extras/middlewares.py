@@ -31,11 +31,15 @@ class RoutingMiddleware:
                 try:
                     response.status_code = 200
                     await match_handler(request, response, **match_parameters)
-                except: # pylint: disable=W0702
+                except Exception as exception: # pylint: disable=W0703
+                    fileno = getattr(exception, 'fileno') if isinstance(exception, ConnectionError) else None
+
+                    if fileno == response._connection.fileno: # pylint: disable=W0212
+                        raise
+
                     if not response._are_headers_sent: # pylint: disable=W0212
                         response.status_code = 500
                         await self.on_5xx_error(request, response, match_handler)
-
 
     async def after(self, request, response):
         pass
