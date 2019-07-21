@@ -1,8 +1,3 @@
-from json import dumps
-
-from broomhilda.facade.server.headers import ServerResponseHeaders
-
-
 STATUS_DATA = {
     100: b'Continue',
     101: b'Switching Protocols',
@@ -144,6 +139,8 @@ class ServerResponse:
         self._status_text = value
 
     def __init__(self, connection, version, status_code=200, status_text=None, headers=None):
+        from broomhilda.facade.server.headers import ServerResponseHeaders
+
         self._connection = connection
         self._version = version
         self._are_headers_sent = False
@@ -178,6 +175,8 @@ class ServerResponse:
         await self.send_body(text.encode('utf-8'))
 
     async def send_json(self, json, *args, **kwargs):
+        from json import dumps
+
         if not 'Content-Type' in self.headers:
             self.headers['Content-Type'] = 'application/json; charset=utf-8'
 

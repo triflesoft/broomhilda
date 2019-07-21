@@ -1,13 +1,6 @@
-from base64 import standard_b64decode
-from email.utils import format_datetime
-from email.utils import parsedate_to_datetime
-
-from broomhilda.facade.shared.headers import AuthorizationHeader
-from broomhilda.facade.shared.headers import ContentTypeHeader
 from broomhilda.facade.shared.headers import FormPartHeadersBase
 from broomhilda.facade.shared.headers import RequestHeadersBase
 from broomhilda.facade.shared.headers import ResponseHeadersBase
-from broomhilda.facade.shared.headers import UserAgentHeader
 
 
 class ServerFormPartHeaders(FormPartHeadersBase):
@@ -20,6 +13,12 @@ class ServerRequestHeaders(RequestHeadersBase):
         super().__init__(*args, **kwargs)
 
     def _post_process(self, request):
+        from base64 import standard_b64decode
+        from email.utils import parsedate_to_datetime
+        from broomhilda.facade.shared.headers import AuthorizationHeader
+        from broomhilda.facade.shared.headers import ContentTypeHeader
+        from broomhilda.facade.shared.headers import UserAgentHeader
+
         # TODO: A-IM
         # TODO: Accept
         # TODO: Accept-Charset
@@ -116,6 +115,8 @@ class ServerResponseHeaders(ResponseHeadersBase):
         super().__init__(*args, **kwargs)
 
     def _post_process(self, response):
+        from email.utils import format_datetime
+
         # TODO: Accept-Patch
         # TODO: Accept-Ranges
         # TODO: Access-Control-Allow-Credentials

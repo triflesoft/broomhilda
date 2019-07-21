@@ -1,7 +1,7 @@
-from jinja2 import FileSystemLoader
 from jinja2 import contextfilter
-from os.path import dirname
-from os.path import join
+
+
+__all__ = ['jinja2_template', 'Jinja2HandlerBase']
 
 
 def jinja2_template(template_name):
@@ -14,7 +14,13 @@ def jinja2_template(template_name):
 
 
 def get_builtin_jinja2_loader():
-    return FileSystemLoader(join(dirname(__file__), './../../styles/'))
+    from jinja2 import FileSystemLoader
+    from os.path import dirname
+    from os.path import join
+    from os.path import abspath
+
+
+    return FileSystemLoader(abspath(join(dirname(__file__), './../../styles/')))
 
 
 @contextfilter

@@ -1,8 +1,4 @@
-from base64 import standard_b64decode
-from email.utils import format_datetime
-from email.utils import parsedate_to_datetime
 from multidict import CIMultiDict
-from ua_parser import user_agent_parser
 
 
 class AuthorizationHeader:
@@ -19,6 +15,8 @@ class AuthorizationHeader:
         return None
 
     def __init__(self, type, credentials, value):
+        from base64 import standard_b64decode
+
         self.type = type
         self.credentials = credentials
         self.value = value
@@ -162,6 +160,8 @@ class UserAgentHeader:
 
     @classmethod
     def _from_value(cls, value):
+        from ua_parser import user_agent_parser
+
         if value:
             user_agent_data = user_agent_parser.Parse(value)
 

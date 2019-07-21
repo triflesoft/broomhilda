@@ -25,6 +25,7 @@ async def default_handler(request, response):
             # Slow down a bit so you can watch incremental download
             await sleep(0.1)
 
+
 router = Router()
 router.add('/', default_handler, 'GET')
 

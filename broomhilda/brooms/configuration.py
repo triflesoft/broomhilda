@@ -1,3 +1,6 @@
+__all__ = ['Configuration']
+
+
 class _ConfigurationFile:
     __slots__ = 'absolute_path', 'relative_path', 'size', 'atime', 'mtime', 'ctime'
 

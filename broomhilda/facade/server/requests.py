@@ -1,17 +1,3 @@
-from email.message import Message
-from email.parser import BytesFeedParser
-from email.policy import HTTP
-from httptools import HttpRequestParser
-from httptools import parse_url
-from json import loads
-from multidict import CIMultiDict
-from urllib.parse import parse_qs
-from urllib.parse import unquote_to_bytes
-
-from broomhilda.facade.server.headers import ServerFormPartHeaders
-from broomhilda.facade.server.headers import ServerRequestHeaders
-
-
 class ServerRequestBodyStream:
     def __init__(self, request):
         self.request = request
@@ -46,6 +32,9 @@ class ServerRequestBodyStreamContext:
 
 
 def message_factory():
+    from email.message import Message
+    from email.policy import HTTP
+
     message = Message(policy=HTTP)
     message.set_default_type('application/form-data')
 
@@ -54,6 +43,8 @@ def message_factory():
 
 class ServerRequestFilePart:
     def __init__(self, filename, headers, content):
+        from broomhilda.facade.server.headers import ServerFormPartHeaders
+
         self.filename = filename
         self.headers = ServerFormPartHeaders()
         self.content = content
@@ -80,6 +71,9 @@ class ServerRequest:
         self.headers.add(str_name, str_value)
 
     def on_headers_complete(self):
+        from httptools import parse_url
+        from urllib.parse import parse_qs
+
         parsed_path = parse_url(self.raw_path)
 
         self.version = self._parser.get_http_version()
@@ -146,6 +140,10 @@ class ServerRequest:
         return b''
 
     def __init__(self, connection):
+        from httptools import HttpRequestParser
+        from multidict import CIMultiDict
+        from broomhilda.facade.server.headers import ServerRequestHeaders
+
         self._connection = connection
         self._parser = HttpRequestParser(self)
         self._body_buffer = b''
@@ -197,12 +195,19 @@ class ServerRequest:
         return self._text
 
     async def read_json(self):
+        from json import loads
+
         if self._json is None:
             self._json = loads(self.read_text())
 
         return self._json
 
     async def read_form(self):
+        from email.parser import BytesFeedParser
+        from email.policy import HTTP
+        from multidict import CIMultiDict
+        from urllib.parse import unquote_to_bytes
+
         if self._form is None:
             self._form = CIMultiDict()
 

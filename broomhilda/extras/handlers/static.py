@@ -1,23 +1,22 @@
-from datetime import datetime
-from mimetypes import guess_type
-from os import scandir
-from os import stat
-from os.path import abspath
-from os.path import dirname
-from os.path import isdir
-from os.path import isfile
-from os.path import join
-
-from broomhilda.facade.server.headers import ContentTypeHeader
-
-
 class StaticHandler:
     def __init__(self, base_path, index=True, single_chunk_limit=64*1024):
+        from os.path import abspath
+
         self._base_path = abspath(base_path)
         self._index = index
         self._single_chunk_limit = single_chunk_limit
 
     async def get(self, request, response, path):
+        from datetime import datetime
+        from mimetypes import guess_type
+        from os import scandir
+        from os import stat
+        from os.path import abspath
+        from os.path import isdir
+        from os.path import isfile
+        from os.path import join
+        from broomhilda.facade.shared.headers import ContentTypeHeader
+
         final_path = abspath(join(self._base_path, path))
 
         if isfile(final_path):

@@ -1,7 +1,3 @@
-from broomhilda.facade.server.requests import ServerRequest
-from broomhilda.facade.server.responses import ServerResponse
-
-
 class Connection11:
     def __init__(self, server, socket, address):
         self.server = server
@@ -57,6 +53,9 @@ class Server11:
             self._cleanup_workers += list(cleanup_workers)
 
     async def _client_connected(self, tcp_server_socket, client_address):
+        from broomhilda.facade.server.requests import ServerRequest
+        from broomhilda.facade.server.responses import ServerResponse
+
         try:
             try:
                 connection = Connection11(self, tcp_server_socket, client_address)

@@ -1,19 +1,14 @@
-from inspect import getsourcefile
-from inspect import getsourcelines
-from inspect import signature
-from jinja2 import Environment
-from jinja2 import FileSystemLoader
-from os.path import dirname
-from os.path import join
-from os.path import normpath
-from sys import exc_info
-from traceback import format_exc
-
-
 class RoutingMiddleware:
     def __init__(self, router, template_search_paths=None):
+        from jinja2 import Environment
+        from jinja2 import FileSystemLoader
+        from os.path import dirname
+        from os.path import join
+        from os.path import abspath
+
+
         if template_search_paths is None:
-            template_search_paths = [normpath(join(dirname(__file__), '../styles/themes/default/'))]
+            template_search_paths = [abspath(join(dirname(__file__), '../styles/themes/default/'))]
 
         self._router = router
         self._environment = Environment(
@@ -57,6 +52,12 @@ class RoutingMiddleware:
         await response.send_html(html)
 
     async def on_5xx_error(self, request, response, handler):
+        from inspect import getsourcefile
+        from inspect import getsourcelines
+        from inspect import signature
+        from sys import exc_info
+        from traceback import format_exc
+
         source_file = getsourcefile(handler)
         source_lines = getsourcelines(handler)
 

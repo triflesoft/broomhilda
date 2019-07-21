@@ -1,6 +1,3 @@
-from decimal import Decimal
-from decimal import InvalidOperation
-
 from broomhilda.models.binders.inputs.base import NullableInputBase
 
 
@@ -13,6 +10,9 @@ class NumberInput(NullableInputBase):
         self.step = 1 / (10 ** decimal_places)
 
     def _parse_value(self, raw_data, default):
+        from decimal import Decimal
+        from decimal import InvalidOperation
+
         result = None
         errors = []
 
@@ -36,6 +36,9 @@ class NumberInput(NullableInputBase):
         return result, errors
 
     def _parse_filter(self, raw_data, default):
+        from decimal import Decimal
+        from decimal import InvalidOperation
+
         result = None
         errors = []
 

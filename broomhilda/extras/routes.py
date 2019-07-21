@@ -1,14 +1,7 @@
-from inspect import iscoroutinefunction
-from inspect import isfunction
-from re import compile
-from uuid import UUID
-
-
-url_parameter_pattern = compile(r'<(?P<name>[A-Za-z0-9_]+?)(?:\:(?P<pattern>.+?))?>')
-
-
 class Route:
     def _add_parameter_converter(self, match):
+        from uuid import UUID
+
         name = match.group('name')
         pattern = match.group('pattern')
         converter = str
@@ -48,6 +41,9 @@ class Route:
         return f'<{name}>'
 
     def __init__(self, path_pattern, method_handlers):
+        from inspect import iscoroutinefunction
+        from re import compile
+
         self.method_handlers = {}
 
         for name, handler in method_handlers.items():
@@ -55,6 +51,8 @@ class Route:
                 raise RuntimeError(f'Handler "{handler}" must be async function or async method.')
 
             self.method_handlers[name] = handler
+
+        url_parameter_pattern = compile(r'<(?P<name>[A-Za-z0-9_]+?)(?:\:(?P<pattern>.+?))?>')
 
         self.parameter_converters = {}
         self.path_pattern = path_pattern
@@ -115,6 +113,8 @@ class Router:
         self._add_functions(path_pattern, method_handlers)
 
     def add(self, path_pattern, handler, method_names=('connect', 'delete', 'get', 'head', 'options', 'patch', 'post', 'put', 'trace')):
+        from inspect import isfunction
+
         if type(method_names) is str:
             method_names = (method_names,)
 
