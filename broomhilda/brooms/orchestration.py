@@ -1,7 +1,7 @@
 __all__ = ['Orchestration']
 
 
-class Broom:
+class Broom: # pylint: disable=R0903
     __slots__ = 'name', 'module', 'middleware_classes', 'prefix', 'handler_classes', 'statics', 'worker_classes'
 
     def _import_identifier(self, name):
@@ -12,13 +12,12 @@ class Broom:
             module = import_module(module_name, package=self.module.__name__)
 
             return getattr(module, function_name)
-        else:
-            return getattr(self.module, name)
+
+        return getattr(self.module, name)
 
     def __init__(self, root_package, name, configuration):
         from collections import defaultdict
         from importlib import import_module
-        from os.path import abspath
 
         self.name = name
         self.module = import_module(self.name, package=root_package)
@@ -43,7 +42,7 @@ class Broom:
             self.worker_classes.append(self._import_identifier(worker_class_name))
 
 
-class _TarjanStronglyConnectedComponentsNode:
+class _TarjanStronglyConnectedComponentsNode: # pylint: disable=R0903
     __slots__ = 'data', 'index', 'lowlink', 'onstack'
 
     def __init__(self, data):
@@ -53,32 +52,32 @@ class _TarjanStronglyConnectedComponentsNode:
         self.onstack = False
 
 
-class _TarjanStronglyConnectedComponentsAlgorithm:
+class _TarjanStronglyConnectedComponentsAlgorithm: # pylint: disable=R0903
     __slots__ = 'nodes', 'graph', 'last_index', 'stack', 'sccs'
 
-    def _find(self, v):
-        v.index = self.last_index
-        v.lowlink = self.last_index
-        v.onstack = True
-        self.stack.append(v)
+    def _find(self, vertex1):
+        vertex1.index = self.last_index
+        vertex1.lowlink = self.last_index
+        vertex1.onstack = True
+        self.stack.append(vertex1)
         self.last_index += 1
 
-        for w_data in self.graph[v.data]:
-            w = self.nodes[w_data]
-            if w.index == -1:
-                self._find(w)
-                v.lowlink = min(v.lowlink, w.lowlink)
-            elif w.onstack:
-                v.lowlink = min(v.lowlink, w.index)
+        for vertex2_data in self.graph[vertex1.data]:
+            vertex2 = self.nodes[vertex2_data]
+            if vertex2.index == -1:
+                self._find(vertex2)
+                vertex1.lowlink = min(vertex1.lowlink, vertex2.lowlink)
+            elif vertex2.onstack:
+                vertex1.lowlink = min(vertex1.lowlink, vertex2.index)
 
-        if v.index == v.lowlink:
-            w = None
+        if vertex1.index == vertex1.lowlink:
+            vertex2 = None
             scc = []
 
-            while v != w:
-                w = self.stack.pop()
-                w.onstack = False
-                scc.append(w.data)
+            while vertex1 != vertex2:
+                vertex2 = self.stack.pop()
+                vertex2.onstack = False
+                scc.append(vertex2.data)
 
             if len(scc) > 1:
                 self.sccs.append(scc)
@@ -91,24 +90,24 @@ class _TarjanStronglyConnectedComponentsAlgorithm:
         return self.sccs
 
     def __init__(self, nodes, graph):
-        self.nodes = { node: _TarjanStronglyConnectedComponentsNode(node) for node in nodes }
+        self.nodes = {node: _TarjanStronglyConnectedComponentsNode(node) for node in nodes}
         self.graph = graph
         self.last_index = 1
         self.stack = []
         self.sccs = []
 
 
-class _GraphNodeOrderAlgorithm:
+class _GraphNodeOrderAlgorithm: # pylint: disable=R0903
     __slots__ = 'nodes', 'graph', 'order_f', 'order_b'
 
-    def _get_order(self, v):
-        if self.order_f[v] > 0:
-            return self.order_f[v]
+    def _get_order(self, vertex1):
+        if self.order_f[vertex1] > 0:
+            return self.order_f[vertex1]
 
-        if len(self.graph[v]) == 0:
+        if not self.graph[vertex1]:
             return 1
 
-        return max(self._get_order(w) for w in self.graph[v]) + 1
+        return max(self._get_order(vertex2) for vertex2 in self.graph[vertex1]) + 1
 
     def __init__(self, nodes, graph):
         from collections import defaultdict
@@ -127,16 +126,16 @@ class _GraphNodeOrderAlgorithm:
         return self.order_b
 
 
-class Orchestration:
+class Orchestration: # pylint: disable=R0903
     __slots__ = 'configuration', 'brooms', 'middlewares', 'router', 'workers'
 
-    def _create_object(self, object_factory, object_kwargs):
+    def _create_object(self, object_factory, object_kwargs): # pylint: disable=R0201
         from inspect import _empty
         from inspect import _KEYWORD_ONLY
         from inspect import _POSITIONAL_ONLY
         from inspect import _POSITIONAL_OR_KEYWORD
-        from inspect import _VAR_KEYWORD
-        from inspect import _VAR_POSITIONAL
+        #from inspect import _VAR_KEYWORD
+        #from inspect import _VAR_POSITIONAL
         from inspect import signature
 
         parameters = dict(signature(object_factory).parameters)
@@ -155,10 +154,10 @@ class Orchestration:
                 args.append(value)
             elif desc.kind == _POSITIONAL_OR_KEYWORD:
                 args.append(value)
-            elif desc.kind == _VAR_KEYWORD:
-                pass
-            elif desc.kind == _VAR_POSITIONAL:
-                pass
+            #elif desc.kind == _VAR_KEYWORD:
+            #    pass
+            #elif desc.kind == _VAR_POSITIONAL:
+            #    pass
 
         return object_factory(*args, **kwargs)
 
@@ -220,8 +219,8 @@ class Orchestration:
 
             raise RuntimeError(message)
 
-        graphNodeOrder = _GraphNodeOrderAlgorithm(middleware_class_nodes, middleware_class_graph_b)
-        middleware_class_order = graphNodeOrder.find()
+        graph_node_order = _GraphNodeOrderAlgorithm(middleware_class_nodes, middleware_class_graph_b)
+        middleware_class_order = graph_node_order.find()
 
         self.middlewares = []
 
@@ -257,13 +256,11 @@ class Orchestration:
         for broom in self.brooms:
             for worker_class in broom.worker_classes:
                 if not worker_class in worker_classes:
-                    worker =  self._create_object(worker_class, worker_kwargs)
+                    worker = self._create_object(worker_class, worker_kwargs)
                     self.workers.append(worker)
                     worker_classes.add(worker_class)
 
-    def __init__(self, configuration, middleware_kwargs={}, handler_kwargs={}, static_root='.', worker_kwargs={}):
-        from broomhilda.extras.routes import Router
-
+    def __init__(self, configuration, middleware_kwargs={}, handler_kwargs={}, static_root='.', worker_kwargs={}): # pylint: disable=R0913,W0102
         self.configuration = configuration
         self.brooms = None
         self.middlewares = None

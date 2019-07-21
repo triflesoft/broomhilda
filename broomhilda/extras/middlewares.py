@@ -18,7 +18,7 @@ class RoutingMiddleware:
             autoescape=True)
 
     async def before(self, request, response):
-        if not response._are_headers_sent:
+        if not response._are_headers_sent: # pylint: disable=W0212
             match_result, match_handler, match_parameters = self._router.match(request.path, request.method)
 
             if match_result >= 500:
@@ -31,8 +31,8 @@ class RoutingMiddleware:
                 try:
                     response.status_code = 200
                     await match_handler(request, response, **match_parameters)
-                except:
-                    if not response._are_headers_sent:
+                except: # pylint: disable=W0702
+                    if not response._are_headers_sent: # pylint: disable=W0212
                         response.status_code = 500
                         await self.on_5xx_error(request, response, match_handler)
 
@@ -41,7 +41,7 @@ class RoutingMiddleware:
         pass
 
     async def on_4xx_error(self, request, response):
-        template = self._environment.get_template('error-4xx.html')
+        template = self._environment.get_template('error-4xx.html') # pylint: disable=W0212
         html = await template.render_async({
             'status_code': response.status_code,
             'status_text': response.status_text,

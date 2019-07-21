@@ -1,10 +1,10 @@
 __all__ = ['Configuration']
 
 
-class _ConfigurationFile:
+class _ConfigurationFile: # pylint: disable=R0903
     __slots__ = 'absolute_path', 'relative_path', 'size', 'atime', 'mtime', 'ctime'
 
-    def __init__(self, absolute_path, relative_path, size, atime, mtime, ctime):
+    def __init__(self, absolute_path, relative_path, size, atime, mtime, ctime): # pylint: disable=R0913
         self.absolute_path = absolute_path
         self.relative_path = relative_path
         self.size = size
@@ -29,7 +29,7 @@ class _ConfigurationFile:
         return None
 
 
-class _ConfigurationLayer:
+class _ConfigurationLayer: # pylint: disable=R0903
     def _scan_(self, absolute_path, relative_path):
         from os import scandir
         from os.path import join
@@ -69,7 +69,7 @@ class _ConfigurationLayer:
 
         self.absolute_path = absolute_path
         self.file_entries = []
-        self._scan_(abspath( self.absolute_path), '')
+        self._scan_(abspath(self.absolute_path), '')
 
 
 class Configuration:
@@ -78,7 +78,7 @@ class Configuration:
             for item_key, lower_item in lower_dict.items():
                 upper_item = upper_dict.get(item_key)
 
-                if (type(lower_item) is dict) and (type(upper_item) is dict):
+                if isinstance(lower_item, dict) and isinstance(upper_item, dict):
                     should_reset = False
 
                     for key, value in upper_item.items():
@@ -92,7 +92,7 @@ class Configuration:
                         upper_item_priority = upper_item.get('__priority', upper_dict_priority)
                         lower_item_priority = lower_item.get('__priority', lower_dict_priority)
                         _merge_dict_recursive(upper_item, upper_item_priority, lower_item, lower_item_priority)
-                elif (type(lower_item) is list) and (type(upper_item) is list):
+                elif isinstance(lower_item, list) and isinstance(upper_item, list):
                     if upper_item:
                         if upper_item[0] is None:
                             upper_dict[item_key] = upper_item[1:]
@@ -109,11 +109,11 @@ class Configuration:
 
     def _clear_dict(self):
         def _clear_dict_recursive(dirty_dict):
-            for key in [k for k in dirty_dict.keys() if (type(k) is str) and k.startswith('__')]:
+            for key in [k for k in dirty_dict.keys() if isinstance(k, str) and k.startswith('__')]:
                 del dirty_dict[key]
 
             for key, item in dirty_dict.items():
-                if type(item) is dict:
+                if isinstance(item, dict):
                     _clear_dict_recursive(item)
 
         _clear_dict_recursive(self.data)
@@ -134,7 +134,7 @@ class Configuration:
                 if not file_entry.relative_path in file_skip:
                     file_datum = file_entry.read()
 
-                    if type(file_datum) is dict:
+                    if isinstance(file_datum, dict):
                         file_data[file_entry.relative_path].append(file_datum)
                     else:
                         file_skip.add(file_entry.relative_path)

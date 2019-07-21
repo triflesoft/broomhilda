@@ -1,7 +1,7 @@
 from broomhilda.models.binders.inputs.base import NullableInputBase
 
 
-class FileInput(NullableInputBase):
+class FileInput(NullableInputBase):# pylint: disable=R0903
     def __init__(self, **kwargs):
         super().__init__('inputs_file', 'file', **kwargs)
 
@@ -26,5 +26,5 @@ class FileInput(NullableInputBase):
 
         return {'value': value_result}, {'value': value_errors}
 
-    def _validate_list_filter(self, form_raw_data):
+    def _validate_list_filter(self, form_raw_data): # pylint: disable=R0201,W0613
         return {}, {}

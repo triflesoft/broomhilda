@@ -1,7 +1,7 @@
 from broomhilda.models.binders.inputs.base import NullableInputBase
 
 
-class TextInputBase(NullableInputBase):
+class TextInputBase(NullableInputBase): # pylint: disable=R0903
     def __init__(self, jinja2_module_name, jinja2_macro_name, max_length, **kwargs):
         super().__init__(jinja2_module_name, jinja2_macro_name, **kwargs)
         self.max_length = max_length
@@ -52,31 +52,31 @@ class TextInputBase(NullableInputBase):
         return {'value': value_result}, {'value': value_errors}
 
 
-class EMailInput(TextInputBase):
+class EMailInput(TextInputBase): # pylint: disable=R0903
     def __init__(self, max_length=255, **kwargs):
         super().__init__('inputs_text', 'email', max_length, **kwargs)
 
 
-class HiddenInput(TextInputBase):
+class HiddenInput(TextInputBase): # pylint: disable=R0903
     def __init__(self, max_length=255, **kwargs):
         super().__init__('inputs_text', 'hidden', max_length, **kwargs)
 
 
-class PasswordInput(TextInputBase):
+class PasswordInput(TextInputBase): # pylint: disable=R0903
     def __init__(self, max_length=255, **kwargs):
         super().__init__('inputs_text', 'password', max_length, **kwargs)
 
 
-class SearchInput(TextInputBase):
+class SearchInput(TextInputBase): # pylint: disable=R0903
     def __init__(self, max_length=255, **kwargs):
         super().__init__('inputs_text', 'search', max_length, **kwargs)
 
 
-class TextInput(TextInputBase):
+class TextInput(TextInputBase): # pylint: disable=R0903
     def __init__(self, max_length=255, **kwargs):
         super().__init__('inputs_text', 'text', max_length, **kwargs)
 
 
-class UrlInput(TextInputBase):
+class UrlInput(TextInputBase): # pylint: disable=R0903
     def __init__(self, **kwargs):
         super().__init__('inputs_text', 'url', 8192, **kwargs)

@@ -1,7 +1,7 @@
 from broomhilda.models.binders.inputs.base import NullableInputBase
 
 
-class NumberInput(NullableInputBase):
+class NumberInput(NullableInputBase): # pylint: disable=R0903
     def __init__(self, min_value=0, max_value=100, decimal_places=2, **kwargs):
         super().__init__('inputs_number', 'number', **kwargs)
         self.min_value = min_value

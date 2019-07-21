@@ -9,7 +9,6 @@ from broomhilda.models.binders.inputs.date import TimeInput
 from broomhilda.models.binders.inputs.file import FileInput
 from broomhilda.models.binders.inputs.number import NumberInput
 from broomhilda.models.binders.inputs.text import EMailInput
-from broomhilda.models.binders.inputs.text import EMailInput
 from broomhilda.models.binders.inputs.text import HiddenInput
 from broomhilda.models.binders.inputs.text import PasswordInput
 from broomhilda.models.binders.inputs.text import SearchInput
@@ -28,7 +27,6 @@ __all__ = [
     'FileInput',
     'NumberInput',
     'EMailInput',
-    'EMailInput',
     'HiddenInput',
     'PasswordInput',
     'SearchInput',
@@ -42,59 +40,59 @@ class InputProxy:
     def __getattr__(self, name):
         return getattr(self._input, name)
 
-    def __init__(self, form, input):
+    def __init__(self, form, input_):
         self._form = form
-        self._input = input
+        self._input = input_
 
     def _validate_item_select(self):
-        result, _ = self._input._validate_item_update(self._form._raw_data)
+        result, _ = self._input._validate_item_update(self._form._raw_data) # pylint: disable=W0212
 
-        self._form._result[self._input.name] = result
-        self._form._errors[self._input.name] = {}
+        self._form._result[self._input.name] = result # pylint: disable=W0212
+        self._form._errors[self._input.name] = {} # pylint: disable=W0212
 
     def _validate_item_update(self):
-        result, errors = self._input._validate_item_update(self._form._raw_data)
+        result, errors = self._input._validate_item_update(self._form._raw_data) # pylint: disable=W0212
 
-        self._form._result[self._input.name] = result
-        self._form._errors[self._input.name] = errors
+        self._form._result[self._input.name] = result # pylint: disable=W0212
+        self._form._errors[self._input.name] = errors # pylint: disable=W0212
 
         return len(errors) == 0
 
     def _validate_list_filter(self):
-        result, errors = self._input._validate_list_filter(self._form._raw_data)
+        result, errors = self._input._validate_list_filter(self._form._raw_data) # pylint: disable=W0212
 
-        self._form._result[self._input.name] = result
-        self._form._errors[self._input.name] = errors
+        self._form._result[self._input.name] = result # pylint: disable=W0212
+        self._form._errors[self._input.name] = errors # pylint: disable=W0212
 
         return len(errors) == 0
 
     def is_valid(self, item):
-        return self._form._is_validated and len(self.item_errors(item)) == 0
+        return self._form._is_validated and len(self.item_errors(item)) == 0 # pylint: disable=W0212
 
     def is_invalid(self, item):
-        return self._form._is_validated and len(self.item_errors(item)) > 0
+        return self._form._is_validated and len(self.item_errors(item)) > 0 # pylint: disable=W0212
 
     def item_value(self, item):
-        value = self._form._result.get(self._input.name)
+        value = self._form._result.get(self._input.name) # pylint: disable=W0212
 
         if value is None:
             return None
 
         return value.get(item)
 
-    def item_format(self, item, format=None):
+    def item_format(self, item, item_format=None):
         value = self.item_value(item)
 
         if value is None:
             return ''
 
-        if format is None:
+        if item_format is None:
             return str(value)
 
-        return value.__format__(format)
+        return value.__format__(item_format)
 
     def item_errors(self, item):
-        input_errors = self._form._errors.get(self._input.name, None)
+        input_errors = self._form._errors.get(self._input.name, None) # pylint: disable=W0212
 
         if input_errors is None:
             return []
@@ -102,15 +100,14 @@ class InputProxy:
         return input_errors.get(item, [])
 
 
-class BinderMeta:
+class BinderMeta: # pylint: disable=R0903
     def __init__(self, inputs, *args, **kwargs):
         self.inputs = inputs
 
 
-class BinderBase:
+class BinderBase: # pylint: disable=R0902,R0903
     def __new__(cls, *args, **kwargs):
         from inspect import isclass
-        from broomhilda.models.binders.inputs.base import InputBase
 
         meta_dict = {}
         input_dict = {}
@@ -123,16 +120,16 @@ class BinderBase:
                     if not name.startswith('_'):
                         meta_dict[name] = getattr(meta_class, name)
 
-            for name, input in base.__dict__.items():
+            for name, input_ in base.__dict__.items():
                 if not name.startswith('_'):
-                    if not input.name:
-                        input.name = name
+                    if not input_.name:
+                        input_.name = name
 
-                    if isinstance(input, InputBase):
-                        input_dict[input.name] = input
+                    if isinstance(input_, InputBase):
+                        input_dict[input_.name] = input_
 
         result = super().__new__(cls)
-        result._meta = BinderMeta(list(input_dict.values()), meta_dict)
+        result._meta = BinderMeta(list(input_dict.values()), meta_dict) # pylint: disable=W0212
 
         return result
 
@@ -143,10 +140,11 @@ class BinderBase:
         self._is_valid = False
         self._result = {}
         self._errors = {}
+        self._data = {}
         self._inputs = []
         self._update(kwargs)
 
-        for inp in self._meta.inputs:
+        for inp in self._meta.inputs: # pylint: disable=E1101
             proxy = InputProxy(self, inp)
             self._inputs.append(proxy)
             setattr(self, inp.name, proxy)
@@ -165,8 +163,8 @@ class BinderBase:
         self._data = {}
         self._is_valid = True
 
-        for inp in self._inputs:
-            inp._validate_item_select()
+        for input_ in self._inputs:
+            input_._validate_item_select() # pylint: disable=W0212
 
     def _validate_item_update(self):
         self._is_validated = True
@@ -174,8 +172,8 @@ class BinderBase:
         self._data = {}
         self._is_valid = True
 
-        for inp in self._inputs:
-            if not inp._validate_item_update():
+        for input_ in self._inputs:
+            if not input_._validate_item_update(): # pylint: disable=W0212
                 self._is_valid = False
 
         return self._is_valid
@@ -187,7 +185,7 @@ class BinderBase:
         self._is_valid = True
 
         for inp in self._inputs:
-            if not inp._validate_list_filter():
+            if not inp._validate_list_filter(): # pylint: disable=W0212
                 self._is_valid = False
 
         return self._is_valid

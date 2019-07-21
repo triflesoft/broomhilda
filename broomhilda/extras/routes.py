@@ -23,7 +23,7 @@ class Route:
 
         return f'(?P<{name}>{pattern})'
 
-    def _add_parameter_identifier(self, match):
+    def _add_parameter_identifier(self, match): # pylint: disable=R0201
         pattern = match.group('pattern')
 
         if pattern is None or pattern == '[^/]+':
@@ -35,14 +35,14 @@ class Route:
 
         return f'<{pattern}>'
 
-    def _add_parameter_signature(self, match):
+    def _add_parameter_signature(self, match): # pylint: disable=R0201
         name = match.group('name')
 
         return f'<{name}>'
 
     def __init__(self, path_pattern, method_handlers):
         from inspect import iscoroutinefunction
-        from re import compile
+        from re import compile as re_compile
 
         self.method_handlers = {}
 
@@ -52,11 +52,11 @@ class Route:
 
             self.method_handlers[name] = handler
 
-        url_parameter_pattern = compile(r'<(?P<name>[A-Za-z0-9_]+?)(?:\:(?P<pattern>.+?))?>')
+        url_parameter_pattern = re_compile(r'<(?P<name>[A-Za-z0-9_]+?)(?:\:(?P<pattern>.+?))?>')
 
         self.parameter_converters = {}
         self.path_pattern = path_pattern
-        self.path_regexp = compile(url_parameter_pattern.sub(self._add_parameter_converter, path_pattern))
+        self.path_regexp = re_compile(url_parameter_pattern.sub(self._add_parameter_converter, path_pattern))
         self.identifier = url_parameter_pattern.sub(self._add_parameter_identifier, path_pattern)
         self.signature = url_parameter_pattern.sub(self._add_parameter_signature, path_pattern)
 
@@ -115,18 +115,18 @@ class Router:
     def add(self, path_pattern, handler, method_names=('connect', 'delete', 'get', 'head', 'options', 'patch', 'post', 'put', 'trace')):
         from inspect import isfunction
 
-        if type(method_names) is str:
+        if isinstance(method_names, str):
             method_names = (method_names,)
 
         method_names = frozenset(method_name.lower() for method_name in method_names)
 
-        if type(handler) is Router:
+        if isinstance(handler, Router):
             for route in handler.routes.values():
                 method_handlers = {}
 
-                for name, handler in route.method_handlers.items():
-                    if name in method_names:
-                        method_handlers[name] = handler
+                for method_name, method_handler in route.method_handlers.items():
+                    if method_name in method_names:
+                        method_handlers[method_name] = method_handler
 
                 if path_pattern.endswith('/'):
                     self._add_functions(path_pattern + route.path_pattern.lstrip('/'), method_handlers)

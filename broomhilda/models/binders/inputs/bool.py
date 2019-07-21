@@ -1,11 +1,11 @@
 from broomhilda.models.binders.inputs.base import InputBase
 
 
-class CheckboxInput(InputBase):
+class CheckboxInput(InputBase): # pylint: disable=R0903
     def __init__(self, **kwargs):
         super().__init__('inputs_bool', 'checkbox', **kwargs)
 
-    def _parse_value(self, raw_data, default):
+    def _parse_value(self, raw_data, default): # pylint: disable=R0201
         result = None
         errors = []
 
@@ -17,9 +17,9 @@ class CheckboxInput(InputBase):
             else:
                 raw_data = str(raw_data).lower()
 
-                if raw_data in ('t', 'true',  'on',  'yes', '1', 'checked'):
+                if raw_data in ('t', 'true', 'on', 'yes', '1', 'checked'):
                     result = True
-                elif raw_data in ('f', 'false', 'off', 'no',  '0'):
+                elif raw_data in ('f', 'false', 'off', 'no', '0'):
                     result = False
                 else:
                     result = None
@@ -40,8 +40,8 @@ class CheckboxInput(InputBase):
         default_true = False if default_dict is None else default_dict.get('true', False)
         default_false = False if default_dict is None else default_dict.get('false', False)
 
-        none_result,  none_errors  = self._parse_value(form_raw_data.get(self.name + ':none'),  default_none)
-        true_result,  true_errors  = self._parse_value(form_raw_data.get(self.name + ':true'),  default_true)
+        none_result, none_errors = self._parse_value(form_raw_data.get(self.name + ':none'), default_none)
+        true_result, true_errors = self._parse_value(form_raw_data.get(self.name + ':true'), default_true)
         false_result, false_errors = self._parse_value(form_raw_data.get(self.name + ':false'), default_false)
 
         return {'none': none_result, 'true': true_result, 'false': false_result}, {'none': none_errors, 'true': true_errors, 'false': false_errors}

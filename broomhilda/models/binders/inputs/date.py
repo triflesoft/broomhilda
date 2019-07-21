@@ -5,16 +5,15 @@ from datetime import time
 from broomhilda.models.binders.inputs.base import NullableInputBase
 
 
-class DateInput(NullableInputBase):
+class DateInput(NullableInputBase): # pylint: disable=R0903
     def __init__(
-        self,
-        min_value=date.min,
-        max_value=date.max,
-        date_formats=(
-            '%Y-%m-%d',
-            '%Y/%m/%d'
-        ),
-        **kwargs):
+            self,
+            min_value=date.min,
+            max_value=date.max,
+            date_formats=(
+                '%Y-%m-%d',
+                '%Y/%m/%d'),
+            **kwargs):
         super().__init__('inputs_date', 'date', **kwargs)
         self.min_value = min_value
         self.max_value = max_value
@@ -31,9 +30,9 @@ class DateInput(NullableInputBase):
 
             result = default
         else:
-            for format in self.date_formats:
+            for date_format in self.date_formats:
                 try:
-                    result = datetime.strptime(raw_data, format).date()
+                    result = datetime.strptime(raw_data, date_format).date()
                     break
                 except ValueError:
                     pass
@@ -53,9 +52,9 @@ class DateInput(NullableInputBase):
         if raw_data is None:
             result = default
         else:
-            for format in self.date_formats:
+            for date_format in self.date_formats:
                 try:
-                    result = datetime.strptime(raw_data, format).date()
+                    result = datetime.strptime(raw_data, date_format).date()
                     break
                 except ValueError:
                     pass
@@ -86,21 +85,19 @@ class DateInput(NullableInputBase):
         return {'lower': lower_result, 'upper': upper_result}, {'lower': lower_errors, 'upper': upper_errors}
 
 
-class DateTimeInput(NullableInputBase):
+class DateTimeInput(NullableInputBase): # pylint: disable=R0903
     def __init__(
-        self,
-        min_value=datetime.min,
-        max_value=datetime.max,
-        date_formats=(
-            '%Y-%m-%d',
-            '%Y/%m/%d',
-            '%Y.%m.%d',
-        ),
-        time_formats=(
-            '%H:%M:%S',
-            '%H:%M'
-        ),
-        **kwargs):
+            self,
+            min_value=datetime.min,
+            max_value=datetime.max,
+            date_formats=(
+                '%Y-%m-%d',
+                '%Y/%m/%d',
+                '%Y.%m.%d'),
+            time_formats=(
+                '%H:%M:%S',
+                '%H:%M'),
+            **kwargs):
         super().__init__('inputs_date', 'datetime', **kwargs)
         self.min_value = min_value
         self.max_value = max_value
@@ -119,9 +116,9 @@ class DateTimeInput(NullableInputBase):
 
             result = default
         else:
-            for format in self.date_formats:
+            for date_format in self.date_formats:
                 try:
-                    result_date = datetime.strptime(raw_data_date, format).date()
+                    result_date = datetime.strptime(raw_data_date, date_format).date()
                     break
                 except ValueError:
                     pass
@@ -129,9 +126,9 @@ class DateTimeInput(NullableInputBase):
             if result_date is None:
                 errors.append(f'Invalid value ({raw_data_date}).')
 
-            for format in self.time_formats:
+            for date_format in self.time_formats:
                 try:
-                    result_time = datetime.strptime(raw_data_time, format).time()
+                    result_time = datetime.strptime(raw_data_time, date_format).time()
                     break
                 except ValueError:
                     pass
@@ -155,9 +152,9 @@ class DateTimeInput(NullableInputBase):
         if (raw_data_date is None) or (raw_data_time is None):
             result = default
         else:
-            for format in self.date_formats:
+            for date_format in self.date_formats:
                 try:
-                    result_date = datetime.strptime(raw_data_date, format).date()
+                    result_date = datetime.strptime(raw_data_date, date_format).date()
                     break
                 except ValueError:
                     pass
@@ -165,9 +162,9 @@ class DateTimeInput(NullableInputBase):
             if result_date is None:
                 errors.append(f'Invalid value ({raw_data_date}).')
 
-            for format in self.time_formats:
+            for date_format in self.time_formats:
                 try:
-                    result_time = datetime.strptime(raw_data_time, format).time()
+                    result_time = datetime.strptime(raw_data_time, date_format).time()
                     break
                 except ValueError:
                     pass
@@ -210,16 +207,15 @@ class DateTimeInput(NullableInputBase):
         return {'lower': lower_result, 'upper': upper_result}, {'lower': lower_errors, 'upper': upper_errors}
 
 
-class TimeInput(NullableInputBase):
+class TimeInput(NullableInputBase): # pylint: disable=R0903
     def __init__(
-        self,
-        min_value=time.min,
-        max_value=time.max,
-        time_formats=(
-            '%H:%M:%S',
-            '%H:%M'
-        ),
-        **kwargs):
+            self,
+            min_value=time.min,
+            max_value=time.max,
+            time_formats=(
+                '%H:%M:%S',
+                '%H:%M'),
+            **kwargs):
         super().__init__('inputs_date', 'time', **kwargs)
         self.min_value = min_value
         self.max_value = max_value
@@ -242,9 +238,9 @@ class TimeInput(NullableInputBase):
 
             result = default
         else:
-            for format in self.time_formats:
+            for date_format in self.time_formats:
                 try:
-                    result = datetime.strptime(raw_data, format).time()
+                    result = datetime.strptime(raw_data, date_format).time()
                     break
                 except ValueError:
                     pass
@@ -264,9 +260,9 @@ class TimeInput(NullableInputBase):
         if raw_data is None:
             result = default
         else:
-            for format in self.time_formats:
+            for date_format in self.time_formats:
                 try:
-                    result = datetime.strptime(raw_data, format).time()
+                    result = datetime.strptime(raw_data, date_format).time()
                     break
                 except ValueError:
                     pass

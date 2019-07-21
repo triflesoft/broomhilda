@@ -1,7 +1,7 @@
 from broomhilda.models.binders.inputs.base import NullableInputBase
 
 
-class ChoiceInputBase(NullableInputBase):
+class ChoiceInputBase(NullableInputBase): # pylint: disable=R0903
     def __init__(self, jinja2_module_name, jinja2_macro_name, **kwargs):
         super().__init__(jinja2_module_name, jinja2_macro_name, **kwargs)
 
@@ -70,12 +70,12 @@ class ChoiceInputBase(NullableInputBase):
         return result, errors
 
 
-class RadioInput(ChoiceInputBase):
+class RadioInput(ChoiceInputBase): # pylint: disable=R0903
     def __init__(self, **kwargs):
         super().__init__('inputs_choice', 'radio', **kwargs)
 
 
-class SelectInput(ChoiceInputBase):
+class SelectInput(ChoiceInputBase): # pylint: disable=R0903
     def __init__(self, size=1, **kwargs):
         super().__init__('inputs_choice', 'select', **kwargs)
         self.size = size
