@@ -16,6 +16,7 @@ class AuthorizationHeader:
 
     def __init__(self, type, credentials, value):
         from base64 import standard_b64decode
+        from binascii import Error as BinAsciiError
 
         self.type = type
         self.credentials = credentials
@@ -25,7 +26,7 @@ class AuthorizationHeader:
             try:
                 userinfo = standard_b64decode(self.credentials)
                 self.username, self.password = userinfo.split(':', 1)
-            except:
+            except BinAsciiError:
                 pass
         elif self.type == 'bearer':
             self.token = self.credentials

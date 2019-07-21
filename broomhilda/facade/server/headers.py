@@ -14,6 +14,7 @@ class ServerRequestHeaders(RequestHeadersBase):
 
     def _post_process(self, request):
         from base64 import standard_b64decode
+        from binascii import Error as BinAsciiError
         from email.utils import parsedate_to_datetime
         from broomhilda.facade.shared.headers import AuthorizationHeader
         from broomhilda.facade.shared.headers import ContentTypeHeader
@@ -47,7 +48,7 @@ class ServerRequestHeaders(RequestHeadersBase):
         if content_md5_value:
             try:
                 self.content_md5 = standard_b64decode(content_md5_value)
-            except:
+            except BinAsciiError:
                 pass
 
         # Content-Type

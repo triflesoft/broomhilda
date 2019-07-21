@@ -1,7 +1,7 @@
 from broomhilda.models.binders.widgets.base import NullableWidgetBase
 
 
-class TextWidgetBase(NullableWidgetBase): # pylint: disable=R0903
+class TextWidgetBase(NullableWidgetBase):  # pylint: disable=R0903
     def __init__(self, jinja2_module_name, jinja2_macro_name, max_length, **kwargs):
         super().__init__(jinja2_module_name, jinja2_macro_name, **kwargs)
         self.max_length = max_length
@@ -52,31 +52,31 @@ class TextWidgetBase(NullableWidgetBase): # pylint: disable=R0903
         return {'value': value_result}, {'value': value_errors}
 
 
-class EMailWidget(TextWidgetBase): # pylint: disable=R0903
+class EMailWidget(TextWidgetBase):  # pylint: disable=R0903
     def __init__(self, max_length=255, **kwargs):
         super().__init__('widgets_text', 'email', max_length, **kwargs)
 
 
-class HiddenWidget(TextWidgetBase): # pylint: disable=R0903
+class HiddenWidget(TextWidgetBase):  # pylint: disable=R0903
     def __init__(self, max_length=255, **kwargs):
         super().__init__('widgets_text', 'hidden', max_length, **kwargs)
 
 
-class PasswordWidget(TextWidgetBase): # pylint: disable=R0903
+class PasswordWidget(TextWidgetBase):  # pylint: disable=R0903
     def __init__(self, max_length=255, **kwargs):
         super().__init__('widgets_text', 'password', max_length, **kwargs)
 
 
-class SearchWidget(TextWidgetBase): # pylint: disable=R0903
+class SearchWidget(TextWidgetBase):  # pylint: disable=R0903
     def __init__(self, max_length=255, **kwargs):
         super().__init__('widgets_text', 'search', max_length, **kwargs)
 
 
-class TextWidget(TextWidgetBase): # pylint: disable=R0903
+class TextWidget(TextWidgetBase):  # pylint: disable=R0903
     def __init__(self, max_length=255, **kwargs):
         super().__init__('widgets_text', 'text', max_length, **kwargs)
 
 
-class UrlWidget(TextWidgetBase): # pylint: disable=R0903
+class UrlWidget(TextWidgetBase):  # pylint: disable=R0903
     def __init__(self, **kwargs):
         super().__init__('widgets_text', 'url', 8192, **kwargs)

@@ -1,10 +1,10 @@
 __all__ = ['Configuration']
 
 
-class _ConfigurationFile: # pylint: disable=R0903
+class _ConfigurationFile:  # pylint: disable=R0903
     __slots__ = 'absolute_path', 'relative_path', 'size', 'atime', 'mtime', 'ctime'
 
-    def __init__(self, absolute_path, relative_path, size, atime, mtime, ctime): # pylint: disable=R0913
+    def __init__(self, absolute_path, relative_path, size, atime, mtime, ctime):  # pylint: disable=R0913
         self.absolute_path = absolute_path
         self.relative_path = relative_path
         self.size = size
@@ -29,7 +29,7 @@ class _ConfigurationFile: # pylint: disable=R0903
         return None
 
 
-class _ConfigurationLayer: # pylint: disable=R0903
+class _ConfigurationLayer:  # pylint: disable=R0903
     def _scan_(self, absolute_path, relative_path):
         from os import scandir
         from os.path import join
@@ -102,7 +102,7 @@ class Configuration:
                     if upper_dict_priority < lower_dict_priority:
                         upper_dict[item_key] = lower_item
                     else:
-                        if not item_key in upper_dict:
+                        if item_key not in upper_dict:
                             upper_dict[item_key] = lower_item
 
         _merge_dict_recursive(self.data, 0, lower_dict, 0)
@@ -131,7 +131,7 @@ class Configuration:
 
         for layer in reversed(layers):
             for file_entry in layer.file_entries:
-                if not file_entry.relative_path in file_skip:
+                if file_entry.relative_path not in file_skip:
                     file_datum = file_entry.read()
 
                     if isinstance(file_datum, dict):

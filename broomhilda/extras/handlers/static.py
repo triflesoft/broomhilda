@@ -1,12 +1,12 @@
-class StaticHandler: # pylint: disable=R0903
-    def __init__(self, base_path, index=True, single_chunk_limit=64*1024):
+class StaticHandler:  # pylint: disable=R0903
+    def __init__(self, base_path, index=True, single_chunk_limit=64 * 1024):
         from os.path import abspath
 
         self._base_path = abspath(base_path)
         self._index = index
         self._single_chunk_limit = single_chunk_limit
 
-    async def get(self, request, response, path): # pylint: disable=R0914,W0613
+    async def get(self, request, response, path):  # pylint: disable=R0914,W0613
         from datetime import datetime
         from mimetypes import guess_type
         from os import scandir

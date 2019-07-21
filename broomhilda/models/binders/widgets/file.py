@@ -1,7 +1,7 @@
 from broomhilda.models.binders.widgets.base import NullableWidgetBase
 
 
-class FileWidget(NullableWidgetBase):# pylint: disable=R0903
+class FileWidget(NullableWidgetBase):  # pylint: disable=R0903
     def __init__(self, **kwargs):
         super().__init__('widgets_file', 'file', **kwargs)
 
@@ -26,5 +26,5 @@ class FileWidget(NullableWidgetBase):# pylint: disable=R0903
 
         return {'value': value_result}, {'value': value_errors}
 
-    def _validate_list_filter(self, form_raw_data): # pylint: disable=R0201,W0613
+    def _validate_list_filter(self, form_raw_data):  # pylint: disable=R0201,W0613
         return {}, {}

@@ -2,7 +2,7 @@ class ServerRequestBodyStream:
     def __init__(self, request):
         self.request = request
 
-    async def read(self, max_length=64*1024):
+    async def read(self, max_length=64 * 1024):
         return await self.request._read_body(max_length)
 
     async def readall(self):
@@ -117,7 +117,7 @@ class ServerRequest:
 
         return True
 
-    async def _read_body(self, max_length=64*1024):
+    async def _read_body(self, max_length=64 * 1024):
         while (not self._is_body_complete) or (len(self._body_buffer) > 0):
             chunk_length = min(max_length, self._body_length - (self._body_position + len(self._body_buffer)))
             data = await self._connection.read_request(chunk_length)
@@ -241,7 +241,7 @@ class ServerRequest:
                         name = params.get('name')
 
                         if name:
-                            payload =  part.get_payload(decode=True)
+                            payload = part.get_payload(decode=True)
 
                             if payload:
                                 if part.get_content_type() == 'application/form-data':

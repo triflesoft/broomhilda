@@ -1,5 +1,5 @@
-class WidgetBase: # pylint: disable=R0902,R0903
-    def __init__( # pylint: disable=R0913,R0914,W0102
+class WidgetBase:  # pylint: disable=R0902,R0903
+    def __init__(  # pylint: disable=R0913,R0914,W0102
             self,
             jinja2_module_name,
             jinja2_macro_name,
@@ -37,8 +37,8 @@ class WidgetBase: # pylint: disable=R0902,R0903
         self._max_filter_length = 256
 
 
-class NullableWidgetBase(WidgetBase): # pylint: disable=R0903
-    def __init__( # pylint: disable=R0913
+class NullableWidgetBase(WidgetBase):  # pylint: disable=R0903
+    def __init__(  # pylint: disable=R0913
             self,
             jinja2_module_name,
             jinja2_macro_name,

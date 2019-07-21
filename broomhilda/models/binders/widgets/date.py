@@ -5,7 +5,7 @@ from datetime import time
 from broomhilda.models.binders.widgets.base import NullableWidgetBase
 
 
-class DateWidget(NullableWidgetBase): # pylint: disable=R0903
+class DateWidget(NullableWidgetBase):  # pylint: disable=R0903
     def __init__(
             self,
             min_value=date.min,
@@ -85,7 +85,7 @@ class DateWidget(NullableWidgetBase): # pylint: disable=R0903
         return {'lower': lower_result, 'upper': upper_result}, {'lower': lower_errors, 'upper': upper_errors}
 
 
-class DateTimeWidget(NullableWidgetBase): # pylint: disable=R0903
+class DateTimeWidget(NullableWidgetBase):  # pylint: disable=R0903
     def __init__(
             self,
             min_value=datetime.min,
@@ -207,7 +207,7 @@ class DateTimeWidget(NullableWidgetBase): # pylint: disable=R0903
         return {'lower': lower_result, 'upper': upper_result}, {'lower': lower_errors, 'upper': upper_errors}
 
 
-class TimeWidget(NullableWidgetBase): # pylint: disable=R0903
+class TimeWidget(NullableWidgetBase):  # pylint: disable=R0903
     def __init__(
             self,
             min_value=time.min,

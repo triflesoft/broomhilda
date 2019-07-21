@@ -6,7 +6,7 @@ __all__ = ['jinja2_template', 'Jinja2HandlerBase']
 
 def jinja2_template(template_name):
     def jinja2_template_inner(function):
-        function._template_name = template_name # pylint: disable=W0212
+        function._template_name = template_name  # pylint: disable=W0212
 
         return function
 
@@ -18,7 +18,6 @@ def get_builtin_jinja2_loader():
     from os.path import dirname
     from os.path import join
     from os.path import abspath
-
 
     return FileSystemLoader(abspath(join(dirname(__file__), './../../styles/')))
 
@@ -38,10 +37,10 @@ def render_macro(context, obj, module_name, macro_name, *args):
     return macro(obj, *args)
 
 
-class Jinja2HandlerBase: # pylint: disable=R0903
+class Jinja2HandlerBase:  # pylint: disable=R0903
     def _get_wrapper(self, original_function):
         async def wrapper(request, response, *args, **kwargs):
-            template = self._environment.get_template(original_function._template_name) # pylint: disable=W0212
+            template = self._environment.get_template(original_function._template_name)  # pylint: disable=W0212
             result = await original_function(request, response, *args, **kwargs)
             html = await template.render_async(result)
 

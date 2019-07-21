@@ -45,35 +45,35 @@ class WidgetProxy:
         self._widget = widget
 
     def _validate_item_select(self):
-        result, _ = self._widget._validate_item_update(self._form._raw_data) # pylint: disable=W0212
+        result, _ = self._widget._validate_item_update(self._form._raw_data)  # pylint: disable=W0212
 
-        self._form._result[self._widget.name] = result # pylint: disable=W0212
-        self._form._errors[self._widget.name] = {} # pylint: disable=W0212
+        self._form._result[self._widget.name] = result  # pylint: disable=W0212
+        self._form._errors[self._widget.name] = {}  # pylint: disable=W0212
 
     def _validate_item_update(self):
-        result, errors = self._widget._validate_item_update(self._form._raw_data) # pylint: disable=W0212
+        result, errors = self._widget._validate_item_update(self._form._raw_data)  # pylint: disable=W0212
 
-        self._form._result[self._widget.name] = result # pylint: disable=W0212
-        self._form._errors[self._widget.name] = errors # pylint: disable=W0212
+        self._form._result[self._widget.name] = result  # pylint: disable=W0212
+        self._form._errors[self._widget.name] = errors  # pylint: disable=W0212
 
         return len(errors) == 0
 
     def _validate_list_filter(self):
-        result, errors = self._widget._validate_list_filter(self._form._raw_data) # pylint: disable=W0212
+        result, errors = self._widget._validate_list_filter(self._form._raw_data)  # pylint: disable=W0212
 
-        self._form._result[self._widget.name] = result # pylint: disable=W0212
-        self._form._errors[self._widget.name] = errors # pylint: disable=W0212
+        self._form._result[self._widget.name] = result  # pylint: disable=W0212
+        self._form._errors[self._widget.name] = errors  # pylint: disable=W0212
 
         return len(errors) == 0
 
     def is_valid(self, item):
-        return self._form._is_validated and len(self.item_errors(item)) == 0 # pylint: disable=W0212
+        return self._form._is_validated and len(self.item_errors(item)) == 0  # pylint: disable=W0212
 
     def is_invalid(self, item):
-        return self._form._is_validated and len(self.item_errors(item)) > 0 # pylint: disable=W0212
+        return self._form._is_validated and len(self.item_errors(item)) > 0  # pylint: disable=W0212
 
     def item_value(self, item):
-        value = self._form._result.get(self._widget.name) # pylint: disable=W0212
+        value = self._form._result.get(self._widget.name)  # pylint: disable=W0212
 
         if value is None:
             return None
@@ -92,7 +92,7 @@ class WidgetProxy:
         return value.__format__(item_format)
 
     def item_errors(self, item):
-        widget_errors = self._form._errors.get(self._widget.name, None) # pylint: disable=W0212
+        widget_errors = self._form._errors.get(self._widget.name, None)  # pylint: disable=W0212
 
         if widget_errors is None:
             return []
@@ -100,12 +100,12 @@ class WidgetProxy:
         return widget_errors.get(item, [])
 
 
-class BinderMeta: # pylint: disable=R0903
+class BinderMeta:  # pylint: disable=R0903
     def __init__(self, widgets, *args, **kwargs):
         self.widgets = widgets
 
 
-class BinderBase: # pylint: disable=R0902,R0903
+class BinderBase:  # pylint: disable=R0902,R0903
     def __new__(cls, *args, **kwargs):
         from inspect import isclass
 
@@ -129,7 +129,7 @@ class BinderBase: # pylint: disable=R0902,R0903
                         widget_dict[widget.name] = widget
 
         result = super().__new__(cls)
-        result._meta = BinderMeta(list(widget_dict.values()), meta_dict) # pylint: disable=W0212
+        result._meta = BinderMeta(list(widget_dict.values()), meta_dict)  # pylint: disable=W0212
 
         return result
 
@@ -144,7 +144,7 @@ class BinderBase: # pylint: disable=R0902,R0903
         self._widgets = []
         self._update(kwargs)
 
-        for widget in self._meta.widgets: # pylint: disable=E1101
+        for widget in self._meta.widgets:  # pylint: disable=E1101
             proxy = WidgetProxy(self, widget)
             self._widgets.append(proxy)
             setattr(self, widget.name, proxy)
@@ -164,7 +164,7 @@ class BinderBase: # pylint: disable=R0902,R0903
         self._is_valid = True
 
         for widget in self._widgets:
-            widget._validate_item_select() # pylint: disable=W0212
+            widget._validate_item_select()  # pylint: disable=W0212
 
     def _validate_item_update(self):
         self._is_validated = True
@@ -173,7 +173,7 @@ class BinderBase: # pylint: disable=R0902,R0903
         self._is_valid = True
 
         for widget in self._widgets:
-            if not widget._validate_item_update(): # pylint: disable=W0212
+            if not widget._validate_item_update():  # pylint: disable=W0212
                 self._is_valid = False
 
         return self._is_valid
@@ -185,7 +185,7 @@ class BinderBase: # pylint: disable=R0902,R0903
         self._is_valid = True
 
         for widget in self._widgets:
-            if not widget._validate_list_filter(): # pylint: disable=W0212
+            if not widget._validate_list_filter():  # pylint: disable=W0212
                 self._is_valid = False
 
         return self._is_valid

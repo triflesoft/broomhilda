@@ -1,7 +1,7 @@
 __all__ = ['Orchestration']
 
 
-class Broom: # pylint: disable=R0903
+class Broom:  # pylint: disable=R0903
     __slots__ = 'name', 'module', 'middleware_classes', 'prefix', 'handler_classes', 'statics', 'worker_classes'
 
     def _import_identifier(self, name):
@@ -42,7 +42,7 @@ class Broom: # pylint: disable=R0903
             self.worker_classes.append(self._import_identifier(worker_class_name))
 
 
-class _TarjanStronglyConnectedComponentsNode: # pylint: disable=R0903
+class _TarjanStronglyConnectedComponentsNode:  # pylint: disable=R0903
     __slots__ = 'data', 'index', 'lowlink', 'onstack'
 
     def __init__(self, data):
@@ -52,7 +52,7 @@ class _TarjanStronglyConnectedComponentsNode: # pylint: disable=R0903
         self.onstack = False
 
 
-class _TarjanStronglyConnectedComponentsAlgorithm: # pylint: disable=R0903
+class _TarjanStronglyConnectedComponentsAlgorithm:  # pylint: disable=R0903
     __slots__ = 'nodes', 'graph', 'last_index', 'stack', 'sccs'
 
     def _find(self, vertex1):
@@ -97,7 +97,7 @@ class _TarjanStronglyConnectedComponentsAlgorithm: # pylint: disable=R0903
         self.sccs = []
 
 
-class _GraphNodeOrderAlgorithm: # pylint: disable=R0903
+class _GraphNodeOrderAlgorithm:  # pylint: disable=R0903
     __slots__ = 'nodes', 'graph', 'order_f', 'order_b'
 
     def _get_order(self, vertex1):
@@ -126,16 +126,16 @@ class _GraphNodeOrderAlgorithm: # pylint: disable=R0903
         return self.order_b
 
 
-class Orchestration: # pylint: disable=R0903
+class Orchestration:  # pylint: disable=R0903
     __slots__ = 'configuration', 'brooms', 'middlewares', 'router', 'workers'
 
-    def _create_object(self, object_factory, object_kwargs): # pylint: disable=R0201
+    def _create_object(self, object_factory, object_kwargs):  # pylint: disable=R0201
         from inspect import _empty
         from inspect import _KEYWORD_ONLY
         from inspect import _POSITIONAL_ONLY
         from inspect import _POSITIONAL_OR_KEYWORD
-        #from inspect import _VAR_KEYWORD
-        #from inspect import _VAR_POSITIONAL
+        # from inspect import _VAR_KEYWORD
+        # from inspect import _VAR_POSITIONAL
         from inspect import signature
 
         parameters = dict(signature(object_factory).parameters)
@@ -154,10 +154,10 @@ class Orchestration: # pylint: disable=R0903
                 args.append(value)
             elif desc.kind == _POSITIONAL_OR_KEYWORD:
                 args.append(value)
-            #elif desc.kind == _VAR_KEYWORD:
-            #    pass
-            #elif desc.kind == _VAR_POSITIONAL:
-            #    pass
+            # elif desc.kind == _VAR_KEYWORD:
+            #     pass
+            # elif desc.kind == _VAR_POSITIONAL:
+            #     pass
 
         return object_factory(*args, **kwargs)
 
@@ -255,12 +255,12 @@ class Orchestration: # pylint: disable=R0903
 
         for broom in self.brooms:
             for worker_class in broom.worker_classes:
-                if not worker_class in worker_classes:
+                if worker_class not in worker_classes:
                     worker = self._create_object(worker_class, worker_kwargs)
                     self.workers.append(worker)
                     worker_classes.add(worker_class)
 
-    def __init__(self, configuration, middleware_kwargs={}, handler_kwargs={}, static_root='.', worker_kwargs={}): # pylint: disable=R0913,W0102
+    def __init__(self, configuration, middleware_kwargs={}, handler_kwargs={}, static_root='.', worker_kwargs={}):  # pylint: disable=R0913,W0102
         self.configuration = configuration
         self.brooms = None
         self.middlewares = None

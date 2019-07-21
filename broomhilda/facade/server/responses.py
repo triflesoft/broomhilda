@@ -64,7 +64,7 @@ STATUS_DATA = {
 }
 
 
-STATUS_TEXT = { code: data.decode('ascii') for code, data in STATUS_DATA.items() }
+STATUS_TEXT = {code: data.decode('ascii') for code, data in STATUS_DATA.items()}
 
 
 class ServerResponseBodyStream:
@@ -163,13 +163,13 @@ class ServerResponse:
         await self._send_body(data)
 
     async def send_text(self, text):
-        if not 'Content-Type' in self.headers:
+        if 'Content-Type' not in self.headers:
             self.headers['Content-Type'] = 'text/plain; charset=utf-8'
 
         await self.send_body(text.encode('utf-8'))
 
     async def send_html(self, text):
-        if not 'Content-Type' in self.headers:
+        if 'Content-Type' not in self.headers:
             self.headers['Content-Type'] = 'text/html; charset=utf-8'
 
         await self.send_body(text.encode('utf-8'))
@@ -177,7 +177,7 @@ class ServerResponse:
     async def send_json(self, json, *args, **kwargs):
         from json import dumps
 
-        if not 'Content-Type' in self.headers:
+        if 'Content-Type' not in self.headers:
             self.headers['Content-Type'] = 'application/json; charset=utf-8'
 
         await self.send_text(dumps(json, *args, **kwargs))

@@ -1,11 +1,11 @@
 from broomhilda.models.binders.widgets.base import WidgetBase
 
 
-class CheckboxWidget(WidgetBase): # pylint: disable=R0903
+class CheckboxWidget(WidgetBase):  # pylint: disable=R0903
     def __init__(self, **kwargs):
         super().__init__('widgets_bool', 'checkbox', **kwargs)
 
-    def _parse_value(self, raw_data, default): # pylint: disable=R0201
+    def _parse_value(self, raw_data, default):  # pylint: disable=R0201
         result = None
         errors = []
 

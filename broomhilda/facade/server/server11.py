@@ -84,12 +84,12 @@ class Server11:
             finally:
                 try:
                     await tcp_server_socket.shutdown()
-                except:
+                except OSError:
                     pass
 
                 await tcp_server_socket.close()
         except:
-            pass # TODO log errors
+            pass  # TODO log errors
 
     async def _server_listener(self, host, port):
         from broomio import Nursery

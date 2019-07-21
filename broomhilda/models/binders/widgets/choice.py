@@ -1,7 +1,7 @@
 from broomhilda.models.binders.widgets.base import NullableWidgetBase
 
 
-class ChoiceWidgetBase(NullableWidgetBase): # pylint: disable=R0903
+class ChoiceWidgetBase(NullableWidgetBase):  # pylint: disable=R0903
     def __init__(self, jinja2_module_name, jinja2_macro_name, **kwargs):
         super().__init__(jinja2_module_name, jinja2_macro_name, **kwargs)
 
@@ -72,12 +72,12 @@ class ChoiceWidgetBase(NullableWidgetBase): # pylint: disable=R0903
         return result, errors
 
 
-class RadioWidget(ChoiceWidgetBase): # pylint: disable=R0903
+class RadioWidget(ChoiceWidgetBase):  # pylint: disable=R0903
     def __init__(self, **kwargs):
         super().__init__('widgets_choice', 'radio', **kwargs)
 
 
-class SelectWidget(ChoiceWidgetBase): # pylint: disable=R0903
+class SelectWidget(ChoiceWidgetBase):  # pylint: disable=R0903
     def __init__(self, size=1, **kwargs):
         super().__init__('widgets_choice', 'select', **kwargs)
         self.size = size

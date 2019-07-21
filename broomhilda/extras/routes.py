@@ -23,7 +23,7 @@ class Route:
 
         return f'(?P<{name}>{pattern})'
 
-    def _add_parameter_identifier(self, match): # pylint: disable=R0201
+    def _add_parameter_identifier(self, match):  # pylint: disable=R0201
         pattern = match.group('pattern')
 
         if pattern is None or pattern == '[^/]+':
@@ -35,7 +35,7 @@ class Route:
 
         return f'<{pattern}>'
 
-    def _add_parameter_signature(self, match): # pylint: disable=R0201
+    def _add_parameter_signature(self, match):  # pylint: disable=R0201
         name = match.group('name')
 
         return f'<{name}>'
