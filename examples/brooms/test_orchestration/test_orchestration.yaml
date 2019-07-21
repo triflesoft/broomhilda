@@ -4,39 +4,31 @@ brooms:
       - .middlewares.Middleware1
       - .middlewares.Middleware2
     routes:
-      prefixes:
-        - /x
+      prefix: /x
       handlers:
         a/:          .handlers.HandlerA
         b/<id:int>/: .handlers.HandlerB
-      static:
+      statics:
         static/: static/
     workers:
-      prepare:
-        - .tasks.TaskA
-      cleanup:
-        - .tasks.TaskB
-      process:
-        - .tasks.TaskC
+      - .workers.worker_a
+      - .workers.worker_b
+      - .workers.worker_c
   brooms.broom2:
     middlewares:
       - .middlewares.Middleware2
       - .middlewares.Middleware1
     routes:
-      prefixes:
-        - /y
+      prefix: /y
       handlers:
         a/:          .handlers.HandlerC
         b/<id:int>/: .handlers.HandlerD
       static:
         static/: static/
     workers:
-      prepare:
-        - .tasks.TaskD
-      cleanup:
-        - .tasks.TaskE
-      process:
-        - .tasks.TaskF
+      - .workers.worker_d
+      - .workers.worker_e
+      - .workers.worker_f
 
 endpoint:
   host: localhost

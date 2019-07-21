@@ -1,4 +1,9 @@
+__all__ = ['Orchestration']
+
+
 class Broom:
+    __slots__ = 'name', 'module', 'middleware_classes', 'prefix', 'handler_classes', 'statics', 'worker_classes'
+
     def _import_identifier(self, name):
         from importlib import import_module
 
@@ -11,6 +16,7 @@ class Broom:
             return getattr(self.module, name)
 
     def __init__(self, root_package, name, configuration):
+        from collections import defaultdict
         from importlib import import_module
         from os.path import abspath
 
@@ -18,12 +24,23 @@ class Broom:
         self.module = import_module(self.name, package=root_package)
         self.middleware_classes = []
 
-        for middleware_name in configuration.get('middlewares', []):
-            self.middleware_classes.append(self._import_identifier(middleware_name))
+        for middleware_class in configuration.get('middlewares', []):
+            self.middleware_classes.append(self._import_identifier(middleware_class))
 
-        """
-        self.routes = configuration.get('routes', {})
-        self.tasks = configuration.get('tasks', {})"""
+        routes_configuration = configuration.get('routes', {})
+
+        self.prefix = routes_configuration.get('prefix', '')
+        self.handler_classes = defaultdict(list)
+
+        for handler_path, handler_class in routes_configuration.get('handlers', {}).items():
+            self.handler_classes[self._import_identifier(handler_class)].append(handler_path)
+
+        self.statics = routes_configuration.get('statics', {})
+
+        self.worker_classes = []
+
+        for worker_class_name in configuration.get('workers', []):
+            self.worker_classes.append(self._import_identifier(worker_class_name))
 
 
 class _TarjanStronglyConnectedComponentsNode:
@@ -37,12 +54,7 @@ class _TarjanStronglyConnectedComponentsNode:
 
 
 class _TarjanStronglyConnectedComponentsAlgorithm:
-    def __init__(self, nodes, graph):
-        self.nodes = { node: _TarjanStronglyConnectedComponentsNode(node) for node in nodes }
-        self.graph = graph
-        self.last_index = 1
-        self.stack = []
-        self.sccs = []
+    __slots__ = 'nodes', 'graph', 'last_index', 'stack', 'sccs'
 
     def _find(self, v):
         v.index = self.last_index
@@ -78,8 +90,17 @@ class _TarjanStronglyConnectedComponentsAlgorithm:
 
         return self.sccs
 
+    def __init__(self, nodes, graph):
+        self.nodes = { node: _TarjanStronglyConnectedComponentsNode(node) for node in nodes }
+        self.graph = graph
+        self.last_index = 1
+        self.stack = []
+        self.sccs = []
+
 
 class _GraphNodeOrderAlgorithm:
+    __slots__ = 'nodes', 'graph', 'order_f', 'order_b'
+
     def _get_order(self, v):
         if self.order_f[v] > 0:
             return self.order_f[v]
@@ -107,6 +128,40 @@ class _GraphNodeOrderAlgorithm:
 
 
 class Orchestration:
+    __slots__ = 'configuration', 'brooms', 'middlewares', 'router', 'workers'
+
+    def _create_object(self, object_factory, object_kwargs):
+        from inspect import _empty
+        from inspect import _KEYWORD_ONLY
+        from inspect import _POSITIONAL_ONLY
+        from inspect import _POSITIONAL_OR_KEYWORD
+        from inspect import _VAR_KEYWORD
+        from inspect import _VAR_POSITIONAL
+        from inspect import signature
+
+        parameters = dict(signature(object_factory).parameters)
+        args = []
+        kwargs = {}
+
+        for name, desc in parameters.items():
+            value = object_kwargs.get(name)
+
+            if (value is None) and (desc.default != _empty):
+                value = desc.default
+
+            if desc.kind == _KEYWORD_ONLY:
+                kwargs[name] = value
+            elif desc.kind == _POSITIONAL_ONLY:
+                args.append(value)
+            elif desc.kind == _POSITIONAL_OR_KEYWORD:
+                args.append(value)
+            elif desc.kind == _VAR_KEYWORD:
+                pass
+            elif desc.kind == _VAR_POSITIONAL:
+                pass
+
+        return object_factory(*args, **kwargs)
+
     def _init_brooms(self):
         def _get_root__package_name():
             from traceback import extract_stack
@@ -122,6 +177,8 @@ class Orchestration:
 
         root_package_name = _get_root__package_name()
         broom_confs = self.configuration.get('brooms', {})
+
+        self.brooms = []
 
         for broom_name, broom_conf in broom_confs.items():
             self.brooms.append(Broom(root_package_name, broom_name, broom_conf))
@@ -152,39 +209,6 @@ class Orchestration:
 
             return nodes, graph_f, graph_b
 
-        def _create_middleware(middleware_class, middleware_kwargs):
-            from inspect import _empty
-            from inspect import _KEYWORD_ONLY
-            from inspect import _POSITIONAL_ONLY
-            from inspect import _POSITIONAL_OR_KEYWORD
-            from inspect import _VAR_KEYWORD
-            from inspect import _VAR_POSITIONAL
-            from inspect import signature
-
-            parameters = dict(signature(middleware_class).parameters)
-            args = []
-            kwargs = {}
-
-            for name, desc in parameters.items():
-                value = middleware_kwargs.get(name)
-
-                if (value is None) and (desc.default != _empty):
-                    value = desc.default
-
-                if desc.kind == _KEYWORD_ONLY:
-                    kwargs[name] = value
-                elif desc.kind == _POSITIONAL_ONLY:
-                    args.append(value)
-                elif desc.kind == _POSITIONAL_OR_KEYWORD:
-                    args.append(value)
-                elif desc.kind == _VAR_KEYWORD:
-                    pass
-                elif desc.kind == _VAR_POSITIONAL:
-                    pass
-
-            return middleware_class(*args, **kwargs)
-
-
         middleware_class_nodes, middleware_class_graph_f, middleware_class_graph_b = _build_graph(self.brooms)
         tarjan = _TarjanStronglyConnectedComponentsAlgorithm(middleware_class_nodes, middleware_class_graph_f)
         sccs = tarjan.find()
@@ -199,13 +223,53 @@ class Orchestration:
         graphNodeOrder = _GraphNodeOrderAlgorithm(middleware_class_nodes, middleware_class_graph_b)
         middleware_class_order = graphNodeOrder.find()
 
+        self.middlewares = []
+
         for middleware_classes in middleware_class_order.values():
             for middleware_class in middleware_classes:
-                self.middlewares.append(_create_middleware(middleware_class, middleware_kwargs))
+                self.middlewares.append(self._create_object(middleware_class, middleware_kwargs))
 
-    def __init__(self, configuration, middleware_kwargs={}, handler_kwargs={}):
+    def _init_routes(self, handler_kwargs, static_root):
+        from broomhilda.extras.handlers.static import StaticHandler
+        from broomhilda.extras.middlewares import RoutingMiddleware
+        from broomhilda.extras.routes import Router
+        from os.path import join
+
+        self.router = Router()
+
+        for broom in self.brooms:
+            for handler_class, handler_paths in broom.handler_classes.items():
+                handler = self._create_object(handler_class, handler_kwargs)
+
+                for handler_path in handler_paths:
+                    self.router.add(broom.prefix + handler_path, handler)
+
+            for url_prefix, path_prefix in broom.statics.items():
+                self.router.add(broom.prefix + url_prefix, StaticHandler(join(static_root, path_prefix)))
+
+        self.middlewares.append(RoutingMiddleware(self.router))
+
+    def _init_workers(self, worker_kwargs):
+        worker_classes = set()
+
+        self.workers = []
+
+        for broom in self.brooms:
+            for worker_class in broom.worker_classes:
+                if not worker_class in worker_classes:
+                    worker =  self._create_object(worker_class, worker_kwargs)
+                    self.workers.append(worker)
+                    worker_classes.add(worker_class)
+
+    def __init__(self, configuration, middleware_kwargs={}, handler_kwargs={}, static_root='.', worker_kwargs={}):
+        from broomhilda.extras.routes import Router
+
         self.configuration = configuration
-        self.brooms = []
-        self.middlewares = []
+        self.brooms = None
+        self.middlewares = None
+        self.router = None
+        self.workers = None
         self._init_brooms()
         self._init_middlewares(middleware_kwargs)
+        self._init_routes(handler_kwargs, static_root)
+        self._init_workers(worker_kwargs)
