@@ -2,10 +2,10 @@ from datetime import date
 from datetime import datetime
 from datetime import time
 
-from broomhilda.models.binders.inputs.base import NullableInputBase
+from broomhilda.models.binders.widgets.base import NullableWidgetBase
 
 
-class DateInput(NullableInputBase): # pylint: disable=R0903
+class DateWidget(NullableWidgetBase): # pylint: disable=R0903
     def __init__(
             self,
             min_value=date.min,
@@ -14,7 +14,7 @@ class DateInput(NullableInputBase): # pylint: disable=R0903
                 '%Y-%m-%d',
                 '%Y/%m/%d'),
             **kwargs):
-        super().__init__('inputs_date', 'date', **kwargs)
+        super().__init__('widgets_date', 'date', **kwargs)
         self.min_value = min_value
         self.max_value = max_value
         self.avg_value = min_value + (max_value - min_value) / 2
@@ -85,7 +85,7 @@ class DateInput(NullableInputBase): # pylint: disable=R0903
         return {'lower': lower_result, 'upper': upper_result}, {'lower': lower_errors, 'upper': upper_errors}
 
 
-class DateTimeInput(NullableInputBase): # pylint: disable=R0903
+class DateTimeWidget(NullableWidgetBase): # pylint: disable=R0903
     def __init__(
             self,
             min_value=datetime.min,
@@ -98,7 +98,7 @@ class DateTimeInput(NullableInputBase): # pylint: disable=R0903
                 '%H:%M:%S',
                 '%H:%M'),
             **kwargs):
-        super().__init__('inputs_date', 'datetime', **kwargs)
+        super().__init__('widgets_date', 'datetime', **kwargs)
         self.min_value = min_value
         self.max_value = max_value
         self.avg_value = min_value + (max_value - min_value) / 2
@@ -207,7 +207,7 @@ class DateTimeInput(NullableInputBase): # pylint: disable=R0903
         return {'lower': lower_result, 'upper': upper_result}, {'lower': lower_errors, 'upper': upper_errors}
 
 
-class TimeInput(NullableInputBase): # pylint: disable=R0903
+class TimeWidget(NullableWidgetBase): # pylint: disable=R0903
     def __init__(
             self,
             min_value=time.min,
@@ -216,7 +216,7 @@ class TimeInput(NullableInputBase): # pylint: disable=R0903
                 '%H:%M:%S',
                 '%H:%M'),
             **kwargs):
-        super().__init__('inputs_date', 'time', **kwargs)
+        super().__init__('widgets_date', 'time', **kwargs)
         self.min_value = min_value
         self.max_value = max_value
 

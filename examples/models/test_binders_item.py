@@ -13,20 +13,20 @@ from pprint import pprint
 from broomhilda import BASE_PATH
 from broomhilda.facade.server.server11 import Server11
 from broomhilda.models.binders import BinderBase
-from broomhilda.models.binders import CheckboxInput
-from broomhilda.models.binders import DateInput
-from broomhilda.models.binders import DateTimeInput
-from broomhilda.models.binders import EMailInput
-from broomhilda.models.binders import FileInput
-from broomhilda.models.binders import HiddenInput
-from broomhilda.models.binders import NumberInput
-from broomhilda.models.binders import PasswordInput
-from broomhilda.models.binders import RadioInput
-from broomhilda.models.binders import SearchInput
-from broomhilda.models.binders import SelectInput
-from broomhilda.models.binders import TextInput
-from broomhilda.models.binders import TimeInput
-from broomhilda.models.binders import UrlInput
+from broomhilda.models.binders import CheckboxWidget
+from broomhilda.models.binders import DateWidget
+from broomhilda.models.binders import DateTimeWidget
+from broomhilda.models.binders import EMailWidget
+from broomhilda.models.binders import FileWidget
+from broomhilda.models.binders import HiddenWidget
+from broomhilda.models.binders import NumberWidget
+from broomhilda.models.binders import PasswordWidget
+from broomhilda.models.binders import RadioWidget
+from broomhilda.models.binders import SearchWidget
+from broomhilda.models.binders import SelectWidget
+from broomhilda.models.binders import TextWidget
+from broomhilda.models.binders import TimeWidget
+from broomhilda.models.binders import UrlWidget
 from broomhilda.extras.handlers.static import StaticHandler
 from broomhilda.extras.handlers.template import Jinja2HandlerBase
 from broomhilda.extras.handlers.template import get_builtin_jinja2_loader
@@ -38,18 +38,18 @@ from unicodedata import name
 
 
 class TestBinder(BinderBase):
-    checkbox = CheckboxInput(
+    checkbox = CheckboxWidget(
         verbose_name='Test Checkbox',
         choices={None: 'Whatever', True: 'Enabled', False: 'Disabled'},
         help_text="Some help text here to give user an advice.",
         can_list_filter=True)
 
-    radio = RadioInput(
+    radio = RadioWidget(
         verbose_name='Test Radio',
         choices={'A': 'radio A', 'B': 'radio B', 'C': 'radio C'},
         help_text="Some help text here to give user an advice.",
         can_list_filter=True)
-    select = SelectInput(
+    select = SelectWidget(
         verbose_name='Test Select',
         choices=dict(
                 [('', 'NOTHING')] +
@@ -57,51 +57,51 @@ class TestBinder(BinderBase):
         help_text="Some help text here to give user an advice.",
         can_list_filter=True)
 
-    date = DateInput(
+    date = DateWidget(
         min_value=(date.today() - timedelta(days=15)),
         max_value=(date.today() + timedelta(days=15)),
         verbose_name='Test Date Picker',
         help_text="Some help text here to give user an advice.",
         can_list_filter=True)
-    datetime = DateTimeInput(
+    datetime = DateTimeWidget(
         min_value=(datetime.now().replace(microsecond=0) - timedelta(days=15)),
         max_value=(datetime.now().replace(microsecond=0) + timedelta(days=15)),
         verbose_name='Test Date and Time Picker',
         help_text="Some help text here to give user an advice.",
         can_list_filter=True)
-    time = TimeInput(
+    time = TimeWidget(
         verbose_name='Test Time Picker',
         help_text="Some help text here to give user an advice.",
         can_list_filter=True)
 
-    file = FileInput(
+    file = FileWidget(
         verbose_name='Test File',
         help_text="Some help text here to give user an advice.")
 
-    number = NumberInput(
+    number = NumberWidget(
         verbose_name='Test Number',
         help_text="Some help text here to give user an advice.",
         can_list_filter=True)
 
-    email = EMailInput(
+    email = EMailWidget(
         verbose_name='Test Email',
         help_text="Some help text here to give user an advice.",
         can_list_filter=True)
-    hidden = HiddenInput(
+    hidden = HiddenWidget(
         verbose_name='Test Hidden',
         help_text="Some help text here to give user an advice.")
-    password = PasswordInput(
+    password = PasswordWidget(
         verbose_name='Test Password',
         help_text="Some help text here to give user an advice.")
-    search = SearchInput(
+    search = SearchWidget(
         verbose_name='Test Search',
         help_text="Some help text here to give user an advice.",
         can_list_filter=True)
-    text = TextInput(
+    text = TextWidget(
         verbose_name='Test Text',
         help_text="Some help text here to give user an advice.",
         can_list_filter=True)
-    url = UrlInput(
+    url = UrlWidget(
         verbose_name='Test Url',
         help_text="Some help text here to give user an advice.",
         can_list_filter=True)

@@ -1,9 +1,9 @@
-from broomhilda.models.binders.inputs.base import NullableInputBase
+from broomhilda.models.binders.widgets.base import NullableWidgetBase
 
 
-class FileInput(NullableInputBase):# pylint: disable=R0903
+class FileWidget(NullableWidgetBase):# pylint: disable=R0903
     def __init__(self, **kwargs):
-        super().__init__('inputs_file', 'file', **kwargs)
+        super().__init__('widgets_file', 'file', **kwargs)
 
     def _parse_value(self, raw_data, default):
         result = None

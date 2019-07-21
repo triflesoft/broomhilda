@@ -1,16 +1,16 @@
-{% import 'macros/default/inputs_bool.html'   as inputs_bool %}
-{% import 'macros/default/inputs_choice.html' as inputs_choice %}
-{% import 'macros/default/inputs_date.html'   as inputs_date %}
-{% import 'macros/default/inputs_file.html'   as inputs_file %}
-{% import 'macros/default/inputs_number.html' as inputs_number %}
-{% import 'macros/default/inputs_text.html'   as inputs_text %}
+{% import 'macros/default/widgets_bool.html'   as widgets_bool %}
+{% import 'macros/default/widgets_choice.html' as widgets_choice %}
+{% import 'macros/default/widgets_date.html'   as widgets_date %}
+{% import 'macros/default/widgets_file.html'   as widgets_file %}
+{% import 'macros/default/widgets_number.html' as widgets_number %}
+{% import 'macros/default/widgets_text.html'   as widgets_text %}
 
 {% macro item_select(obj) %}
-{% for input in obj._inputs %}{% if input.can_item_select %}{{ input|render_macro(input.jinja2_module_name, 'item_select_' + input.jinja2_macro_name, obj._prefix) }}{% endif %}{% endfor %}
+{% for widget in obj._widgets %}{% if widget.can_item_select %}{{ widget|render_macro(widget.jinja2_module_name, 'item_select_' + widget.jinja2_macro_name, obj._prefix) }}{% endif %}{% endfor %}
 {%- endmacro %}
 
 {% macro item_update(obj) %}
-{% for input in obj._inputs %}{% if input.can_item_update %}{{ input|render_macro(input.jinja2_module_name, 'item_update_' + input.jinja2_macro_name, obj._prefix) }}{% endif %}{% endfor %}
+{% for widget in obj._widgets %}{% if widget.can_item_update %}{{ widget|render_macro(widget.jinja2_module_name, 'item_update_' + widget.jinja2_macro_name, obj._prefix) }}{% endif %}{% endfor %}
 {%- endmacro %}
 
 {% macro list_select(obj) %}
@@ -20,5 +20,5 @@
 {%- endmacro %}
 
 {% macro list_filter(obj) %}
-{% for input in obj._inputs %}{% if input.can_list_filter %}{{ input|render_macro(input.jinja2_module_name, 'list_filter_' + input.jinja2_macro_name, obj._prefix) }}{% endif %}{% endfor %}
+{% for widget in obj._widgets %}{% if widget.can_list_filter %}{{ widget|render_macro(widget.jinja2_module_name, 'list_filter_' + widget.jinja2_macro_name, obj._prefix) }}{% endif %}{% endfor %}
 {%- endmacro %}

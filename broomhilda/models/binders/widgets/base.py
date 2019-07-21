@@ -1,4 +1,4 @@
-class InputBase: # pylint: disable=R0902,R0903
+class WidgetBase: # pylint: disable=R0902,R0903
     def __init__( # pylint: disable=R0913,R0914,W0102
             self,
             jinja2_module_name,
@@ -11,7 +11,6 @@ class InputBase: # pylint: disable=R0902,R0903
             can_list_filter=False,
             can_list_search=False,
             can_list_sort=False,
-            is_nullable=False,
             verbose_name=None,
             help_text=None,
             choices=None,
@@ -29,7 +28,6 @@ class InputBase: # pylint: disable=R0902,R0903
         self.can_list_filter = can_list_filter
         self.can_list_search = can_list_search
         self.can_list_sort = can_list_sort
-        self.is_nullable = is_nullable
         self.verbose_name = verbose_name
         self.help_text = help_text
         self.choices = choices
@@ -39,7 +37,7 @@ class InputBase: # pylint: disable=R0902,R0903
         self._max_filter_length = 256
 
 
-class NullableInputBase(InputBase): # pylint: disable=R0903
+class NullableWidgetBase(WidgetBase): # pylint: disable=R0903
     def __init__( # pylint: disable=R0913
             self,
             jinja2_module_name,

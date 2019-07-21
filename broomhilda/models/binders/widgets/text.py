@@ -1,7 +1,7 @@
-from broomhilda.models.binders.inputs.base import NullableInputBase
+from broomhilda.models.binders.widgets.base import NullableWidgetBase
 
 
-class TextInputBase(NullableInputBase): # pylint: disable=R0903
+class TextWidgetBase(NullableWidgetBase): # pylint: disable=R0903
     def __init__(self, jinja2_module_name, jinja2_macro_name, max_length, **kwargs):
         super().__init__(jinja2_module_name, jinja2_macro_name, **kwargs)
         self.max_length = max_length
@@ -52,31 +52,31 @@ class TextInputBase(NullableInputBase): # pylint: disable=R0903
         return {'value': value_result}, {'value': value_errors}
 
 
-class EMailInput(TextInputBase): # pylint: disable=R0903
+class EMailWidget(TextWidgetBase): # pylint: disable=R0903
     def __init__(self, max_length=255, **kwargs):
-        super().__init__('inputs_text', 'email', max_length, **kwargs)
+        super().__init__('widgets_text', 'email', max_length, **kwargs)
 
 
-class HiddenInput(TextInputBase): # pylint: disable=R0903
+class HiddenWidget(TextWidgetBase): # pylint: disable=R0903
     def __init__(self, max_length=255, **kwargs):
-        super().__init__('inputs_text', 'hidden', max_length, **kwargs)
+        super().__init__('widgets_text', 'hidden', max_length, **kwargs)
 
 
-class PasswordInput(TextInputBase): # pylint: disable=R0903
+class PasswordWidget(TextWidgetBase): # pylint: disable=R0903
     def __init__(self, max_length=255, **kwargs):
-        super().__init__('inputs_text', 'password', max_length, **kwargs)
+        super().__init__('widgets_text', 'password', max_length, **kwargs)
 
 
-class SearchInput(TextInputBase): # pylint: disable=R0903
+class SearchWidget(TextWidgetBase): # pylint: disable=R0903
     def __init__(self, max_length=255, **kwargs):
-        super().__init__('inputs_text', 'search', max_length, **kwargs)
+        super().__init__('widgets_text', 'search', max_length, **kwargs)
 
 
-class TextInput(TextInputBase): # pylint: disable=R0903
+class TextWidget(TextWidgetBase): # pylint: disable=R0903
     def __init__(self, max_length=255, **kwargs):
-        super().__init__('inputs_text', 'text', max_length, **kwargs)
+        super().__init__('widgets_text', 'text', max_length, **kwargs)
 
 
-class UrlInput(TextInputBase): # pylint: disable=R0903
+class UrlWidget(TextWidgetBase): # pylint: disable=R0903
     def __init__(self, **kwargs):
-        super().__init__('inputs_text', 'url', 8192, **kwargs)
+        super().__init__('widgets_text', 'url', 8192, **kwargs)

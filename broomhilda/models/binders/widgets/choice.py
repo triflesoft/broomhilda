@@ -1,7 +1,7 @@
-from broomhilda.models.binders.inputs.base import NullableInputBase
+from broomhilda.models.binders.widgets.base import NullableWidgetBase
 
 
-class ChoiceInputBase(NullableInputBase): # pylint: disable=R0903
+class ChoiceWidgetBase(NullableWidgetBase): # pylint: disable=R0903
     def __init__(self, jinja2_module_name, jinja2_macro_name, **kwargs):
         super().__init__(jinja2_module_name, jinja2_macro_name, **kwargs)
 
@@ -32,8 +32,8 @@ class ChoiceInputBase(NullableInputBase): # pylint: disable=R0903
         else:
             raw_data = str(raw_data)
 
-            if raw_data in self.choices:
-                result = raw_data
+            if raw_data.lower() == 'true':
+                result = True
             else:
                 errors.append(f'Invalid value ({raw_data}).')
 
@@ -70,12 +70,12 @@ class ChoiceInputBase(NullableInputBase): # pylint: disable=R0903
         return result, errors
 
 
-class RadioInput(ChoiceInputBase): # pylint: disable=R0903
+class RadioWidget(ChoiceWidgetBase): # pylint: disable=R0903
     def __init__(self, **kwargs):
-        super().__init__('inputs_choice', 'radio', **kwargs)
+        super().__init__('widgets_choice', 'radio', **kwargs)
 
 
-class SelectInput(ChoiceInputBase): # pylint: disable=R0903
+class SelectWidget(ChoiceWidgetBase): # pylint: disable=R0903
     def __init__(self, size=1, **kwargs):
-        super().__init__('inputs_choice', 'select', **kwargs)
+        super().__init__('widgets_choice', 'select', **kwargs)
         self.size = size

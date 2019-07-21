@@ -1,9 +1,9 @@
-from broomhilda.models.binders.inputs.base import NullableInputBase
+from broomhilda.models.binders.widgets.base import NullableWidgetBase
 
 
-class NumberInput(NullableInputBase): # pylint: disable=R0903
+class NumberWidget(NullableWidgetBase): # pylint: disable=R0903
     def __init__(self, min_value=0, max_value=100, decimal_places=2, **kwargs):
-        super().__init__('inputs_number', 'number', **kwargs)
+        super().__init__('widgets_number', 'number', **kwargs)
         self.min_value = min_value
         self.max_value = max_value
         self.decimal_places = decimal_places

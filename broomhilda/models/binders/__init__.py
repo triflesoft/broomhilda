@@ -1,68 +1,68 @@
 # Required for reimport
-from broomhilda.models.binders.inputs.base import InputBase
-from broomhilda.models.binders.inputs.bool import CheckboxInput
-from broomhilda.models.binders.inputs.choice import RadioInput
-from broomhilda.models.binders.inputs.choice import SelectInput
-from broomhilda.models.binders.inputs.date import DateInput
-from broomhilda.models.binders.inputs.date import DateTimeInput
-from broomhilda.models.binders.inputs.date import TimeInput
-from broomhilda.models.binders.inputs.file import FileInput
-from broomhilda.models.binders.inputs.number import NumberInput
-from broomhilda.models.binders.inputs.text import EMailInput
-from broomhilda.models.binders.inputs.text import HiddenInput
-from broomhilda.models.binders.inputs.text import PasswordInput
-from broomhilda.models.binders.inputs.text import SearchInput
-from broomhilda.models.binders.inputs.text import TextInput
-from broomhilda.models.binders.inputs.text import UrlInput
+from broomhilda.models.binders.widgets.base import WidgetBase
+from broomhilda.models.binders.widgets.bool import CheckboxWidget
+from broomhilda.models.binders.widgets.choice import RadioWidget
+from broomhilda.models.binders.widgets.choice import SelectWidget
+from broomhilda.models.binders.widgets.date import DateWidget
+from broomhilda.models.binders.widgets.date import DateTimeWidget
+from broomhilda.models.binders.widgets.date import TimeWidget
+from broomhilda.models.binders.widgets.file import FileWidget
+from broomhilda.models.binders.widgets.number import NumberWidget
+from broomhilda.models.binders.widgets.text import EMailWidget
+from broomhilda.models.binders.widgets.text import HiddenWidget
+from broomhilda.models.binders.widgets.text import PasswordWidget
+from broomhilda.models.binders.widgets.text import SearchWidget
+from broomhilda.models.binders.widgets.text import TextWidget
+from broomhilda.models.binders.widgets.text import UrlWidget
 
 
 __all__ = [
-    'InputBase',
-    'CheckboxInput',
-    'RadioInput',
-    'SelectInput',
-    'DateInput',
-    'DateTimeInput',
-    'TimeInput',
-    'FileInput',
-    'NumberInput',
-    'EMailInput',
-    'HiddenInput',
-    'PasswordInput',
-    'SearchInput',
-    'TextInput',
-    'UrlInput',
-    'InputProxy'
+    'WidgetBase',
+    'CheckboxWidget',
+    'RadioWidget',
+    'SelectWidget',
+    'DateWidget',
+    'DateTimeWidget',
+    'TimeWidget',
+    'FileWidget',
+    'NumberWidget',
+    'EMailWidget',
+    'HiddenWidget',
+    'PasswordWidget',
+    'SearchWidget',
+    'TextWidget',
+    'UrlWidget',
+    'WidgetProxy'
 ]
 
 
-class InputProxy:
+class WidgetProxy:
     def __getattr__(self, name):
-        return getattr(self._input, name)
+        return getattr(self._widget, name)
 
-    def __init__(self, form, input_):
+    def __init__(self, form, widget):
         self._form = form
-        self._input = input_
+        self._widget = widget
 
     def _validate_item_select(self):
-        result, _ = self._input._validate_item_update(self._form._raw_data) # pylint: disable=W0212
+        result, _ = self._widget._validate_item_update(self._form._raw_data) # pylint: disable=W0212
 
-        self._form._result[self._input.name] = result # pylint: disable=W0212
-        self._form._errors[self._input.name] = {} # pylint: disable=W0212
+        self._form._result[self._widget.name] = result # pylint: disable=W0212
+        self._form._errors[self._widget.name] = {} # pylint: disable=W0212
 
     def _validate_item_update(self):
-        result, errors = self._input._validate_item_update(self._form._raw_data) # pylint: disable=W0212
+        result, errors = self._widget._validate_item_update(self._form._raw_data) # pylint: disable=W0212
 
-        self._form._result[self._input.name] = result # pylint: disable=W0212
-        self._form._errors[self._input.name] = errors # pylint: disable=W0212
+        self._form._result[self._widget.name] = result # pylint: disable=W0212
+        self._form._errors[self._widget.name] = errors # pylint: disable=W0212
 
         return len(errors) == 0
 
     def _validate_list_filter(self):
-        result, errors = self._input._validate_list_filter(self._form._raw_data) # pylint: disable=W0212
+        result, errors = self._widget._validate_list_filter(self._form._raw_data) # pylint: disable=W0212
 
-        self._form._result[self._input.name] = result # pylint: disable=W0212
-        self._form._errors[self._input.name] = errors # pylint: disable=W0212
+        self._form._result[self._widget.name] = result # pylint: disable=W0212
+        self._form._errors[self._widget.name] = errors # pylint: disable=W0212
 
         return len(errors) == 0
 
@@ -73,7 +73,7 @@ class InputProxy:
         return self._form._is_validated and len(self.item_errors(item)) > 0 # pylint: disable=W0212
 
     def item_value(self, item):
-        value = self._form._result.get(self._input.name) # pylint: disable=W0212
+        value = self._form._result.get(self._widget.name) # pylint: disable=W0212
 
         if value is None:
             return None
@@ -92,17 +92,17 @@ class InputProxy:
         return value.__format__(item_format)
 
     def item_errors(self, item):
-        input_errors = self._form._errors.get(self._input.name, None) # pylint: disable=W0212
+        widget_errors = self._form._errors.get(self._widget.name, None) # pylint: disable=W0212
 
-        if input_errors is None:
+        if widget_errors is None:
             return []
 
-        return input_errors.get(item, [])
+        return widget_errors.get(item, [])
 
 
 class BinderMeta: # pylint: disable=R0903
-    def __init__(self, inputs, *args, **kwargs):
-        self.inputs = inputs
+    def __init__(self, widgets, *args, **kwargs):
+        self.widgets = widgets
 
 
 class BinderBase: # pylint: disable=R0902,R0903
@@ -110,7 +110,7 @@ class BinderBase: # pylint: disable=R0902,R0903
         from inspect import isclass
 
         meta_dict = {}
-        input_dict = {}
+        widget_dict = {}
 
         for base in reversed(cls.__mro__):
             meta_class = getattr(base, 'Meta', None)
@@ -120,16 +120,16 @@ class BinderBase: # pylint: disable=R0902,R0903
                     if not name.startswith('_'):
                         meta_dict[name] = getattr(meta_class, name)
 
-            for name, input_ in base.__dict__.items():
+            for name, widget in base.__dict__.items():
                 if not name.startswith('_'):
-                    if not input_.name:
-                        input_.name = name
+                    if not widget.name:
+                        widget.name = name
 
-                    if isinstance(input_, InputBase):
-                        input_dict[input_.name] = input_
+                    if isinstance(widget, WidgetBase):
+                        widget_dict[widget.name] = widget
 
         result = super().__new__(cls)
-        result._meta = BinderMeta(list(input_dict.values()), meta_dict) # pylint: disable=W0212
+        result._meta = BinderMeta(list(widget_dict.values()), meta_dict) # pylint: disable=W0212
 
         return result
 
@@ -141,13 +141,13 @@ class BinderBase: # pylint: disable=R0902,R0903
         self._result = {}
         self._errors = {}
         self._data = {}
-        self._inputs = []
+        self._widgets = []
         self._update(kwargs)
 
-        for inp in self._meta.inputs: # pylint: disable=E1101
-            proxy = InputProxy(self, inp)
-            self._inputs.append(proxy)
-            setattr(self, inp.name, proxy)
+        for widget in self._meta.widgets: # pylint: disable=E1101
+            proxy = WidgetProxy(self, widget)
+            self._widgets.append(proxy)
+            setattr(self, widget.name, proxy)
 
     def _update(self, data):
         self._raw_data = {}
@@ -163,8 +163,8 @@ class BinderBase: # pylint: disable=R0902,R0903
         self._data = {}
         self._is_valid = True
 
-        for input_ in self._inputs:
-            input_._validate_item_select() # pylint: disable=W0212
+        for widget in self._widgets:
+            widget._validate_item_select() # pylint: disable=W0212
 
     def _validate_item_update(self):
         self._is_validated = True
@@ -172,8 +172,8 @@ class BinderBase: # pylint: disable=R0902,R0903
         self._data = {}
         self._is_valid = True
 
-        for input_ in self._inputs:
-            if not input_._validate_item_update(): # pylint: disable=W0212
+        for widget in self._widgets:
+            if not widget._validate_item_update(): # pylint: disable=W0212
                 self._is_valid = False
 
         return self._is_valid
@@ -184,8 +184,8 @@ class BinderBase: # pylint: disable=R0902,R0903
         self._data = {}
         self._is_valid = True
 
-        for inp in self._inputs:
-            if not inp._validate_list_filter(): # pylint: disable=W0212
+        for widget in self._widgets:
+            if not widget._validate_list_filter(): # pylint: disable=W0212
                 self._is_valid = False
 
         return self._is_valid
