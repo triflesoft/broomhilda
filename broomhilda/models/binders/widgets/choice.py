@@ -30,10 +30,12 @@ class ChoiceWidgetBase(NullableWidgetBase): # pylint: disable=R0903
         if raw_data is None:
             result = default
         else:
-            raw_data = str(raw_data)
+            str_data = str(raw_data).lower()
 
-            if raw_data.lower() == 'true':
+            if str_data in ('true', 'yes', 'on'):
                 result = True
+            elif str_data == ('false', 'no', 'off'):
+                result = False
             else:
                 errors.append(f'Invalid value ({raw_data}).')
 
